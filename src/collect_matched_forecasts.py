@@ -4,7 +4,7 @@ This is a manual, scientific pilot. 0.25 degree IFS temperature/wind, single
 HARMONIE issue; raw model files plus provenance remain in output artifact.
 The system deliberately fails if both models cannot provide the same issue.
 """
-import argparse, hashlib, json, math, re, sys
+import argparse, hashlib, json, math, re, sys, time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import requests
@@ -14,6 +14,22 @@ import pandas as pd
 DMI="https://opendataapi.dmi.dk/v1/forecastedr/collections/harmonie_dini_sf"
 SITES={"06009":{"lat":61.3957,"lon":-6.6818},"06011":{"lat":62.0231,"lon":-6.7647},"06014":{"lat":62.2995,"lon":-7.074}}
 LEADS=(6,12,24)
+def dmi_request(url,params=None):
+    """DMI API calls are rate-limited. One request at a time, honor HTTP 429."""
+    for attempt in range(5):
+        time.sleep(2.5)
+        response=requests.get(url,params=params,timeout=75)
+        if response.status_code!=429:
+            response.raise_for_status()
+            return response
+        header=response.headers.get("Retry-After","").strip()
+        try:
+            wait=max(5,min(120,float(header)))
+        except ValueError:
+            wait=min(120,15*(2**attempt))
+        print(f"DMI HTTP 429 on attempt {attempt+1}/5; retry in {wait:.0f}s",file=sys.stderr,flush=True)
+        if attempt<4:time.sleep(wait)
+    raise RuntimeError("DMI API rate limit persisted through five polite retries")
 def iso(t): return t.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def pick_common_instance(ids,now,min_age_hours=15,max_age_hours=44):
@@ -69,7 +85,7 @@ def collect(out,now,leads=LEADS,resolution="0p25"):
     out=Path(out);(out/"raw"/"harmonie").mkdir(parents=True,exist_ok=True);(out/"raw"/"ecmwf").mkdir(parents=True,exist_ok=True)
     manifest={"fetched_at_utc":iso(now),"resolution":resolution,"requested_leads":list(leads),"status":"starting","files":[]}
     try:
-        r=requests.get(DMI+"/instances",timeout=70);r.raise_for_status()
+        r=dmi_request(DMI+"/instances")
         path=out/"raw"/"harmonie"/"instances.json";path.write_bytes(r.content)
         manifest["files"].append({"path":str(path.relative_to(out)),"sha256":sha(path),"bytes":path.stat().st_size})
         j=r.json();instances=[x["id"] for x in j["instances"]]
@@ -88,7 +104,7 @@ def collect(out,now,leads=LEADS,resolution="0p25"):
             station=dict(coords,id=sid)
             endpoint=f"{DMI}/instances/{source_id}/position"
             params={"coords":f"POINT({coords['lon']} {coords['lat']})","crs":"crs84","parameter-name":"temperature-2m,wind-speed-10m","f":"GeoJSON"}
-            r=requests.get(endpoint,params=params,timeout=75);r.raise_for_status()
+            r=dmi_request(endpoint,params)
             raw=out/"raw"/"harmonie"/f"{source_id}_{sid}.json";raw.write_bytes(r.content)
             manifest["files"].append({"path":str(raw.relative_to(out)),"sha256":sha(raw),"bytes":raw.stat().st_size,"source_url":r.url})
             rows+=harmonie_rows(r.json(),station,issue,source_id,leads)
