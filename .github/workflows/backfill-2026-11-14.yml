@@ -1,0 +1,66 @@
+name: One-time backfill of verified November 14 model issue
+
+on:
+  push:
+    paths:
+      - '.github/workflows/backfill-2026-11-14.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - name: Retrieve prior original scientific artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/backfill/forecast outputs/backfill/observations
+          gh run download 43648017660 --name matching-ecmwf-harmonie-raw-forecasts --dir outputs/backfill/forecast
+          gh run download 43618246372 --name dmi-pilot-hourly-observations --dir outputs/backfill/observations
+          mv outputs/backfill/observations/dmi_observations_hourly.csv outputs/backfill/observations/observations.csv
+          mv outputs/backfill/observations/dmi_observations_hourly.raw.json outputs/backfill/observations/observations.raw.json
+      - name: Independently verify 13 raw-file hashes and matched issue
+        run: python src/verify_operational.py --root outputs/backfill
+      - name: Create provenance-stamped source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib,json
+          d={"source_forecast_run":43648017660,"source_observations_run":43618246372,
+             "forecast_artifact_id":14134832048,"observations_artifact_id":14122523629,
+             "status":"verified_historical_run_not_reforecast",
+             "note":"Observation file contains only measurements retrieved on 2026-11-14; later +24h observations require separate ingestion."}
+          pathlib.Path("outputs/backfill/collection_provenance.json").write_text(json.dumps(d,indent=2)+"\n")
+          PY
+          (cd outputs/backfill && zip -qr ../../issue_20261114_000000UTC_backfill.zip .)
+          test "$(stat -c %s issue_20261114_000000UTC_backfill.zip)" -lt 30000000
+      - name: Preserve archive as research GitHub Release asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="weather-data-2026-W46"
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "Weather data archive $TAG" \
+              --notes "Research raw-data archive with ECMWF IFS and DMI HARMONIE/DMI observations. Public meteorological data, source attribution ECMWF and DMI. No model-skill claims." --latest=false
+          fi
+          gh release upload "$TAG" issue_20261114_000000UTC_backfill.zip --clobber
+      - name: Upload audit copy
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backfill-november14-audit
+          path: outputs/backfill/
+          retention-days: 30
