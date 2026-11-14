@@ -1,6 +1,9 @@
 name: Weekly Weather Forecast Verification
 
 on:
+  push:
+    paths:
+      - '.github/workflows/weekly-verification.yml'
   schedule:
     - cron: '43 8 * * 0'
   workflow_dispatch:
@@ -50,6 +53,28 @@ jobs:
             gh release upload "$TAG" "$ARCHIVE" --clobber
           else
             echo "No current-week weather data release, report remains an Actions artifact."
+          fi
+      - name: Publish weekly evaluation heartbeat
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os,datetime,pathlib
+          status=json.load(open('outputs/report/report.json'))
+          status.update(
+            updated_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            workflow_run_url=os.environ['GITHUB_SERVER_URL']+'/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID']
+          )
+          pathlib.Path('report_status.json').write_text(json.dumps(status,indent=2)+'\n')
+          PY
+          B64="$(base64 -w0 report_status.json)"
+          PATH_URL="repos/$GITHUB_REPOSITORY/contents/ops/latest_weekly_analysis.json"
+          SHA="$(gh api "$PATH_URL" --jq .sha 2>/dev/null || true)"
+          if [ -z "$SHA" ]; then
+            gh api --method PUT "$PATH_URL" -f message="Record latest weekly model evaluation" -f content="$B64" >/dev/null
+          else
+            gh api --method PUT "$PATH_URL" -f message="Record latest weekly model evaluation" -f content="$B64" -f sha="$SHA" >/dev/null
           fi
       - name: Retain report in workflow artifacts
         if: always()
