@@ -1,23 +1,30 @@
 # Faroe Weather Benchmark
 
-Reproducible comparison of **DMI station observations**, **ECMWF IFS**, **DMI HARMONIE**, and (when access is approved) **Google WeatherNext 3** for the Faroe Islands.
+Reproducible comparison of **DMI observations**, **ECMWF IFS**, **DMI HARMONIE**, and — once approved — **Google WeatherNext 3** for the Faroe Islands.
 
-## Deployment status (2026-11-14)
-- Repository established.
-- Cloud deployment **NOT ACTIVE**; no jobs, bucket, schedule, or billing changes have been made.
-- WeatherNext access is pending Google approval.
-- Previous project archive: `Faroe_Weather_Benchmark_v0.3_CloudRun.zip`, provided in the ChatGPT conversation. The archive has **not yet been imported** into this repository.
-- No real-weather accuracy results exist yet; never mistake synthetic examples for observations.
+## Current status — 14 November 2026
+- Python modules for paired forecast evaluation, station discovery, DMI observation collection, ECMWF IFS collection, HARMONIE collection, per-run archiving, and Cloud Run entrypoint are in this repository.
+- GitHub Actions runs unit tests on pushes and pull requests; **a successful hosted run has not yet been independently verified**.
+- **Cloud Run is NOT deployed.** No scheduler, cloud bucket, service account, or billing change has been created.
+- **No real forecast accuracy results exist yet**. Any demonstration data is synthetic.
+- Google WeatherNext 3 access is **pending**; the BigQuery adapter from the earlier v0.4 ZIP has not been imported or live-verified.
+- DMI station IDs, instruments and observation coverage must be validated before collection can run.
 
-## Safety
-Never commit API keys, service-account JSON, secrets, private station metadata, raw personal data, or downloaded GRIB archives. Before activating a schedule, confirm IAM, storage limits, costs, data coverage, and working live-source tests.
+## Safe first checks
+```bash
+python -m pip install -r requirements.txt
+python -m pytest -q
+python src/discover_dmi_stations.py --output data/stations_candidates.csv
+```
+Inspect candidates against DMI metadata and build `data/stations_verified.csv` yourself only from verified data; never automatically promote candidates.
 
-## Next steps
-1. Import the contents of the v0.3 ZIP to the **root** of this repository (not in an extra nested folder).
-2. Confirm quality and source settings with `pytest -q`.
-3. Validate actual DMI stations, and create `data/stations_verified.csv` (do not use demonstration coordinates).
-4. Review `deploy/DEPLOY_GOOGLE_CLOUD_DA.md` from the archive.
-5. Validate Cloud Run Job manually **before** enabling Cloud Scheduler.
-6. Add WeatherNext only after access approval and schema verification.
+## Intended cloud environment
+Use a **new** Cloud Run Job and dedicated Cloud Storage bucket in an explicitly verified GCP project. Do not modify existing `sementicx-worker` or Proof Layer services. Ensure dedicated least-privilege IAM, budget alerts, manual one-off test, archive validation and retries before enabling Cloud Scheduler.
 
-A separate weather deployment must never modify `sementicx-worker` or the Proof Layer repository.
+The Dockerfile requires a verified stations file mounted or provided at runtime, and valid `WEATHER_ARCHIVE_BUCKET` / `WEATHER_STATIONS` settings. Without those, it deliberately exits rather than reporting fake success.
+
+## Model comparison rules
+Same stations, variables, physical units, UTC initialization and valid times, and common verification sample for all models. The benchmark reports MAE, RMSE, bias, and paired MAE differences with day-block bootstrap uncertainty. HARMONIE availability, actual API schemas, sensor heights, and GRIB parsing still require live tests.
+
+## Security
+The repository is currently **Public** (last checked during this session). Never commit secrets, credentials, sensitive configuration, GRIB archives or private data. Change repository visibility to Private in GitHub Settings if desired.
