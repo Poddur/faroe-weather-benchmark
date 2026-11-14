@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - '.github/workflows/operational-archive.yml'
+      - 'src/collect_matched_forecasts.py'
+      - 'src/fetch_dmi_observations.py'
+      - 'src/verify_operational.py'
   schedule:
     - cron: '27 4,22 * * *'
   workflow_dispatch:
