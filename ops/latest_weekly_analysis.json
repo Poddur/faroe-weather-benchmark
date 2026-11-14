@@ -1,0 +1,19 @@
+{
+  "valid_source_bundles": 2,
+  "excluded_bundles": [],
+  "forecast_rows": 36,
+  "observation_rows": 652,
+  "models": [
+    "ECMWF_IFS",
+    "HARMONIE_DINI"
+  ],
+  "status": "exploratory",
+  "warnings": [
+    "This is exploratory verification, not proof of model superiority.",
+    "Fewer than 10 model issue dates: insufficient independent cases for claims."
+  ],
+  "paired_model_rows": 24,
+  "independent_init_days": 1,
+  "updated_utc": "2026-11-14T22:45:14.480274+00:00",
+  "workflow_run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43649702642"
+}
