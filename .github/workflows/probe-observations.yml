@@ -1,0 +1,30 @@
+name: Probe recent DMI observations (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install requirements
+        run: python -m pip install -r requirements.txt
+      - name: Probe 24-hour real observations, no synthetic records
+        run: python src/probe_dmi_observations.py --hours 24 --out data/observation_probe.csv
+      - name: Archive results (including errors)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dmi-observation-availability-probe
+          path: |
+            data/observation_probe.csv
+            data/observation_probe.metadata.json
+          retention-days: 14
