@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: weather-operational-archive
@@ -95,6 +96,49 @@ jobs:
           fi
           gh release upload "$TAG" "$ARCHIVE" --clobber
           echo "Published $ARCHIVE to release $TAG"
+      - name: Update persistent operational status
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os,datetime,pathlib
+          m=json.load(open('outputs/operational/forecast/manifest.json'))
+          v=json.load(open('outputs/operational/verification.json'))
+          status={
+            'updated_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            'state':'success',
+            'issue_time_utc':m['issue_time_utc'],
+            'source_models':['ECMWF_IFS','HARMONIE_DINI'],
+            'forecast_rows':v['forecast_rows'],
+            'observation_rows':v['observation_rows'],
+            'run_url':os.environ['GITHUB_SERVER_URL']+'/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],
+            'source_commit':os.environ['GITHUB_SHA'],
+            'archive_tag':'weather-data-'+datetime.datetime.now(datetime.timezone.utc).strftime('%G-W%V')
+          }
+          pathlib.Path('status.json').write_text(json.dumps(status,indent=2)+'\n')
+          PY
+          B64="$(base64 -w0 status.json)"
+          PATH_URL="repos/$GITHUB_REPOSITORY/contents/ops/latest_success.json"
+          SHA="$(gh api "$PATH_URL" --jq .sha 2>/dev/null || true)"
+          if [ -z "$SHA" ]; then
+            gh api --method PUT "$PATH_URL" -f message="Update successful weather archive heartbeat" -f content="$B64" >/dev/null
+          else
+            gh api --method PUT "$PATH_URL" -f message="Update successful weather archive heartbeat" -f content="$B64" -f sha="$SHA" >/dev/null
+          fi
+      - name: Report source or archive failures in a single tracked issue
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          TITLE="Automated weather archive failure"
+          URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          EXISTING="$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "Automatic collection failed: $URL. Review the workflow artifact and source logs."
+          else
+            gh issue create --title "$TITLE" --body "Automatic collection failed: $URL. Check ECMWF/DMI source availability, exact issue selection and archived diagnostics. This tracker is used for operational failures, not evidence of forecast quality."
+          fi
       - name: Upload audit bundle to Actions for short-term redundancy
         if: always()
         uses: actions/upload-artifact@v4
