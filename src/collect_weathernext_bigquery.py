@@ -25,7 +25,7 @@ WHERE
   t.init_time = @issue
   AND ST_DWITHIN(t.geography, ST_GEOGPOINT(@longitude,@latitude), 15000)
   AND f.hours IN UNNEST(@leads)
-QUALIFY ROW_NUMBER() OVER (PARTITION BY f.hours ORDER BY distance_m) = 1
+QUALIFY ROW_NUMBER() OVER (PARTITION BY f.hours ORDER BY ST_DISTANCE(t.geography,ST_GEOGPOINT(@longitude,@latitude))) = 1
 """
 def query_sql(table):
     if not TABLE_RE.fullmatch(table):raise ValueError("Specify an Analytics Hub-linked 0.1-degree WeatherNext 3 table in full project.dataset.table form")
