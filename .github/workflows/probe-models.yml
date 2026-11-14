@@ -1,0 +1,49 @@
+name: Live forecast probes — ECMWF and HARMONIE
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  harmonie:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Probe actual DMI HARMONIE EDR coverage
+        run: python src/probe_harmonie_live.py --output outputs/harmonie-probe
+      - name: Keep HTTP diagnostics even if source fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harmonie-live-probe-diagnostics
+          path: outputs/harmonie-probe/
+          retention-days: 14
+  ecmwf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install "ecmwf-opendata>=0.3,<1" "xarray>=2024.1" "cfgrib>=0.9.10" "eccodes>=2.35"
+      - name: Retrieve one recent IFS issue at 0.25 degree
+        run: python src/probe_ecmwf_live.py --output outputs/ecmwf-probe --resolution 0p25 --step 6
+      - name: Preserve manifest and small diagnostic samples
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ecmwf-live-probe-diagnostics
+          path: outputs/ecmwf-probe/manifest.json
+          retention-days: 14
