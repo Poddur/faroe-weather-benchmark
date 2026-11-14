@@ -19,7 +19,7 @@ def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def pick_common_instance(ids,now,min_age_hours=15,max_age_hours=44):
     allowed=[]
     for item in ids:
-        m=re.fullmatch(r"(\\d{4}-\\d{2}-\\d{2}T\\d{6}Z)",str(item))
+        m=re.fullmatch(r"(\d{4}-\d{2}-\d{2}T\d{6}Z)",str(item))
         if not m:continue
         t=datetime.strptime(m.group(1),"%Y-%m-%dT%H%M%SZ").replace(tzinfo=timezone.utc)
         age=(now-t).total_seconds()/3600
