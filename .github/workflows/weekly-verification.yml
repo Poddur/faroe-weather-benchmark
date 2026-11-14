@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: weather-weekly-evaluation
@@ -38,6 +38,19 @@ jobs:
           find release-bundles -type f -name 'issue_*.zip' | wc -l
       - name: Evaluate only valid contemporaneously archived forecast pairs
         run: python src/evaluate_releases.py --archive-dir release-bundles --output outputs/report
+      - name: Archive report with weekly source data release
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="weather-data-$(date -u +%G-W%V)"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            ARCHIVE="verification-report-$(date -u +%G-W%V).zip"
+            ( cd outputs/report && zip -qr "../../$ARCHIVE" . )
+            gh release upload "$TAG" "$ARCHIVE" --clobber
+          else
+            echo "No current-week weather data release, report remains an Actions artifact."
+          fi
       - name: Retain report in workflow artifacts
         if: always()
         uses: actions/upload-artifact@v4
