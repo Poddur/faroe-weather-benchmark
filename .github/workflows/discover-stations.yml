@@ -1,0 +1,28 @@
+name: Discover Faroese DMI stations (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - name: Query DMI station registry (unverified candidates only)
+        run: python src/discover_dmi_stations.py --output data/stations_candidates.csv
+      - name: Upload station candidates for manual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: dmi-faroe-station-candidates
+          path: |
+            data/stations_candidates.csv
+            data/stations_candidates.raw.json
+          retention-days: 14
