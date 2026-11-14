@@ -1,15 +1,29 @@
 """Download DMI metObs hourly matching records without silently resolving duplicates."""
-import argparse,json
+import argparse,json,time,sys
 from pathlib import Path
 import pandas as pd
 import requests
 BASE="https://opendataapi.dmi.dk/v2/metObs/collections/observation/items"
+def polite_get(params):
+    for attempt in range(5):
+        time.sleep(2.5)
+        response=requests.get(BASE,params=params,timeout=60)
+        if response.status_code!=429:
+            response.raise_for_status()
+            return response
+        header=response.headers.get("Retry-After","").strip()
+        try: wait=max(5,min(120,float(header)))
+        except ValueError: wait=min(120,15*2**attempt)
+        print(f"DMI observation HTTP 429, attempt {attempt+1}/5, next wait {wait:.0f}s",file=sys.stderr,flush=True)
+        if attempt<4:time.sleep(wait)
+    raise RuntimeError("DMI observation API still rate-limited after five retries")
+
 PARAMS={"temp_dry":("temperature_2m","C"),"wind_speed":("wind_speed_10m","m/s"),"pressure_at_sea":("msl_pressure","hPa"),"precip_past1h":("precipitation_1h","mm")}
 def fetch(station,start,end,parameter):
     page=0;seen=set()
     while True:
         args={"stationId":station,"parameterId":parameter,"datetime":f"{start}/{end}","limit":1000,"offset":page*1000}
-        r=requests.get(BASE,params=args,timeout=60);r.raise_for_status()
+        r=polite_get(args)
         features=r.json().get("features",[])
         if not features:break
         for x in features:
