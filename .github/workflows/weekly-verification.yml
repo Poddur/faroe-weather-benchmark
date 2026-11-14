@@ -1,0 +1,47 @@
+name: Weekly Weather Forecast Verification
+
+on:
+  schedule:
+    - cron: '43 8 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weather-weekly-evaluation
+  cancel-in-progress: false
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: python -m pip install -r requirements.txt
+      - name: Download recent weekly releases
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release-bundles
+          gh release list --limit 6 --json tagName --jq '.[].tagName' | grep '^weather-data-' | while read -r TAG; do
+            mkdir -p "release-bundles/$TAG"
+            gh release download "$TAG" --pattern 'issue_*.zip' --dir "release-bundles/$TAG" || true
+          done
+          find release-bundles -type f -name 'issue_*.zip' | wc -l
+      - name: Evaluate only valid contemporaneously archived forecast pairs
+        run: python src/evaluate_releases.py --archive-dir release-bundles --output outputs/report
+      - name: Retain report in workflow artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-model-verification
+          path: outputs/report/
+          retention-days: 90
