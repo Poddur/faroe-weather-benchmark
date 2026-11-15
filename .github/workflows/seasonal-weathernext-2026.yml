@@ -1,0 +1,112 @@
+name: Seasonal historical WeatherNext 3 evaluation - 2026
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seasonal-weathernext-2026.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: seasonal-weathernext-2026
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install 'dynamical-catalog>=1.0.0,<2' 'xarray>=2024.1,<2027'
+      - name: Validate historical benchmark logic
+        run: python -m pytest -q tests/test_weathernext_dynamical.py tests/test_historical_weathernext_benchmark.py
+      - name: Retrieve seasonal issue times, all 3 stations and 3 leads
+        run: |
+          python src/historical_weathernext_benchmark.py \
+            --issue 2026-01-01T00:00:00Z \
+            --issue 2026-01-15T00:00:00Z \
+            --issue 2026-02-01T00:00:00Z \
+            --issue 2026-02-15T00:00:00Z \
+            --issue 2026-03-01T00:00:00Z \
+            --issue 2026-03-15T00:00:00Z \
+            --issue 2026-04-01T00:00:00Z \
+            --issue 2026-04-15T00:00:00Z \
+            --issue 2026-05-01T00:00:00Z \
+            --issue 2026-05-15T00:00:00Z \
+            --issue 2026-06-01T00:00:00Z \
+            --issue 2026-06-15T00:00:00Z \
+            --issue 2026-07-01T00:00:00Z \
+            --issue 2026-07-15T00:00:00Z \
+            --issue 2026-08-01T00:00:00Z \
+            --issue 2026-08-15T00:00:00Z \
+            --issue 2026-09-01T00:00:00Z \
+            --issue 2026-09-15T00:00:00Z \
+            --issue 2026-10-01T00:00:00Z \
+            --issue 2026-10-15T00:00:00Z \
+            --leads 6 12 24 \
+            --output outputs/weathernext-seasonal
+      - name: Preserve all original records and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weathernext-2026-seasonal-audit
+          path: outputs/weathernext-seasonal/
+          retention-days: 90
+      - name: Archive seasonal research dataset to GitHub Release
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="weathernext3-seasonal-2026"
+          (cd outputs/weathernext-seasonal && zip -q ../../weathernext3-seasonal-2026.zip ./*)
+          test "$(stat -c %s weathernext3-seasonal-2026.zip)" -lt 30000000
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "WeatherNext 3 seasonal historical evaluation – 2026" \
+              --notes "20 predeclared model initializations, two monthly across January–October 2026, +6/12/24 h, Google WeatherNext 3 via dynamical.org and DMI metObs. Retrospective archive data; verify original publication lineage before interpreting as genuine prospective performance." --latest=false
+          fi
+          gh release upload "$TAG" weathernext3-seasonal-2026.zip --clobber
+      - name: Record independently verifiable seasonal research receipt
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os,pathlib
+          d=json.loads(pathlib.Path("outputs/weathernext-seasonal/manifest.json").read_text())
+          d["run_url"]=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"]
+          d["release"]="weathernext3-seasonal-2026"
+          pathlib.Path("receipt.json").write_text(json.dumps(d,indent=2)+"\n")
+          PY
+          B64="$(base64 -w0 receipt.json)"
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/weathernext_seasonal_2026.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          if [ -n "$SHA" ]; then
+            gh api --method PUT "$URL" -f message="Record completed 2026 historical seasonal benchmark" -f content="$B64" -f sha="$SHA" >/dev/null
+          else
+            gh api --method PUT "$URL" -f message="Record completed 2026 historical seasonal benchmark" -f content="$B64" >/dev/null
+          fi
+      - name: Track any failed backtest
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          TITLE="WeatherNext seasonal 2026 analysis failed"
+          URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          EXISTING="$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "Seasonal benchmark failure: $URL. See audit artifact."
+          else
+            gh issue create --title "$TITLE" --body "Seasonal 2026 benchmark failed: $URL. See audit artifact and DMI/WeatherNext diagnostics."
+          fi
