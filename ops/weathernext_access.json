@@ -1,0 +1,48 @@
+{
+  "source": "dynamical.org Icechunk / Google WeatherNext 3",
+  "catalog_url": "https://stac.dynamical.org/catalog.json",
+  "product": "google-weathernext3-forecast-15-day-0-1-degree-virtual",
+  "requested_issue_utc": "2026-11-14T00:00:00Z",
+  "lead_hours": 6,
+  "data_license_reference": "https://dynamical.org/catalog/google-weathernext3-forecast-15-day-0-1-degree-virtual/",
+  "state": "success",
+  "expected_values": 6,
+  "dataset_product_type": "historical archive",
+  "dimensions": {
+    "init_time": 1271,
+    "statistic": 6,
+    "lead_time": 360,
+    "y": 1801,
+    "x": 3600
+  },
+  "variables_available": [
+    "cloud_cover_high",
+    "cloud_cover_low",
+    "cloud_cover_medium",
+    "dew_point_temperature_2m",
+    "downward_direct_short_wave_radiation_flux_surface",
+    "downward_short_wave_radiation_flux_surface",
+    "precipitation_experimental_surface",
+    "precipitation_imerg_surface",
+    "precipitation_surface",
+    "pressure_reduced_to_mean_sea_level",
+    "sea_surface_temperature",
+    "temperature_2m",
+    "total_cloud_cover_atmosphere",
+    "wind_speed_100m",
+    "wind_speed_10m",
+    "wind_u_100m",
+    "wind_u_10m",
+    "wind_v_100m",
+    "wind_v_10m"
+  ],
+  "variable_units": {
+    "temperature_2m": "degree_Celsius",
+    "wind_speed_10m": "m s-1"
+  },
+  "rows": 6,
+  "csv_sha256": "43d57d2ae0daf7a47b20a0c8eac9ec0222a56e8aa890de47f0bdca55bb5f31f8",
+  "retrieved_utc": "2026-11-15T00:24:03.636499+00:00",
+  "verified_run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43657936387",
+  "release_tag": "weathernext3-access-2026-11-14"
+}
