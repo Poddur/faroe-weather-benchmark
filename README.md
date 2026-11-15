@@ -1,5 +1,15 @@
 # Faroe Weather Benchmark
 
+## Verified retrospective WeatherNext 3 study (15 November 2026)
+
+**Complete seasonal sample:** 20 predeclared initialization dates across January–October 2026, **360 historical WeatherNext 3 forecasts**, **352 paired DMI station observations**, and independent SHA-validated research scorecard. Descriptive pooled MAE: **0.879 °C** (temperature) and **2.394 m/s** (wind). This is retrospective WeatherNext-vs-DMI evaluation only; matched ECMWF/HARMONIE historical forecast cycles have not been acquired for the period.
+
+- [Full historical research report](docs/WEATHERNEXT_2026_HISTORICAL_FINAL_REPORT.md)
+- [Audited GitHub Release archive + scorecards](https://github.com/Poddur/faroe-weather-benchmark/releases/tag/weathernext3-seasonal-2026)
+- [Verified historical collection run](https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43664002490)
+- [Independently verified scorecard generation](https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43665093959)
+
+
 Research-grade, reproducible **Faroese station verification** for ECMWF IFS, DMI HARMONIE DINI, DMI metObs, and future Google WeatherNext 3.
 
 ## Current operational architecture (14 November 2026)
