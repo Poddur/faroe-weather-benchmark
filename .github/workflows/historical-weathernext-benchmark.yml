@@ -1,0 +1,97 @@
+name: Historical WeatherNext 3 vs DMI - initial benchmark
+
+on:
+  push:
+    paths:
+      - '.github/workflows/historical-weathernext-benchmark.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: retrospective-weathernext-benchmark
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install dependencies, Icechunk, and xarray
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install 'dynamical-catalog>=1.0.0,<2' 'xarray>=2024.1,<2027'
+      - name: Validate UTC, strict matching and units
+        run: python -m pytest -q tests/test_weathernext_dynamical.py tests/test_historical_weathernext_benchmark.py
+      - name: Historical backtest of 1 and 8 October 2026 (three station sites)
+        run: |
+          python src/historical_weathernext_benchmark.py \
+            --issue 2026-10-01T00:00:00Z \
+            --issue 2026-10-08T00:00:00Z \
+            --leads 6 12 24 \
+            --output outputs/weathernext-historical
+      - name: Preserve all records, provenance, and failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weathernext-historical-october-pilot
+          path: outputs/weathernext-historical/
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Archive independently verifiable research output
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="weathernext3-historical-pilot-2026-10"
+          (cd outputs/weathernext-historical && zip -q ../../historical-2026-10-weathernext-vs-dmi.zip ./*)
+          test "$(stat -c %s historical-2026-10-weathernext-vs-dmi.zip)" -lt 30000000
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "WeatherNext3 October 2026 historical pilot" \
+              --notes "Retrospective comparison using WeatherNext 3 historical archive via dynamical.org and observed DMI station measurements. CC BY attribution: Google WeatherNext 3 / dynamical.org and DMI Open Data. Not a prospective or cross-model skill claim." --latest=false
+          fi
+          gh release upload "$TAG" historical-2026-10-weathernext-vs-dmi.zip --clobber
+      - name: Publish run receipt
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os,pathlib
+          d=json.loads(pathlib.Path("outputs/weathernext-historical/manifest.json").read_text())
+          d["run_url"]=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"]
+          d["release"]="weathernext3-historical-pilot-2026-10"
+          pathlib.Path("historical_receipt.json").write_text(json.dumps(d,indent=2)+"\n")
+          PY
+          B64="$(base64 -w0 historical_receipt.json)"
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/weathernext_historical_pilot.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          if [ -n "$SHA" ]; then
+            gh api --method PUT "$URL" -f message="Record WeatherNext historical pilot results" -f content="$B64" -f sha="$SHA" >/dev/null
+          else
+            gh api --method PUT "$URL" -f message="Record WeatherNext historical pilot results" -f content="$B64" >/dev/null
+          fi
+      - name: Report benchmark failure
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          TITLE="WeatherNext historical benchmark failed"
+          RUN="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          ISSUE="$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$ISSUE" ]; then
+            gh issue comment "$ISSUE" --body "Historical benchmark failed: $RUN. Review audit artifact."
+          else
+            gh issue create --title "$TITLE" --body "Historical WeatherNext October benchmark failed: $RUN. Audit artifact available if execution reached retrieval."
+          fi
