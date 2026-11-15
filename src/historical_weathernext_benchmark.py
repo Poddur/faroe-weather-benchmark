@@ -63,7 +63,7 @@ def score(forecasts,obs):
     return paired,combined,summary
 
 def run(out,issue_times=DEFAULT_ISSUES,leads=DEFAULT_LEADS,open_fn=None,observation_fn=None):
-    if len(issue_times)>8 or len(leads)>3:raise ValueError("Bounded pilot max 8 issues and 3 leads")
+    if len(issue_times)>24 or len(leads)>3:raise ValueError("Bounded seasonal experiment max 24 issues and 3 leads")
     issues=[utc(pd.Timestamp(x)) for x in issue_times]
     if len(set(issues))!=len(issues):raise ValueError("Duplicate issue time")
     if sorted(set(leads))!=sorted(leads) or any(l not in (6,12,24) for l in leads):
