@@ -1,0 +1,51 @@
+name: Verify archived October WeatherNext research report
+
+on:
+  push:
+    paths:
+      - '.github/workflows/verify-october-weather-report.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - name: Verify researcher report generator with regressions
+        run: python -m pytest -q tests/test_weathernext_research_report.py
+      - name: Load existing verified 1 and 8 October source archive
+        run: |
+          mkdir -p outputs/october-research
+          gh release download weathernext3-historical-pilot-2026-10 \
+            --pattern historical-2026-10-weathernext-vs-dmi.zip \
+            --dir outputs/october-research
+          (cd outputs/october-research && unzip -q historical-2026-10-weathernext-vs-dmi.zip)
+      - name: Produce independent SHA-verified scientific scoring report
+        run: python src/report_historical_weathernext.py --root outputs/october-research
+      - name: Archive October scorecard
+        if: success()
+        run: |
+          (cd outputs/october-research && zip -q ../../october-2026-verified-scorecard.zip RESEARCH_REPORT.md scorecard_by_lead.csv scorecard_by_station.csv scorecard_by_month.csv confidence_intervals.csv)
+          gh release upload weathernext3-historical-pilot-2026-10 october-2026-verified-scorecard.zip --clobber
+      - name: Preserve source report diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: october-weathernext-research-scorecard
+          path: |
+            outputs/october-research/RESEARCH_REPORT.md
+            outputs/october-research/scorecard_by_lead.csv
+            outputs/october-research/scorecard_by_station.csv
+            outputs/october-research/scorecard_by_month.csv
+            outputs/october-research/confidence_intervals.csv
+          retention-days: 90
