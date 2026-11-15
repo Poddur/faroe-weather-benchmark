@@ -1,0 +1,87 @@
+name: WeatherNext 3 independent historical access test
+
+on:
+  push:
+    paths:
+      - '.github/workflows/weathernext-dynamical-test.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: weathernext-historical-access-test
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONUNBUFFERED: '1'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install public Icechunk reader and tests
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install "dynamical-catalog>=1.0.0,<2" "xarray>=2024.1,<2027"
+      - name: Verify station coordinates and UTC selection offline
+        run: python -m pytest -q tests/test_weathernext_dynamical.py
+      - name: Retrieve 14 November 2026 00 UTC WeatherNext 3 forecasts, 6h lead
+        run: python src/probe_weathernext_dynamical.py --issue 2026-11-14T00:00:00Z --lead 6 --output outputs/weathernext-direct-test
+      - name: Upload full diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weathernext3-direct-access-evidence
+          path: outputs/weathernext-direct-test/
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Preserve verified public sample as GitHub Release
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="weathernext3-access-2026-11-14"
+          (cd outputs/weathernext-direct-test && zip -q ../../weathernext3-20261114-00Z-plus6.zip ./*)
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "WeatherNext 3 direct historical access verification" \
+              --notes "Small historical forecast excerpt for three Faroe stations. Google WeatherNext 3 via dynamical.org, CC BY 4.0 for historical data. Not evidence of forecast quality." \
+              --latest=false
+          fi
+          gh release upload "$TAG" weathernext3-20261114-00Z-plus6.zip --clobber
+          python - <<'PY'
+          import json,os,datetime,pathlib
+          m=json.load(open('outputs/weathernext-direct-test/manifest.json'))
+          m["verified_run_url"]=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"]
+          m["release_tag"]="weathernext3-access-2026-11-14"
+          pathlib.Path("weathernext_state.json").write_text(json.dumps(m,indent=2)+"\n")
+          PY
+          B64="$(base64 -w0 weathernext_state.json)"
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/weathernext_access.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          if [ -n "$SHA" ]; then
+            gh api --method PUT "$URL" -f message="Record WeatherNext3 historical access proof" -f content="$B64" -f sha="$SHA" >/dev/null
+          else
+            gh api --method PUT "$URL" -f message="Record WeatherNext3 historical access proof" -f content="$B64" >/dev/null
+          fi
+      - name: Report verification failure without claiming access
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          TITLE="WeatherNext 3 direct historical access probe"
+          EXISTING="$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "Direct Icechunk retrieval failed: $URL. See manifest.json in the run artifact."
+          else
+            gh issue create --title "$TITLE" --body "Direct Icechunk retrieval failed: $URL. See manifest.json in the run artifact. This does not establish that Google access is required."
+          fi
