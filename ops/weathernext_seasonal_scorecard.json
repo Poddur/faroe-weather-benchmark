@@ -1,0 +1,11 @@
+{
+  "status": "verified",
+  "issue_times": 20,
+  "forecast_rows": 360,
+  "observation_rows": 352,
+  "paired_rows": 352,
+  "source_release": "weathernext3-seasonal-2026",
+  "scorecard_release_asset": "weathernext3-2026-research-scorecard.zip",
+  "report_run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43665093959",
+  "interpretation": "Retrospective WeatherNext3 vs DMI only, not three-model comparison."
+}
