@@ -1,0 +1,39 @@
+{
+  "source": "google-weathernext3-forecast-15-day-0-1-degree-virtual",
+  "issue_times_utc": [
+    "2026-10-01T00:00:00Z",
+    "2026-10-08T00:00:00Z"
+  ],
+  "lead_hours": [
+    6,
+    12,
+    24
+  ],
+  "observations": "DMI metObs v2",
+  "status": "exploratory_success",
+  "expected_forecast_rows": 36,
+  "interpretation": "Retrospective historical-archive verification; contemporary issuance unverified",
+  "started_utc": "2026-11-15T00:36:51.457484+00:00",
+  "dimensions": {
+    "init_time": 1271,
+    "statistic": 6,
+    "lead_time": 360,
+    "y": 1801,
+    "x": 3600
+  },
+  "units": {
+    "temperature_2m": "degree_Celsius",
+    "wind_speed_10m": "m s-1"
+  },
+  "forecast_csv_sha256": "ee9a05fa0516c2e4a0b170511cd9c78108645afde7d62933baba938e045b41c5",
+  "observation_csv_sha256": "c394e32bbd02a32ba8d1ae6dcdd9aa40af8be6bdb34526c20add031f8a206481",
+  "dmi_original_features_sha256": "72fa11275eca270e825ecd8af2ac4deae08b801fef9d3f8fac7db7fb8995813f",
+  "forecast_rows": 36,
+  "observation_rows": 36,
+  "paired_rows": 36,
+  "independent_init_times": 2,
+  "missing_forecast_obs": 0,
+  "notice": "Historical backfill sample, NOT prospective skill or 3-model ranking",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43659008036",
+  "release": "weathernext3-historical-pilot-2026-10"
+}
