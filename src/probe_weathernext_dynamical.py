@@ -33,7 +33,7 @@ def forecast_rows(ds,issue,lead_hours,station_ids=tuple(STATIONS)):
         selectors={"init_time":issue64,"lead_time":pd.Timedelta(hours=lead_hours),
                    "statistic":"mean","y":st["lat"],"x":st["lon"]%360}
         for src,(variable,unit) in VARIABLES.items():
-            scalar=ds[src].sel(selectors,method=None) if False else ds[src].sel(
+            scalar=ds[src].sel(
                 init_time=selectors["init_time"],lead_time=selectors["lead_time"],
                 statistic="mean").sel(y=st["lat"],x=st["lon"]%360,method="nearest")
             # Trigger a read only after we have selected all five axes.
