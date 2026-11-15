@@ -1,0 +1,57 @@
+{
+  "source": "google-weathernext3-forecast-15-day-0-1-degree-virtual",
+  "issue_times_utc": [
+    "2026-01-01T00:00:00Z",
+    "2026-01-15T00:00:00Z",
+    "2026-02-01T00:00:00Z",
+    "2026-02-15T00:00:00Z",
+    "2026-03-01T00:00:00Z",
+    "2026-03-15T00:00:00Z",
+    "2026-04-01T00:00:00Z",
+    "2026-04-15T00:00:00Z",
+    "2026-05-01T00:00:00Z",
+    "2026-05-15T00:00:00Z",
+    "2026-06-01T00:00:00Z",
+    "2026-06-15T00:00:00Z",
+    "2026-07-01T00:00:00Z",
+    "2026-07-15T00:00:00Z",
+    "2026-08-01T00:00:00Z",
+    "2026-08-15T00:00:00Z",
+    "2026-09-01T00:00:00Z",
+    "2026-09-15T00:00:00Z",
+    "2026-10-01T00:00:00Z",
+    "2026-10-15T00:00:00Z"
+  ],
+  "lead_hours": [
+    6,
+    12,
+    24
+  ],
+  "observations": "DMI metObs v2",
+  "status": "exploratory_success",
+  "expected_forecast_rows": 360,
+  "interpretation": "Retrospective historical-archive verification; contemporary issuance unverified",
+  "started_utc": "2026-11-15T01:38:32.492867+00:00",
+  "dimensions": {
+    "init_time": 1272,
+    "statistic": 6,
+    "lead_time": 360,
+    "y": 1801,
+    "x": 3600
+  },
+  "units": {
+    "temperature_2m": "degree_Celsius",
+    "wind_speed_10m": "m s-1"
+  },
+  "forecast_csv_sha256": "051a76b8b9d589571899e8ef999a619dbd6b21f07a007d839c88825198ffb1e9",
+  "observation_csv_sha256": "b29471fc7f1589089b80d87d42e84bd901204b12b25a8c241990c4688507005c",
+  "dmi_original_features_sha256": "ba87cf3fb246fe201528c8aba72f7a020b946f70d1d6094d6420538c7c0a2143",
+  "forecast_rows": 360,
+  "observation_rows": 352,
+  "paired_rows": 352,
+  "independent_init_times": 20,
+  "missing_forecast_obs": 8,
+  "notice": "Historical backfill sample, NOT prospective skill or 3-model ranking",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43664002490",
+  "release": "weathernext3-seasonal-2026"
+}
