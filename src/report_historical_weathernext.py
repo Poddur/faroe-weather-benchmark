@@ -16,6 +16,14 @@ def prepare(root):
     if m.get("status")!="exploratory_success":raise ValueError("Source collection must have succeeded")
     f=pd.read_csv(root/"forecasts.csv",dtype={"station_id":str})
     o=pd.read_csv(root/"observations.csv",dtype={"station_id":str})
+    # Historical collector uses "observed"; operational/test schema uses "value".
+    if "observed" in o and "value" in o:
+        raise ValueError("Ambiguous observation value columns")
+    if "observed" not in o and "value" in o:
+        o=o.rename(columns={"value":"observed"})
+    if "observed" not in o:raise ValueError("Missing observation value column")
+    o["observed"]=pd.to_numeric(o["observed"],errors="raise")
+    if not np.isfinite(o["observed"]).all():raise ValueError("Nonfinite observations")
     for c in ["init_time","valid_time"]:f[c]=pd.to_datetime(f[c],utc=True)
     o["valid_time"]=pd.to_datetime(o.valid_time,utc=True)
     if f.duplicated(["station_id","variable","init_time","valid_time","model"]).any():raise ValueError("Duplicate forecast keys")
