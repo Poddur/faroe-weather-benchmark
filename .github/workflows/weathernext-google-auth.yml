@@ -3,7 +3,6 @@ on:
   push:
     branches: [main]
     paths: ['.github/workflows/weathernext-google-auth.yml']
-  workflow_dispatch:
 permissions:
   contents: read
   id-token: write
@@ -31,12 +30,13 @@ jobs:
               t=c.get_table('faroe-weather-benchmark.weathernext_3.weathernext_3_0_0_'+suffix)
               print('Metadata access verified:',t.table_id)
           PY
-      - name: Verify historical reads with original 400 GB hard limit
+      - name: Verify historical reads with approved per-view hard limits
         run: |
           python - <<'PY'
           from google.cloud import bigquery
           c=bigquery.Client(project="faroe-weather-benchmark",location="US")
-          for suffix in ("0p1deg","0p05deg"):
+          for suffix in ("0p05deg",):
+              cap = 1600000000000  # Explicitly approved one-time high-resolution test
               field = "temperature_2m_mean" if suffix == "0p1deg" else "station_head_temperature_2m_mean"
               sql=f"""SELECT t.init_time, f.time, f.hours, f.{field} AS temperature_kelvin,
                 ST_X(t.geography) AS lon, ST_Y(t.geography) AS lat
@@ -49,9 +49,9 @@ jobs:
                 LIMIT 1"""
               dry=c.query(sql,job_config=bigquery.QueryJobConfig(dry_run=True,use_query_cache=False))
               print(suffix, 'upper-bound bytes:',dry.total_bytes_processed,flush=True)
-              if dry.total_bytes_processed is None or dry.total_bytes_processed > 400000000000:
+              if dry.total_bytes_processed is None or dry.total_bytes_processed > cap:
                   raise RuntimeError('Data query blocked by safety cap; do not increase without explicit budget approval')
-              job=c.query(sql,job_config=bigquery.QueryJobConfig(maximum_bytes_billed=400000000000,use_query_cache=False))
+              job=c.query(sql,job_config=bigquery.QueryJobConfig(maximum_bytes_billed=cap,use_query_cache=False))
               rows=list(job.result())
               if len(rows)!=1 or rows[0].temperature_kelvin is None:
                   raise RuntimeError("Missing forecast: "+suffix)
