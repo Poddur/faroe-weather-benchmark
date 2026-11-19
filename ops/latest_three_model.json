@@ -1,7 +1,38 @@
 {
-  "status": "failed_before_evaluation",
-  "job_status": "failure",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44584938924",
-  "commit": "0770707d62b78d21ddd5a39bb3649218916023fc",
-  "updated_utc": "2026-11-19T18:10:44.088494+00:00"
+  "status": "exploratory",
+  "source": "google-weathernext3-forecast-15-day-0-1-degree-virtual",
+  "license": "CC BY 4.0; Google WeatherNext 3 via dynamical.org",
+  "mode": "retrospective",
+  "bigquery_queries": 0,
+  "missing_issues": [],
+  "valid_source_bundles": 2,
+  "excluded_bundles": [],
+  "eligible_issues": [
+    "2026-11-14 00:00:00+00:00"
+  ],
+  "models": [
+    "ECMWF_IFS",
+    "HARMONIE_DINI",
+    "WeatherNext3"
+  ],
+  "common_cases": 12,
+  "independent_issue_days": 1,
+  "forecast_rows_by_model": {
+    "ECMWF_IFS": 18,
+    "HARMONIE_DINI": 18,
+    "WeatherNext3": 18
+  },
+  "interpretation": "Retrospective archive comparison; not evidence of prospective availability or superiority.",
+  "complete_weathernext_issues": 1,
+  "source_hashes": {
+    "base_forecasts.csv": "73307e5eff40d7d619ecdae1b7e4359204d8b50e97dfc21df0f7009d1b3f6f9a",
+    "weathernext_forecasts.csv": "28b49405b784c3cd152c1e2c50d91e47e3c6e220903421be293ca8d585a0b0bc",
+    "observations.csv": "3f58361e6b50cc254ee872eb650741ea4a7c82d3a3be1a10d65ca56f61bfb061"
+  },
+  "newest_archived_issue": "2026-11-14 00:00:00+00:00",
+  "retrieved_utc": "2026-11-19T18:15:05.916110+00:00",
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44585734356",
+  "commit": "21412568aa29a8a9e213510a792d7e3dcaf4f6ac",
+  "updated_utc": "2026-11-19T18:15:31.974217+00:00"
 }
