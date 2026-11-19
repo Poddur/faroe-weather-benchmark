@@ -37,7 +37,8 @@ jobs:
           from google.cloud import bigquery
           c=bigquery.Client(project="faroe-weather-benchmark",location="US")
           for suffix in ("0p1deg","0p05deg"):
-              sql=f"""SELECT t.init_time, f.time, f.hours, f.temperature_2m_mean,
+              field = "temperature_2m_mean" if suffix == "0p1deg" else "station_head_temperature_2m_mean"
+              sql=f"""SELECT t.init_time, f.time, f.hours, f.{field} AS temperature_kelvin,
                 ST_X(t.geography) AS lon, ST_Y(t.geography) AS lat
                 FROM `faroe-weather-benchmark.weathernext_3.weathernext_3_0_0_{suffix}` t,
                 UNNEST(t.forecast) f
@@ -52,7 +53,7 @@ jobs:
                   raise RuntimeError('Data query blocked by safety cap; do not increase without explicit budget approval')
               job=c.query(sql,job_config=bigquery.QueryJobConfig(maximum_bytes_billed=400000000000,use_query_cache=False))
               rows=list(job.result())
-              if len(rows)!=1 or rows[0].temperature_2m_mean is None:
+              if len(rows)!=1 or rows[0].temperature_kelvin is None:
                   raise RuntimeError("Missing forecast: "+suffix)
               print(suffix, "SUCCESS", "bytes billed:",job.total_bytes_billed)
           PY
