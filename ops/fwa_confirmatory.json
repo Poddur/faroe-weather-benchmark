@@ -1,0 +1,158 @@
+{
+  "status": "failed",
+  "planned_dates": 26,
+  "missing": [
+    {
+      "issue": "2026-08-25 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-09-01 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-09-08 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-09-15 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-09-22 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-10-06 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-10-13 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-10-20 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-10-27 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-11-03 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "issue": "2026-11-10 00:00:00+00:00",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
+    }
+  ],
+  "bigquery_queries": 0,
+  "frozen_weights_sha256": "817c6139a3360bacfdd2caf9ffc13fa12843e5b30894c11c5fcbdd820a1662ef",
+  "complete_forecast_dates": 15,
+  "paired_dates": 15,
+  "paired_cases": 258,
+  "frozen_scores": [
+    {
+      "variable": "temperature_2m",
+      "model": "ECMWF_9km",
+      "n": 129,
+      "mae": 0.6689922480620156,
+      "rmse": 0.8771430014320587,
+      "bias": 0.3883720930232558
+    },
+    {
+      "variable": "temperature_2m",
+      "model": "HARMONIE_DINI_OM",
+      "n": 129,
+      "mae": 0.7209302325581396,
+      "rmse": 0.9334440687354355,
+      "bias": -0.012403100775193809
+    },
+    {
+      "variable": "temperature_2m",
+      "model": "WeatherNext3",
+      "n": 129,
+      "mae": 0.6974945304929749,
+      "rmse": 0.9117852236807974,
+      "bias": 0.42023499954578486
+    },
+    {
+      "variable": "temperature_2m",
+      "model": "FWA2",
+      "n": 129,
+      "mae": 0.5206181128138867,
+      "rmse": 0.7012777607985508,
+      "bias": 0.0809819125044005
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "ECMWF_9km",
+      "n": 129,
+      "mae": 2.4728682170542635,
+      "rmse": 3.1584050532856223,
+      "bias": -0.58
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "HARMONIE_DINI_OM",
+      "n": 129,
+      "mae": 1.9976744186046511,
+      "rmse": 2.6168950179332224,
+      "bias": 0.22403100775193796
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "WeatherNext3",
+      "n": 129,
+      "mae": 2.3896453655967416,
+      "rmse": 3.0156354836838632,
+      "bias": -0.552660323113434
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "FWA2",
+      "n": 129,
+      "mae": 1.9596843034981841,
+      "rmse": 2.576382320931154,
+      "bias": 0.1016655123152194
+    }
+  ],
+  "temperature_intervals": [
+    {
+      "candidate": "FWA2",
+      "baseline": "ECMWF_9km",
+      "delta": -0.1483741352481289,
+      "weeks": 14,
+      "ci95": [
+        -0.2237422172159964,
+        -0.07756490993395287
+      ]
+    },
+    {
+      "candidate": "FWA2",
+      "baseline": "HARMONIE_DINI_OM",
+      "delta": -0.20031211974425284,
+      "weeks": 14,
+      "ci95": [
+        -0.309827851544519,
+        -0.10042284549667592
+      ]
+    },
+    {
+      "candidate": "FWA2",
+      "baseline": "WeatherNext3",
+      "delta": -0.1768764176790882,
+      "weeks": 14,
+      "ci95": [
+        -0.24534085488236146,
+        -0.10618116654268007
+      ]
+    }
+  ],
+  "temperature_validation": "insufficient",
+  "error": "time data \"2026-04-02T00:00:00Z\" doesn't match format \"%Y-%m-%d %H:%M:%S%z\", at position 1. You might want to try:\n    - passing `format` if your strings have a consistent format;\n    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;\n    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.",
+  "job_status": "failure",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44619203509",
+  "commit": "ab88769421446e2104474486472e500baa576127"
+}
