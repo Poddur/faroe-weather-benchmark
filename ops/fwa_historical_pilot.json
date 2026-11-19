@@ -3,95 +3,67 @@
   "requested_issues": 33,
   "missing": [
     {
-      "issue": "2026-04-09 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
-    },
-    {
       "issue": "2026-04-16 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-04-30 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "issue": "2026-05-07 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
-    },
-    {
-      "issue": "2026-05-21 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "issue": "2026-05-14 00:00:00+00:00",
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-05-28 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-06-11 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "issue": "2026-06-18 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
-    },
-    {
-      "issue": "2026-07-02 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "issue": "2026-06-25 00:00:00+00:00",
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-07-09 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-07-23 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "issue": "2026-07-30 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
-    },
-    {
-      "issue": "2026-08-13 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "issue": "2026-08-06 00:00:00+00:00",
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-08-20 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-09-03 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
-    },
-    {
-      "issue": "2026-09-10 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
-    },
-    {
-      "issue": "2026-09-24 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
       "issue": "2026-10-08 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "issue": "2026-10-15 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "issue": "2026-10-22 00:00:00+00:00",
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     },
     {
-      "issue": "2026-10-29 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
-    },
-    {
-      "issue": "2026-11-12 00:00:00+00:00",
-      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+      "issue": "2026-11-05 00:00:00+00:00",
+      "reason": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
     }
   ],
   "bigquery_queries": 0,
-  "complete_issues": 12,
+  "complete_issues": 19,
   "error": "Insufficient common issues",
   "job_status": "failure",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44593999138",
-  "commit": "d801a9c177d291dda153b51b0ebe83025e3c98a6",
-  "updated_utc": "2026-11-19T19:40:05.325831+00:00"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44603896069",
+  "commit": "e6c4cc7d25dbd7849ff7424ee4c17ca38e19fe73",
+  "updated_utc": "2026-11-19T20:27:34.909315+00:00"
 }
