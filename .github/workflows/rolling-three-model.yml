@@ -6,6 +6,7 @@ on:
       - '.github/workflows/rolling-three-model.yml'
       - 'src/rolling_three_model_benchmark.py'
       - 'src/compare_three_models.py'
+      - 'src/report_historical_weathernext.py'
   schedule:
     - cron: '17 9 * * *'
   workflow_dispatch:
