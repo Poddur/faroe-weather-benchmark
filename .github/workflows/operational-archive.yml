@@ -7,8 +7,9 @@ on:
       - 'src/collect_matched_forecasts.py'
       - 'src/fetch_dmi_observations.py'
       - 'src/verify_operational.py'
+      - 'src/report_historical_weathernext.py'
   schedule:
-    - cron: '27 4,22 * * *'
+    - cron: '27 4,16 * * *'
   workflow_dispatch:
 
 permissions:
