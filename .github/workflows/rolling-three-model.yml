@@ -1,0 +1,69 @@
+name: Rolling three-model weather benchmark
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/rolling-three-model.yml'
+      - 'src/rolling_three_model_benchmark.py'
+      - 'src/compare_three_models.py'
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rolling-three-model
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt 'dynamical-catalog>=1,<2'
+      - run: python -m pytest -q
+      - name: Download actual archived ECMWF and HARMONIE issues
+        run: |
+          set -euo pipefail
+          mkdir -p release-bundles
+          gh release list --limit 100 --json tagName --jq '.[].tagName' | grep '^weather-data-' | sort -r | head -n 5 > tags.txt
+          while read -r TAG; do
+            mkdir -p "release-bundles/$TAG"
+            gh release download "$TAG" --pattern 'issue_*.zip' --dir "release-bundles/$TAG"
+          done < tags.txt
+      - name: Match WeatherNext to mature archived issues and score observations
+        run: python src/rolling_three_model_benchmark.py --archive-dir release-bundles --output outputs/three-model
+      - name: Preserve historical comparison report
+        if: success()
+        run: |
+          set -euo pipefail
+          TAG="three-model-historical-$(date -u +%G-W%V)"
+          ARCHIVE="three-model-$(date -u +%Y%m%d)-${GITHUB_RUN_ID}.zip"
+          (cd outputs/three-model && zip -qr "../../$ARCHIVE" .)
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "Historical three-model benchmark $TAG" --notes "Retrospective matching only. Google WeatherNext 3 via dynamical.org, historical data CC BY 4.0; DMI Open Data; ECMWF Open Data CC BY 4.0." --latest=false
+          fi
+          gh release upload "$TAG" "$ARCHIVE"
+      - name: Record current run receipt including failure status
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib,datetime
+          p=pathlib.Path("outputs/three-model/status.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_evaluation"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"],updated_utc=datetime.datetime.now(datetime.timezone.utc).isoformat())
+          pathlib.Path("receipt.json").write_text(json.dumps(d,indent=2)+"\n")
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/latest_three_model.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record rolling three-model benchmark receipt" -f content="$(base64 -w0 receipt.json)" "${args[@]}" >/dev/null
