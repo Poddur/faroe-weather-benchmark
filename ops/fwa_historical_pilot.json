@@ -342,7 +342,7 @@
   "forecast_rows": 1728,
   "observation_rows": 556,
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44603911240",
-  "commit": "39e23c6a4c3f96c5f0b1aabcea101ef34701de6c",
-  "updated_utc": "2026-11-19T20:52:23.728394+00:00"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44611866780",
+  "commit": "01374daa77da8442596838477802a9ee40e5ae34",
+  "updated_utc": "2026-11-19T21:18:11.274869+00:00"
 }
