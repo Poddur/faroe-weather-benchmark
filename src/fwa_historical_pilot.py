@@ -16,15 +16,28 @@ LEADS=[6,12,24]
 ISSUES=pd.date_range("2026-04-02","2026-11-12",freq="7D",tz="UTC")
 URL="https://single-runs-api.open-meteo.com/v1/forecast"
 
-def om_rows(issue,raw):
+def om_rows(issue,raw,cache):
     rows=[]
     for sid,s in STATIONS.items():
         params=dict(latitude=s["lat"],longitude=s["lon"],run=issue.strftime("%Y-%m-%dT%H:%M"),
                     models=",".join(IDS),hourly="temperature_2m,wind_speed_10m",
                     wind_speed_unit="ms",timezone="GMT",forecast_days=2,cell_selection="nearest",elevation="nan")
-        response=requests.get(URL,params=params,timeout=90)
-        response.raise_for_status()
-        j=response.json();raw.append({"url":response.url,"response":j})
+        path=cache/(issue.strftime("%Y%m%d")+"_"+sid+".json")
+        if path.exists():
+            item=json.loads(path.read_text())
+            j=item["response"]
+        else:
+            for attempt in range(3):
+                try:
+                    response=requests.get(URL,params=params,timeout=(15,120))
+                    response.raise_for_status()
+                    j=response.json()
+                    item={"url":response.url,"response":j}
+                    break
+                except (requests.Timeout,requests.ConnectionError):
+                    if attempt==2:raise
+                    time.sleep(5*(attempt+1))
+        raw.append(item)
         h=j["hourly"];units=j["hourly_units"]
         for model,mid in zip(MODELS,IDS):
             for lead in LEADS:
@@ -36,7 +49,8 @@ def om_rows(issue,raw):
                     value=h[key][idx]
                     if value is None or not np.isfinite(value):raise ValueError("No model coverage: "+key+" "+sid)
                     rows.append(dict(model=model,station_id=sid,variable=var,unit=unit,init_time=issue,valid_time=valid,lead_hours=lead,value=value))
-        time.sleep(1)
+        path.write_text(json.dumps(item))
+        time.sleep(2)
     return rows
 
 def backtest(f,o):
@@ -85,6 +99,7 @@ def backtest(f,o):
 def main():
     out=Path("outputs/fwa-pilot");out.mkdir(parents=True,exist_ok=True)
     status={"status":"failed","requested_issues":len(ISSUES),"missing":[],"bigquery_queries":0}
+    cache=Path("fwa-cache");cache.mkdir(exist_ok=True)
     raw=[];rows=[];issues=[]
     try:
         import dynamical_catalog
@@ -93,7 +108,7 @@ def main():
             if "degree_Celsius" not in ds.temperature_2m.attrs.get("units","") or ds.wind_speed_10m.attrs.get("units") not in ("m s-1","m/s"):raise ValueError("WeatherNext unit mismatch")
             for issue in ISSUES:
                 try:
-                    segment=om_rows(issue,raw)
+                    segment=om_rows(issue,raw,cache)
                     for lead in LEADS:segment.extend(forecast_rows(ds,issue,lead))
                     if len(segment)!=54:raise ValueError("Incomplete dataset")
                     rows.extend(segment);issues.append(issue)
@@ -104,6 +119,7 @@ def main():
                     if not issues and len(status["missing"])>=3:raise RuntimeError("Initial access probe failed; no further calls")
         finally:ds.close()
         status["complete_issues"]=len(issues)
+        pd.DataFrame(rows).to_csv(out/"forecasts.csv",index=False)
         if len(issues)<20:raise ValueError("Insufficient common issues")
         # Existing helper expects at most a few weeks per batch; each date is exact.
         obs=[];features=[];requests_info=[]
