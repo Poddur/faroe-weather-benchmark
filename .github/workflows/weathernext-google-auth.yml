@@ -22,7 +22,16 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install google-cloud-bigquery
-      - name: Verify both views with bounded historical queries
+      - name: Verify identity and dataset metadata without scanning data
+        run: |
+          python - <<'PY'
+          from google.cloud import bigquery
+          c=bigquery.Client(project='faroe-weather-benchmark',location='US')
+          for suffix in ('0p1deg','0p05deg'):
+              t=c.get_table('faroe-weather-benchmark.weathernext_3.weathernext_3_0_0_'+suffix)
+              print('Metadata access verified:',t.table_id)
+          PY
+      - name: Verify historical reads with original 100 MB hard limit
         run: |
           python - <<'PY'
           from google.cloud import bigquery
@@ -37,6 +46,10 @@ jobs:
                 AND f.hours=6
                 ORDER BY ST_DISTANCE(t.geography,ST_GEOGPOINT(-6.7647,62.0231))
                 LIMIT 1"""
+              dry=c.query(sql,job_config=bigquery.QueryJobConfig(dry_run=True,use_query_cache=False))
+              print(suffix, 'upper-bound bytes:',dry.total_bytes_processed,flush=True)
+              if dry.total_bytes_processed is None or dry.total_bytes_processed > 100000000:
+                  raise RuntimeError('Data query blocked by safety cap; do not increase without explicit budget approval')
               job=c.query(sql,job_config=bigquery.QueryJobConfig(maximum_bytes_billed=100000000,use_query_cache=False))
               rows=list(job.result())
               if len(rows)!=1 or rows[0].temperature_2m_mean is None:
