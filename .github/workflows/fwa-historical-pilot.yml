@@ -31,6 +31,31 @@ jobs:
           path: fwa-cache
           key: fwa-station-v1-${{ github.run_id }}
           restore-keys: fwa-station-v1-
+      - name: Recover previously downloaded verified raw responses
+        run: |
+          mkdir -p recovery/first recovery/second fwa-cache
+          gh run download 44593999138 -n fwa-research-evidence -D recovery/first
+          gh run download 44603896069 -n fwa-research-evidence -D recovery/second
+          python - <<'PY'
+          import json,pathlib,urllib.parse
+          stations={"06009":(61.3957,-6.6818),"06011":(62.0231,-6.7647),"06014":(62.2995,-7.074)}
+          count=0
+          for folder in ("first","second"):
+              for p in pathlib.Path("recovery",folder).rglob("open_meteo_raw.json"):
+                  for item in json.loads(p.read_text()):
+                      u=urllib.parse.urlparse(item["url"])
+                      q=urllib.parse.parse_qs(u.query)
+                      if u.hostname!="single-runs-api.open-meteo.com" or q.get("models")!=["ecmwf_ifs,dmi_harmonie_arome_europe"]:continue
+                      if q.get("hourly")!=["temperature_2m,wind_speed_10m"] or q.get("wind_speed_unit")!=["ms"] or q.get("cell_selection")!=["nearest"] or q.get("elevation")!=["nan"]:continue
+                      lat,lon=float(q["latitude"][0]),float(q["longitude"][0])
+                      sid=next((k for k,(a,b) in stations.items() if abs(a-lat)<1e-8 and abs(b-lon)<1e-8),None)
+                      if sid is None:continue
+                      day=q["run"][0][:10].replace("-","")
+                      dest=pathlib.Path("fwa-cache",day+"_"+sid+".json")
+                      if not dest.exists():
+                          dest.write_text(json.dumps(item));count+=1
+          print("Recovered station responses:",count)
+          PY
       - name: Run bounded historical access and held-out scoring experiment
         run: python src/fwa_historical_pilot.py
       - name: Preserve successful station responses even on failed experiment
