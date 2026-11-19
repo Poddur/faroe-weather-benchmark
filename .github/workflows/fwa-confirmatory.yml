@@ -1,0 +1,70 @@
+name: FWA frozen validation and directional wind
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-confirmatory.yml'
+      - 'src/fwa_confirmatory.py'
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: fwa-confirmatory
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt 'dynamical-catalog>=1,<2' scikit-learn
+      - run: python -m pytest -q
+      - name: Retrieve immutable original research evidence
+        run: gh run download 44603911240 -n fwa-research-evidence -D original
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            confirm-cache
+            direction-cache
+          key: fwa-confirm-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fwa-confirm-v1-
+      - name: Evaluate frozen temperature model and directional wind candidates
+        timeout-minutes: 150
+        run: python src/fwa_confirmatory.py
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            confirm-cache
+            direction-cache
+          key: fwa-confirm-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-confirmatory-evidence
+          path: outputs/confirmatory/
+          retention-days: 90
+      - name: Persist validation result
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path("outputs/confirmatory/status.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_evaluation"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_confirmatory.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record frozen validation and wind research" -f content="$(base64 -w0 receipt.json)" "${args[@]}"
