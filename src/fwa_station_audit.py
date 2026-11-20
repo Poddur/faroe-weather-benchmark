@@ -16,7 +16,7 @@ def main():
         registry=[]
         try:
             for page in range(20):
-                resp=requests.get(BASE,params={"country":"FRO","limit":1000,"offset":page*1000},timeout=60)
+                resp=requests.get(BASE,params={"bbox":"-8.5,61.2,-6.0,62.5","limit":1000,"offset":page*1000},timeout=60)
                 resp.raise_for_status()
                 feats=resp.json()["features"]
                 registry.extend(feats)
