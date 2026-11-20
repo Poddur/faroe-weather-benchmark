@@ -28,7 +28,7 @@ def analyze(rows,terrain):
             return a[0]
         rec={"station":sid,"status":"missing"}
         try:
-            z=pick(["z","orog","gh"],0,["surface"],["m","m**2 s**-2","m2 s-2","gpm"])
+            z=pick(["z","orog","gh"],0,["surface","heightAboveGround"],["m","m**2 s**-2","m2 s-2","gpm"])
             model_z=z["value"]/G if z["units"] in ("m**2 s**-2","m2 s-2") else z["value"]
             def at(names,h,units):return pick(names,h,["heightAboveGround"],units)
             t0=at(["2t","t"],2,["K"]);t1=at(["t"],100,["K"])
