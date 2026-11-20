@@ -6,6 +6,9 @@ on:
     paths:
       - '.github/workflows/fwa-confirmatory.yml'
       - 'src/fwa_confirmatory.py'
+      - 'src/faroe_terrain.py'
+      - 'config/faroe_terrain_profiles.json'
+      - 'tests/test_fwa_quality.py'
 permissions:
   contents: write
   actions: read
@@ -24,7 +27,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -r requirements.txt 'dynamical-catalog>=1,<2' scikit-learn
+      - run: python -m pip install -r requirements.txt 'dynamical-catalog>=1,<2' scikit-learn rasterio pyproj
       - run: python -m pytest -q
       - name: Retrieve immutable original research evidence
         run: gh run download 44603911240 -n fwa-research-evidence -D original
