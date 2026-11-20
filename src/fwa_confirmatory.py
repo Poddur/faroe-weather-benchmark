@@ -14,8 +14,8 @@ from sklearn.preprocessing import StandardScaler
 NEW=sorted(list(pd.date_range("2026-08-22","2026-11-17",freq="W-SAT",tz="UTC"))+list(pd.date_range("2026-08-25","2026-11-17",freq="W-TUE",tz="UTC")))
 KEY=["station_id","variable","init_time","valid_time","lead_hours"]
 def wide(f,o):
-    for c in ("init_time","valid_time"):f[c]=pd.to_datetime(f[c],utc=True)
-    o["valid_time"]=pd.to_datetime(o.valid_time,utc=True)
+    for c in ("init_time","valid_time"):f[c]=pd.to_datetime(f[c],utc=True,format="ISO8601")
+    o["valid_time"]=pd.to_datetime(o.valid_time,utc=True,format="ISO8601")
     if f.duplicated(KEY+["model"]).any():raise ValueError("duplicate forecasts")
     if not ((f.valid_time-f.init_time)==pd.to_timedelta(f.lead_hours,unit="h")).all():raise ValueError("lead mismatch")
     return f.pivot(index=KEY,columns="model",values="value").reset_index().merge(o[["station_id","variable","valid_time","observed"]],on=["station_id","variable","valid_time"],validate="many_to_one").dropna(subset=MODELS+["observed"])
@@ -89,7 +89,7 @@ def main():
                 except (requests.RequestException,ValueError,KeyError,RuntimeError) as e:status["missing"].append({"issue":str(issue),"error":str(e)[:300]})
         finally:ds.close()
         f=pd.DataFrame(rows);f.to_csv(out/"forecasts.csv",index=False)
-        dates=sorted(pd.to_datetime(f.init_time,utc=True).unique())
+        dates=sorted(pd.to_datetime(f.init_time,utc=True,format="ISO8601").unique())
         for issue in dates:
             p=cache/(pd.Timestamp(issue).strftime("%Y%m%d")+"_obs.json")
             if p.exists():
@@ -115,15 +115,27 @@ def main():
         d["init_time"]=pd.to_datetime(d.init_time,utc=True)
         keys=["station_id","init_time","lead_hours"]
         train=train.merge(d,on=keys,validate="one_to_one");test=test.merge(d,on=keys,validate="one_to_one")
+        receipt=json.loads(Path("config/faroe_terrain_profiles.json").read_text())
+        if receipt["sha256"]!="c30eac4363b97ad7745ea2f2ab04d3f0263ff3984c39fe68abd6fa84a6bd9fb2" or receipt["crs"]!="EPSG:5316":raise ValueError("Terrain provenance mismatch")
+        for sid,st in STATIONS.items():
+            site=receipt["stations"][sid]
+            if abs(site["lat"]-st["lat"])>1e-8 or abs(site["lon"]-st["lon"])>1e-8:raise ValueError("Terrain station mismatch")
+            if [x["direction_deg"] for x in site["sectors"]]!=list(range(0,360,5)):raise ValueError("Terrain sector mismatch")
+        from faroe_terrain import attach
+        train=attach(train,receipt);test=attach(test,receipt)
+        status["terrain_status"]="verified_profiles_attached"
+        status["terrain_sha256"]=receipt["sha256"]
+        status["directional_train_dates"]=int(train.init_time.nunique())
+        status["directional_test_dates"]=int(test.init_time.nunique())
         if train.init_time.nunique()<10 or test.init_time.nunique()<20:raise ValueError("insufficient directional dates")
         def design(x,cols):
             return pd.concat([x[cols],pd.get_dummies(x.station_id,prefix="site",dtype=float).reindex(columns=["site_"+s for s in STATIONS],fill_value=0),pd.get_dummies(x.lead_hours,prefix="lead",dtype=float).reindex(columns=["lead_"+str(l) for l in LEADS],fill_value=0)],axis=1)
-        for m,cols in [("FWA4A",MODELS),("FWA4B",MODELS+["sin","cos"])]:
+        for m,cols in [("FWA4A",MODELS),("FWA4B",MODELS+["sin","cos"]),("FWA4C",MODELS+["sin","cos","shelter","exposure"])]:
             model=make_pipeline(StandardScaler(),Ridge(alpha=10))
             model.fit(design(train,cols),train.observed-train["HARMONIE_DINI_OM"])
             test[m]=np.maximum(0,test["HARMONIE_DINI_OM"]+model.predict(design(test,cols)))
         test.to_csv(out/"wind_predictions.csv",index=False)
-        status.update(wind_scores=scores(test,MODELS+["FWA2","FWA4A","FWA4B"]),wind_train_dates=int(train.init_time.nunique()),wind_test_dates=int(test.init_time.nunique()),wind_intervals=[intervals(test,m,"HARMONIE_DINI_OM") for m in ["FWA4A","FWA4B"]]+[intervals(test,"FWA4B","FWA4A")],terrain_status="not_tested",status="exploratory_success")
+        status.update(wind_scores=scores(test,MODELS+["FWA2","FWA4A","FWA4B","FWA4C"]),wind_train_dates=int(train.init_time.nunique()),wind_test_dates=int(test.init_time.nunique()),wind_intervals=[intervals(test,m,"HARMONIE_DINI_OM") for m in ["FWA4A","FWA4B","FWA4C"]]+[intervals(test,"FWA4B","FWA4A"),intervals(test,"FWA4C","FWA4B")],terrain_status="evaluated",status="exploratory_success")
     except Exception as e:status["error"]=str(e);raise
     finally:
         (out/"status.json").write_text(json.dumps(status,indent=2,default=str))
