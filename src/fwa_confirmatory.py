@@ -1,5 +1,5 @@
 """Frozen FWA2 validation; separate directional wind experiment."""
-import json,hashlib
+import json,hashlib,time
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -49,7 +49,7 @@ def directions(w,cache):
             try:
                 if p.exists():j=json.loads(p.read_text())
                 else:
-                    resp=requests.get(URL,params=dict(latitude=st["lat"],longitude=st["lon"],run=pd.Timestamp(issue).strftime("%Y-%m-%dT%H:%M"),models="dmi_harmonie_arome_europe",hourly="wind_direction_10m",timezone="GMT",forecast_days=2,cell_selection="nearest",elevation="nan"),timeout=(15,90))
+                    resp=requests.get(URL,params=dict(latitude=st["lat"],longitude=st["lon"],run=pd.Timestamp(issue).strftime("%Y-%m-%dT%H:%M"),models="dmi_harmonie_arome_europe",hourly="wind_direction_10m",timezone="GMT",forecast_days=2,cell_selection="nearest",elevation="nan"),timeout=90)
                     resp.raise_for_status();j=resp.json()
                 h=j["hourly"]
                 if j["hourly_units"]["wind_direction_10m"]!="°":raise ValueError("direction unit")
@@ -60,6 +60,8 @@ def directions(w,cache):
                     if not 0<=a<=360:raise ValueError("invalid bearing")
                     segment.append(dict(station_id=sid,init_time=issue,lead_hours=lead,sin=np.sin(np.radians(a)),cos=np.cos(np.radians(a))))
                 rows.extend(segment);p.write_text(json.dumps(j))
+                if not p.exists():raise RuntimeError("Direction checkpoint missing")
+                time.sleep(1)
             except (requests.RequestException,ValueError,KeyError,TypeError) as e:print("Direction unavailable",issue,sid,str(e)[:180],flush=True)
     return pd.DataFrame(rows,columns=["station_id","init_time","lead_hours","sin","cos"])
 def main():
@@ -130,7 +132,8 @@ def main():
         status["terrain_sha256"]=receipt["sha256"]
         status["directional_train_dates"]=int(train.init_time.nunique())
         status["directional_test_dates"]=int(test.init_time.nunique())
-        if train.init_time.nunique()<10 or test.init_time.nunique()<20 or test.groupby(["station_id","lead_hours"]).ngroups!=9:raise ValueError("insufficient directional dates or station/lead coverage")
+        if train.init_time.nunique()<10 or test.init_time.nunique()<8 or test.groupby(["station_id","lead_hours"]).ngroups!=9:raise ValueError("insufficient even for exploratory directional evaluation")
+        status["wind_validation"]="adequate_pilot" if test.init_time.nunique()>=20 else "exploratory_only_insufficient_dates"
         def design(x,cols):
             return pd.concat([x[cols],pd.get_dummies(x.station_id,prefix="site",dtype=float).reindex(columns=["site_"+s for s in STATIONS],fill_value=0),pd.get_dummies(x.lead_hours,prefix="lead",dtype=float).reindex(columns=["lead_"+str(l) for l in LEADS],fill_value=0)],axis=1)
         for m,cols in [("FWA4A",MODELS),("FWA4B",MODELS+["sin","cos"]),("FWA4C",MODELS+["sin","cos","shelter","exposure"])]:
@@ -138,7 +141,7 @@ def main():
             model.fit(design(train,cols),train.observed-train["HARMONIE_DINI_OM"])
             test[m]=np.maximum(0,test["HARMONIE_DINI_OM"]+model.predict(design(test,cols)))
         test.to_csv(out/"wind_predictions.csv",index=False)
-        status.update(wind_scores=scores(test,MODELS+["FWA2","FWA4A","FWA4B","FWA4C"]),wind_train_dates=int(train.init_time.nunique()),wind_test_dates=int(test.init_time.nunique()),wind_intervals=[intervals(test,m,"HARMONIE_DINI_OM") for m in ["FWA4A","FWA4B","FWA4C"]]+[intervals(test,"FWA4B","FWA4A"),intervals(test,"FWA4C","FWA4B")],terrain_status="evaluated",status="exploratory_success" if status["temperature_validation"]=="adequate_pilot" else "insufficient_temperature_coverage")
+        status.update(wind_scores=scores(test,MODELS+["FWA2","FWA4A","FWA4B","FWA4C"]),wind_train_dates=int(train.init_time.nunique()),wind_test_dates=int(test.init_time.nunique()),wind_intervals=[intervals(test,m,"HARMONIE_DINI_OM") for m in ["FWA4A","FWA4B","FWA4C"]]+[intervals(test,"FWA4B","FWA4A"),intervals(test,"FWA4C","FWA4B")],terrain_status="evaluated",status="exploratory_success" if status["temperature_validation"]=="adequate_pilot" and status["wind_validation"]=="adequate_pilot" else "exploratory_only_insufficient_coverage")
     except Exception as e:status["error"]=str(e);raise
     finally:
         (out/"status.json").write_text(json.dumps(status,indent=2,default=str))
