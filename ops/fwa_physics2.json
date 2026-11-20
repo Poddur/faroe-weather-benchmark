@@ -1,0 +1,1939 @@
+{
+  "status": "probe_complete",
+  "probes": [
+    {
+      "station": "06009",
+      "issue": "2026-08-22",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-08-22T00%3A00&models=ecmwf_ifs&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.405975,
+      "longitude": -6.7882996,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          11.4,
+          11.9,
+          11.8
+        ],
+        "wind_speed_10m": [
+          4.62,
+          6.15,
+          5.72
+        ],
+        "wind_direction_10m": [
+          250,
+          253,
+          252
+        ],
+        "surface_pressure": [
+          1018.9,
+          1019.0,
+          1019.9
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-08-22",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-08-22T00%3A00&models=ecmwf_ifs&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.405975,
+      "longitude": -6.7882996,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "undefined",
+        "geopotential_height_1000hPa": "undefined",
+        "wind_speed_1000hPa": "undefined",
+        "wind_direction_1000hPa": "undefined",
+        "temperature_925hPa": "undefined",
+        "geopotential_height_925hPa": "undefined",
+        "wind_speed_925hPa": "undefined",
+        "wind_direction_925hPa": "undefined",
+        "temperature_850hPa": "undefined",
+        "geopotential_height_850hPa": "undefined",
+        "wind_speed_850hPa": "undefined",
+        "wind_direction_850hPa": "undefined"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-08-22",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-08-22T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.39435,
+      "longitude": -6.6835785,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          11.2,
+          12.1,
+          11.6
+        ],
+        "wind_speed_10m": [
+          3.6,
+          5.5,
+          5.3
+        ],
+        "wind_direction_10m": [
+          262,
+          248,
+          256
+        ],
+        "surface_pressure": [
+          1019.1,
+          1019.6,
+          1020.8
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-08-22",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-08-22T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.39435,
+      "longitude": -6.6835785,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "\u00b0C",
+        "geopotential_height_1000hPa": "m",
+        "wind_speed_1000hPa": "m/s",
+        "wind_direction_1000hPa": "\u00b0",
+        "temperature_925hPa": "\u00b0C",
+        "geopotential_height_925hPa": "m",
+        "wind_speed_925hPa": "m/s",
+        "wind_direction_925hPa": "\u00b0",
+        "temperature_850hPa": "\u00b0C",
+        "geopotential_height_850hPa": "m",
+        "wind_speed_850hPa": "m/s",
+        "wind_direction_850hPa": "\u00b0"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-10-03",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-10-03T00%3A00&models=ecmwf_ifs&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.405975,
+      "longitude": -6.7882996,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          10.2,
+          10.7,
+          11.2
+        ],
+        "wind_speed_10m": [
+          8.14,
+          8.15,
+          14.2
+        ],
+        "wind_direction_10m": [
+          241,
+          229,
+          205
+        ],
+        "surface_pressure": [
+          1012.8,
+          1014.2,
+          1006.3
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-10-03",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-10-03",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-10-03",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-10-03T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.39435,
+      "longitude": -6.6835785,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "\u00b0C",
+        "geopotential_height_1000hPa": "m",
+        "wind_speed_1000hPa": "m/s",
+        "wind_direction_1000hPa": "\u00b0",
+        "temperature_925hPa": "\u00b0C",
+        "geopotential_height_925hPa": "m",
+        "wind_speed_925hPa": "m/s",
+        "wind_direction_925hPa": "\u00b0",
+        "temperature_850hPa": "\u00b0C",
+        "geopotential_height_850hPa": "m",
+        "wind_speed_850hPa": "m/s",
+        "wind_direction_850hPa": "\u00b0"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-11-12",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-11-12T00%3A00&models=ecmwf_ifs&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.405975,
+      "longitude": -6.7882996,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          4.8,
+          4.5,
+          4.7
+        ],
+        "wind_speed_10m": [
+          11.67,
+          9.88,
+          4.85
+        ],
+        "wind_direction_10m": [
+          347,
+          334,
+          289
+        ],
+        "surface_pressure": [
+          1010.9,
+          1011.9,
+          1010.7
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-11-12",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=61.3957&longitude=-6.6818&run=2026-11-12T00%3A00&models=ecmwf_ifs&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 61.405975,
+      "longitude": -6.7882996,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "undefined",
+        "geopotential_height_1000hPa": "undefined",
+        "wind_speed_1000hPa": "undefined",
+        "wind_direction_1000hPa": "undefined",
+        "temperature_925hPa": "undefined",
+        "geopotential_height_925hPa": "undefined",
+        "wind_speed_925hPa": "undefined",
+        "wind_direction_925hPa": "undefined",
+        "temperature_850hPa": "undefined",
+        "geopotential_height_850hPa": "undefined",
+        "wind_speed_850hPa": "undefined",
+        "wind_direction_850hPa": "undefined"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-11-12",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-11-12",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-08-22",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-08-22T00%3A00&models=ecmwf_ifs&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.038662,
+      "longitude": -6.7164,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          11.3,
+          12.3,
+          11.8
+        ],
+        "wind_speed_10m": [
+          4.97,
+          6.29,
+          6.22
+        ],
+        "wind_direction_10m": [
+          240,
+          246,
+          242
+        ],
+        "surface_pressure": [
+          1018.0,
+          1017.8,
+          1018.7
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-08-22",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-08-22T00%3A00&models=ecmwf_ifs&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.038662,
+      "longitude": -6.7164,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "undefined",
+        "geopotential_height_1000hPa": "undefined",
+        "wind_speed_1000hPa": "undefined",
+        "wind_direction_1000hPa": "undefined",
+        "temperature_925hPa": "undefined",
+        "geopotential_height_925hPa": "undefined",
+        "wind_speed_925hPa": "undefined",
+        "wind_direction_925hPa": "undefined",
+        "temperature_850hPa": "undefined",
+        "geopotential_height_850hPa": "undefined",
+        "wind_speed_850hPa": "undefined",
+        "wind_direction_850hPa": "undefined"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-08-22",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-08-22T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.020798,
+      "longitude": -6.7725525,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          9.7,
+          14.0,
+          11.9
+        ],
+        "wind_speed_10m": [
+          2.5,
+          6.1,
+          4.3
+        ],
+        "wind_direction_10m": [
+          248,
+          258,
+          236
+        ],
+        "surface_pressure": [
+          1018.4,
+          1018.3,
+          1019.6
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-08-22",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-08-22T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.020798,
+      "longitude": -6.7725525,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "\u00b0C",
+        "geopotential_height_1000hPa": "m",
+        "wind_speed_1000hPa": "m/s",
+        "wind_direction_1000hPa": "\u00b0",
+        "temperature_925hPa": "\u00b0C",
+        "geopotential_height_925hPa": "m",
+        "wind_speed_925hPa": "m/s",
+        "wind_direction_925hPa": "\u00b0",
+        "temperature_850hPa": "\u00b0C",
+        "geopotential_height_850hPa": "m",
+        "wind_speed_850hPa": "m/s",
+        "wind_direction_850hPa": "\u00b0"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-10-03",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-10-03",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-10-03",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-10-03T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.020798,
+      "longitude": -6.7725525,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          9.5,
+          10.9,
+          10.8
+        ],
+        "wind_speed_10m": [
+          6.0,
+          8.8,
+          14.3
+        ],
+        "wind_direction_10m": [
+          230,
+          210,
+          204
+        ],
+        "surface_pressure": [
+          1012.2,
+          1013.4,
+          1003.7
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-10-03",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-10-03T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.020798,
+      "longitude": -6.7725525,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "\u00b0C",
+        "geopotential_height_1000hPa": "m",
+        "wind_speed_1000hPa": "m/s",
+        "wind_direction_1000hPa": "\u00b0",
+        "temperature_925hPa": "\u00b0C",
+        "geopotential_height_925hPa": "m",
+        "wind_speed_925hPa": "m/s",
+        "wind_direction_925hPa": "\u00b0",
+        "temperature_850hPa": "\u00b0C",
+        "geopotential_height_850hPa": "m",
+        "wind_speed_850hPa": "m/s",
+        "wind_direction_850hPa": "\u00b0"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-11-12",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-11-12T00%3A00&models=ecmwf_ifs&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.038662,
+      "longitude": -6.7164,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          3.3,
+          3.7,
+          2.8
+        ],
+        "wind_speed_10m": [
+          9.14,
+          7.77,
+          2.65
+        ],
+        "wind_direction_10m": [
+          343,
+          331,
+          267
+        ],
+        "surface_pressure": [
+          1010.8,
+          1011.5,
+          1010.2
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-11-12",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-11-12",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-11-12",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.0231&longitude=-6.7647&run=2026-11-12T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 0.0,
+      "latitude": 62.020798,
+      "longitude": -6.7725525,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "\u00b0C",
+        "geopotential_height_1000hPa": "m",
+        "wind_speed_1000hPa": "m/s",
+        "wind_direction_1000hPa": "\u00b0",
+        "temperature_925hPa": "\u00b0C",
+        "geopotential_height_925hPa": "m",
+        "wind_speed_925hPa": "m/s",
+        "wind_direction_925hPa": "\u00b0",
+        "temperature_850hPa": "\u00b0C",
+        "geopotential_height_850hPa": "m",
+        "wind_speed_850hPa": "m/s",
+        "wind_direction_850hPa": "\u00b0"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-08-22",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-08-22T00%3A00&models=ecmwf_ifs&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 130.0,
+      "latitude": 62.31986,
+      "longitude": -7.010071,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          10.9,
+          12.3,
+          11.3
+        ],
+        "wind_speed_10m": [
+          4.0,
+          5.77,
+          5.65
+        ],
+        "wind_direction_10m": [
+          228,
+          248,
+          239
+        ],
+        "surface_pressure": [
+          1001.6,
+          1001.7,
+          1002.4
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-08-22",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-08-22T00%3A00&models=ecmwf_ifs&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 130.0,
+      "latitude": 62.31986,
+      "longitude": -7.010071,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "undefined",
+        "geopotential_height_1000hPa": "undefined",
+        "wind_speed_1000hPa": "undefined",
+        "wind_direction_1000hPa": "undefined",
+        "temperature_925hPa": "undefined",
+        "geopotential_height_925hPa": "undefined",
+        "wind_speed_925hPa": "undefined",
+        "wind_direction_925hPa": "undefined",
+        "temperature_850hPa": "undefined",
+        "geopotential_height_850hPa": "undefined",
+        "wind_speed_850hPa": "undefined",
+        "wind_direction_850hPa": "undefined"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-08-22",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-08-22T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 225.0,
+      "latitude": 62.290836,
+      "longitude": -7.069458,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          9.4,
+          11.1,
+          10.4
+        ],
+        "wind_speed_10m": [
+          4.1,
+          6.5,
+          6.2
+        ],
+        "wind_direction_10m": [
+          234,
+          250,
+          232
+        ],
+        "surface_pressure": [
+          990.7,
+          991.0,
+          991.9
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-08-22",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-10-03",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-10-03",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-10-03T00%3A00&models=ecmwf_ifs&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 130.0,
+      "latitude": 62.31986,
+      "longitude": -7.010071,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "undefined",
+        "geopotential_height_1000hPa": "undefined",
+        "wind_speed_1000hPa": "undefined",
+        "wind_direction_1000hPa": "undefined",
+        "temperature_925hPa": "undefined",
+        "geopotential_height_925hPa": "undefined",
+        "wind_speed_925hPa": "undefined",
+        "wind_direction_925hPa": "undefined",
+        "temperature_850hPa": "undefined",
+        "geopotential_height_850hPa": "undefined",
+        "wind_speed_850hPa": "undefined",
+        "wind_direction_850hPa": "undefined"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-10-03",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-10-03T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 225.0,
+      "latitude": 62.290836,
+      "longitude": -7.069458,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          7.3,
+          9.6,
+          9.4
+        ],
+        "wind_speed_10m": [
+          6.6,
+          10.1,
+          18.5
+        ],
+        "wind_direction_10m": [
+          219,
+          205,
+          205
+        ],
+        "surface_pressure": [
+          984.4,
+          985.7,
+          975.5
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-10-03",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-10-03T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 225.0,
+      "latitude": 62.290836,
+      "longitude": -7.069458,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "\u00b0C",
+        "geopotential_height_1000hPa": "m",
+        "wind_speed_1000hPa": "m/s",
+        "wind_direction_1000hPa": "\u00b0",
+        "temperature_925hPa": "\u00b0C",
+        "geopotential_height_925hPa": "m",
+        "wind_speed_925hPa": "m/s",
+        "wind_direction_925hPa": "\u00b0",
+        "temperature_850hPa": "\u00b0C",
+        "geopotential_height_850hPa": "m",
+        "wind_speed_850hPa": "m/s",
+        "wind_direction_850hPa": "\u00b0"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-11-12",
+      "model": "ecmwf_ifs",
+      "kind": "surface",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-11-12T00%3A00&models=ecmwf_ifs&hourly=temperature_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 130.0,
+      "latitude": 62.31986,
+      "longitude": -7.010071,
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0C",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "surface_pressure": "hPa"
+      },
+      "coverage": {
+        "temperature_2m": [
+          3.0,
+          2.3,
+          1.9
+        ],
+        "wind_speed_10m": [
+          10.08,
+          8.92,
+          2.6
+        ],
+        "wind_direction_10m": [
+          345,
+          333,
+          268
+        ],
+        "surface_pressure": [
+          995.3,
+          995.6,
+          993.5
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-11-12",
+      "model": "ecmwf_ifs",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-11-12T00%3A00&models=ecmwf_ifs&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 130.0,
+      "latitude": 62.31986,
+      "longitude": -7.010071,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "undefined",
+        "geopotential_height_1000hPa": "undefined",
+        "wind_speed_1000hPa": "undefined",
+        "wind_direction_1000hPa": "undefined",
+        "temperature_925hPa": "undefined",
+        "geopotential_height_925hPa": "undefined",
+        "wind_speed_925hPa": "undefined",
+        "wind_direction_925hPa": "undefined",
+        "temperature_850hPa": "undefined",
+        "geopotential_height_850hPa": "undefined",
+        "wind_speed_850hPa": "undefined",
+        "wind_direction_850hPa": "undefined"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-11-12",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "surface",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=90)"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-11-12",
+      "model": "dmi_harmonie_arome_europe",
+      "kind": "vertical",
+      "http": 200,
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=62.2995&longitude=-7.074&run=2026-11-12T00%3A00&models=dmi_harmonie_arome_europe&hourly=temperature_1000hPa%2Cgeopotential_height_1000hPa%2Cwind_speed_1000hPa%2Cwind_direction_1000hPa%2Ctemperature_925hPa%2Cgeopotential_height_925hPa%2Cwind_speed_925hPa%2Cwind_direction_925hPa%2Ctemperature_850hPa%2Cgeopotential_height_850hPa%2Cwind_speed_850hPa%2Cwind_direction_850hPa&wind_speed_unit=ms&timezone=GMT&forecast_days=2&cell_selection=nearest&elevation=nan",
+      "elevation": 225.0,
+      "latitude": 62.290836,
+      "longitude": -7.069458,
+      "units": {
+        "time": "iso8601",
+        "temperature_1000hPa": "\u00b0C",
+        "geopotential_height_1000hPa": "m",
+        "wind_speed_1000hPa": "m/s",
+        "wind_direction_1000hPa": "\u00b0",
+        "temperature_925hPa": "\u00b0C",
+        "geopotential_height_925hPa": "m",
+        "wind_speed_925hPa": "m/s",
+        "wind_direction_925hPa": "\u00b0",
+        "temperature_850hPa": "\u00b0C",
+        "geopotential_height_850hPa": "m",
+        "wind_speed_850hPa": "m/s",
+        "wind_direction_850hPa": "\u00b0"
+      },
+      "coverage": {
+        "temperature_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_1000hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_925hPa": [
+          null,
+          null,
+          null
+        ],
+        "temperature_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "geopotential_height_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_speed_850hPa": [
+          null,
+          null,
+          null
+        ],
+        "wind_direction_850hPa": [
+          null,
+          null,
+          null
+        ]
+      },
+      "status": "response_received"
+    }
+  ],
+  "bigquery_queries": 0,
+  "weathernext_surface": {
+    "cloud_cover_high": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "percent"
+    },
+    "downward_short_wave_radiation_flux_surface": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "W m-2"
+    },
+    "precipitation_experimental_surface": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "kg m-2 s-1"
+    },
+    "cloud_cover_medium": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "percent"
+    },
+    "cloud_cover_low": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "percent"
+    },
+    "downward_direct_short_wave_radiation_flux_surface": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "W m-2"
+    },
+    "dew_point_temperature_2m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "degree_Celsius"
+    },
+    "pressure_reduced_to_mean_sea_level": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "Pa"
+    },
+    "total_cloud_cover_atmosphere": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "percent"
+    },
+    "precipitation_imerg_surface": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "kg m-2 s-1"
+    },
+    "precipitation_surface": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "kg m-2 s-1"
+    },
+    "wind_v_10m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "m s-1"
+    },
+    "wind_v_100m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "m s-1"
+    },
+    "sea_surface_temperature": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "degree_Celsius"
+    },
+    "wind_speed_10m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "m s-1"
+    },
+    "wind_u_10m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "m s-1"
+    },
+    "temperature_2m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "degree_Celsius"
+    },
+    "wind_u_100m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "m s-1"
+    },
+    "wind_speed_100m": {
+      "dims": [
+        "init_time",
+        "statistic",
+        "lead_time",
+        "y",
+        "x"
+      ],
+      "units": "m s-1"
+    }
+  },
+  "weathernext_pressure_error": "Failed to open dataset 'google-weathernext3-forecast-15-day-0-1-degree-virtual' as xarray Dataset: No group found in store <icechunk.IcechunkStore>\nread_only: True\nsnapshot_id: YF5X99M7VVH0FJR0ECRG\nbranch: None\n at path 'pressure_level'",
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44760587728",
+  "commit": "5aa2767707ada63f817b6a6789db732c81af9739"
+}
