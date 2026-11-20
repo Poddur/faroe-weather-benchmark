@@ -1,0 +1,52 @@
+name: FWA Physics 2 native profile discovery
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-physics2-native.yml'
+      - 'src/fwa_physics2_native.py'
+permissions:
+  contents: write
+concurrency:
+  group: fwa-physics2-native
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt 'dynamical-catalog>=1,<2'
+      - run: python -m py_compile src/fwa_physics2_native.py
+      - run: python src/fwa_physics2_native.py
+        timeout-minutes: 105
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: physics2-native-evidence
+          path: outputs/physics2-native/
+          retention-days: 90
+      - name: Record probe result
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path("outputs/physics2-native/status.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_probe"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("physics2-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_physics2_native.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record physics input discovery" -f content="$(base64 -w0 physics2-receipt.json)" "${args[@]}"
