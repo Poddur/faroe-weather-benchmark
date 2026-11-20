@@ -1,0 +1,51 @@
+name: FWA station availability audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-station-audit.yml'
+permissions:
+  contents: write
+concurrency:
+  group: fwa-station-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m py_compile src/fwa_station_audit.py
+      - run: python src/fwa_station_audit.py
+        timeout-minutes: 105
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-station-audit
+          path: outputs/station-audit/
+          retention-days: 90
+      - name: Record station audit
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path("outputs/station-audit/status.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_audit"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("station-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_station_audit.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record DMI station coverage audit" -f content="$(base64 -w0 station-receipt.json)" "${args[@]}"
