@@ -1,0 +1,66 @@
+name: FWA Atmospheric native pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-atmospheric.yml'
+      - 'src/fwa_atmospheric_native.py'
+      - 'src/fwa_atmospheric_diagnostics.py'
+permissions:
+  contents: write
+concurrency:
+  group: fwa-atmospheric
+  cancel-in-progress: false
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt eccodes eccodeslib 'dynamical-catalog>=1,<2'
+      - name: Check physical diagnostics
+        run: |
+          PYTHONPATH=src python - <<'PY'
+          from fwa_atmospheric_diagnostics import diagnostics,temp_correct
+          assert diagnostics(0,100,280,280,5,0,6,0,100)["N2_dry_per_s2"]>0
+          assert diagnostics(0,100,280,282,5,0,6,0,100)["Froude_dry_proxy"]>0
+          assert diagnostics(0,100,280,278,5,0,6,0,100)["Froude_dry_proxy"] is None
+          assert abs(temp_correct(10,100,0,6.5)-9.35)<1e-9
+          assert temp_correct(10,10000,0,6.5)==8
+          assert temp_correct(10,100,0,-5)>10
+          PY
+      - run: python src/fwa_atmospheric_native.py
+      - run: python src/fwa_atmospheric_diagnostics.py outputs/atmospheric/extracted.json config/faroe_terrain_profiles.json outputs/atmospheric/diagnostics.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-atmospheric-pilot
+          path: outputs/atmospheric/status.json
+          retention-days: 90
+      - name: Record evidence
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path("outputs/atmospheric/status.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_download"}
+          q=pathlib.Path("outputs/atmospheric/diagnostics.json")
+          # Only publish availability metadata, not live forecast values.
+          d["diagnostics"]=[{"station":x["station"],"status":x["status"],"error":x.get("error")} for x in json.loads(q.read_text())] if q.exists() else []
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("atmospheric-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_atmospheric.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record native atmospheric pilot metadata" -f content="$(base64 -w0 atmospheric-receipt.json)" "${args[@]}"
