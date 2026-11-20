@@ -1,0 +1,49 @@
+name: Verify official Faroese terrain
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/faroe-terrain.yml'
+      - 'src/faroe_terrain.py'
+permissions:
+  contents: write
+jobs:
+  terrain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt rasterio pyproj
+      - name: Fetch official file and verify actual geography
+        run: |
+          mkdir -p outputs/terrain
+          curl --fail --location --retry 3 --max-time 300 https://cdn.foroyakort.fo/geodata/raster/DTM/FO_DTM_2009_10m.tif -o terrain.tif
+          python src/faroe_terrain.py terrain.tif outputs/terrain/receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verified-faroe-terrain
+          path: outputs/terrain/
+      - name: Publish verification receipt
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,pathlib,os
+          p=pathlib.Path("outputs/terrain/receipt.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_geographic_verification"}
+          d.update(job_status=os.environ["JOB_STATUS"],commit=os.environ["GITHUB_SHA"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"])
+          pathlib.Path("terrain-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/faroe_terrain.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record actual Faroese terrain geographic verification" -f content="$(base64 -w0 terrain-receipt.json)" "${args[@]}"
