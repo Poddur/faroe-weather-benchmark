@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/fwa-station-audit.yml'
+      - 'src/fwa_station_audit.py'
+      - 'src/fwa_vagar_audit.py'
 permissions:
   contents: write
 concurrency:
@@ -24,6 +26,9 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements.txt
       - run: python -m py_compile src/fwa_station_audit.py
+      - name: Retrieve Vagar archive
+        run: python src/fwa_vagar_audit.py
+        continue-on-error: true
       - run: python src/fwa_station_audit.py
         timeout-minutes: 105
       - uses: actions/upload-artifact@v4
@@ -41,6 +46,8 @@ jobs:
           import json,os,pathlib
           p=pathlib.Path("outputs/station-audit/status.json")
           d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_audit"}
+          v=pathlib.Path("outputs/station-audit/vagar_status.json")
+          d["vagar"]=json.loads(v.read_text()) if v.exists() else {"status":"not_run"}
           d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
           pathlib.Path("station-receipt.json").write_text(json.dumps(d,indent=2))
           PY
