@@ -1,0 +1,909 @@
+{
+  "status": "probe_complete",
+  "bigquery_queries": 0,
+  "profiles": [
+    {
+      "station": "06009",
+      "issue": "2026-08-22",
+      "lead": 6,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 4.621989727020264,
+      "wind_speed_100m": 6.242319107055664,
+      "wind_u_10m": 4.278278827667236,
+      "wind_v_10m": 1.64034104347229,
+      "wind_u_100m": 5.996950626373291,
+      "wind_v_100m": 1.5626633167266846,
+      "temperature_2m": 11.350982666015625,
+      "dew_point_temperature_2m": 10.2686767578125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101888.984375,
+      "cloud_cover_low": 98.28976440429688,
+      "downward_short_wave_radiation_flux_surface": 16.308025360107422,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-08-22",
+      "lead": 12,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 6.512884140014648,
+      "wind_speed_100m": 8.752045631408691,
+      "wind_u_10m": 6.045557022094727,
+      "wind_v_10m": 2.353191614151001,
+      "wind_u_100m": 8.36767578125,
+      "wind_v_100m": 2.464055299758911,
+      "temperature_2m": 11.810455322265625,
+      "dew_point_temperature_2m": 11.00311279296875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101898.6953125,
+      "cloud_cover_low": 95.2895736694336,
+      "downward_short_wave_radiation_flux_surface": 252.81198120117188,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-08-22",
+      "lead": 24,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 5.947881698608398,
+      "wind_speed_100m": 8.271397590637207,
+      "wind_u_10m": 5.548971176147461,
+      "wind_v_10m": 2.072664737701416,
+      "wind_u_100m": 7.954323768615723,
+      "wind_v_100m": 2.176170587539673,
+      "temperature_2m": 11.700958251953125,
+      "dew_point_temperature_2m": 10.964691162109375,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101997.484375,
+      "cloud_cover_low": 64.89217376708984,
+      "downward_short_wave_radiation_flux_surface": 0.08972819149494171,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-10-03",
+      "lead": 6,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 8.29411506652832,
+      "wind_speed_100m": 10.565194129943848,
+      "wind_u_10m": 7.183912754058838,
+      "wind_v_10m": 4.120790481567383,
+      "wind_u_100m": 9.279117584228516,
+      "wind_v_100m": 5.022374629974365,
+      "temperature_2m": 10.172210693359375,
+      "dew_point_temperature_2m": 6.40240478515625,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101293.328125,
+      "cloud_cover_low": 28.49055290222168,
+      "downward_short_wave_radiation_flux_surface": 0.1341238021850586,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-10-03",
+      "lead": 12,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 9.001011848449707,
+      "wind_speed_100m": 11.653055191040039,
+      "wind_u_10m": 6.180832862854004,
+      "wind_v_10m": 6.476359844207764,
+      "wind_u_100m": 8.353360176086426,
+      "wind_v_100m": 8.041789054870605,
+      "temperature_2m": 10.701416015625,
+      "dew_point_temperature_2m": 8.633453369140625,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101426.3046875,
+      "cloud_cover_low": 43.15424728393555,
+      "downward_short_wave_radiation_flux_surface": 195.38304138183594,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-10-03",
+      "lead": 24,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 15.28226089477539,
+      "wind_speed_100m": 20.30735206604004,
+      "wind_u_10m": 6.930774211883545,
+      "wind_v_10m": 13.60558032989502,
+      "wind_u_100m": 9.694252967834473,
+      "wind_v_100m": 17.824342727661133,
+      "temperature_2m": 11.490753173828125,
+      "dew_point_temperature_2m": 9.721832275390625,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 100590.328125,
+      "cloud_cover_low": 91.97383117675781,
+      "downward_short_wave_radiation_flux_surface": 0.07441921532154083,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-11-12",
+      "lead": 6,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 12.762056350708008,
+      "wind_speed_100m": 15.613746643066406,
+      "wind_u_10m": 2.741424798965454,
+      "wind_v_10m": -12.451613426208496,
+      "wind_u_100m": 3.1739842891693115,
+      "wind_v_100m": -15.273643493652344,
+      "temperature_2m": 5.138763427734375,
+      "dew_point_temperature_2m": -0.293212890625,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101071.8671875,
+      "cloud_cover_low": 12.426730155944824,
+      "downward_short_wave_radiation_flux_surface": 0.10651937127113342,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-11-12",
+      "lead": 12,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 10.775251388549805,
+      "wind_speed_100m": 12.6260986328125,
+      "wind_u_10m": 4.7527923583984375,
+      "wind_v_10m": -9.653797149658203,
+      "wind_u_100m": 5.474374294281006,
+      "wind_v_100m": -11.35947036743164,
+      "temperature_2m": 4.21295166015625,
+      "dew_point_temperature_2m": -0.610626220703125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101208.6796875,
+      "cloud_cover_low": 10.863343238830566,
+      "downward_short_wave_radiation_flux_surface": 136.38153076171875,
+      "status": "ok"
+    },
+    {
+      "station": "06009",
+      "issue": "2026-11-12",
+      "lead": 24,
+      "grid_lat": 61.400000000000006,
+      "grid_lon": 353.3,
+      "wind_speed_10m": 5.572205066680908,
+      "wind_speed_100m": 6.129443645477295,
+      "wind_u_10m": 5.365835189819336,
+      "wind_v_10m": -0.5331811904907227,
+      "wind_u_100m": 5.902573108673096,
+      "wind_v_100m": -0.5008329153060913,
+      "temperature_2m": 4.68389892578125,
+      "dew_point_temperature_2m": -0.896209716796875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101013.1640625,
+      "cloud_cover_low": 88.50251007080078,
+      "downward_short_wave_radiation_flux_surface": 0.048648275434970856,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-08-22",
+      "lead": 6,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 4.922718048095703,
+      "wind_speed_100m": 6.757584095001221,
+      "wind_u_10m": 4.144083023071289,
+      "wind_v_10m": 2.578282356262207,
+      "wind_u_100m": 5.999377250671387,
+      "wind_v_100m": 2.9996538162231445,
+      "temperature_2m": 11.159912109375,
+      "dew_point_temperature_2m": 10.01458740234375,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101805.1640625,
+      "cloud_cover_low": 97.58845520019531,
+      "downward_short_wave_radiation_flux_surface": 16.487695693969727,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-08-22",
+      "lead": 12,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 6.449948310852051,
+      "wind_speed_100m": 8.680963516235352,
+      "wind_u_10m": 5.981663703918457,
+      "wind_v_10m": 2.297440767288208,
+      "wind_u_100m": 8.269379615783691,
+      "wind_v_100m": 2.4819722175598145,
+      "temperature_2m": 11.96649169921875,
+      "dew_point_temperature_2m": 10.84930419921875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101793.625,
+      "cloud_cover_low": 97.41156768798828,
+      "downward_short_wave_radiation_flux_surface": 245.22567749023438,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-08-22",
+      "lead": 24,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 5.880719184875488,
+      "wind_speed_100m": 8.470701217651367,
+      "wind_u_10m": 5.314778804779053,
+      "wind_v_10m": 2.422781467437744,
+      "wind_u_100m": 7.926687717437744,
+      "wind_v_100m": 2.8662121295928955,
+      "temperature_2m": 11.530242919921875,
+      "dew_point_temperature_2m": 10.62432861328125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101897.296875,
+      "cloud_cover_low": 61.8231315612793,
+      "downward_short_wave_radiation_flux_surface": 0.08963432908058167,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-10-03",
+      "lead": 6,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 6.494417667388916,
+      "wind_speed_100m": 9.308326721191406,
+      "wind_u_10m": 5.724928855895996,
+      "wind_v_10m": 3.020148277282715,
+      "wind_u_100m": 8.345952033996582,
+      "wind_v_100m": 4.061750411987305,
+      "temperature_2m": 9.601715087890625,
+      "dew_point_temperature_2m": 6.197967529296875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101163.2265625,
+      "cloud_cover_low": 29.51345443725586,
+      "downward_short_wave_radiation_flux_surface": 0.10755696892738342,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-10-03",
+      "lead": 12,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 7.691015720367432,
+      "wind_speed_100m": 10.672538757324219,
+      "wind_u_10m": 5.013298988342285,
+      "wind_v_10m": 5.78347110748291,
+      "wind_u_100m": 7.258797645568848,
+      "wind_v_100m": 7.757791996002197,
+      "temperature_2m": 10.407562255859375,
+      "dew_point_temperature_2m": 7.818634033203125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101306.2734375,
+      "cloud_cover_low": 68.94014739990234,
+      "downward_short_wave_radiation_flux_surface": 213.08828735351562,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-10-03",
+      "lead": 24,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 12.76040267944336,
+      "wind_speed_100m": 18.16819190979004,
+      "wind_u_10m": 5.830475807189941,
+      "wind_v_10m": 11.325324058532715,
+      "wind_u_100m": 8.723723411560059,
+      "wind_v_100m": 15.900896072387695,
+      "temperature_2m": 11.00396728515625,
+      "dew_point_temperature_2m": 9.4259033203125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 100361.6171875,
+      "cloud_cover_low": 99.34375762939453,
+      "downward_short_wave_radiation_flux_surface": 0.10164740681648254,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-11-12",
+      "lead": 6,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 9.53407096862793,
+      "wind_speed_100m": 12.853523254394531,
+      "wind_u_10m": 2.804694414138794,
+      "wind_v_10m": -9.094243049621582,
+      "wind_u_100m": 3.4764928817749023,
+      "wind_v_100m": -12.35397720336914,
+      "temperature_2m": 3.9237060546875,
+      "dew_point_temperature_2m": -0.343353271484375,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101086.8125,
+      "cloud_cover_low": 21.562942504882812,
+      "downward_short_wave_radiation_flux_surface": 0.05691894516348839,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-11-12",
+      "lead": 12,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 7.9149489402771,
+      "wind_speed_100m": 10.28579044342041,
+      "wind_u_10m": 3.900336980819702,
+      "wind_v_10m": -6.862290382385254,
+      "wind_u_100m": 4.9142327308654785,
+      "wind_v_100m": -9.008432388305664,
+      "temperature_2m": 3.266082763671875,
+      "dew_point_temperature_2m": -1.230255126953125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101182.4609375,
+      "cloud_cover_low": 23.177074432373047,
+      "downward_short_wave_radiation_flux_surface": 121.05201721191406,
+      "status": "ok"
+    },
+    {
+      "station": "06011",
+      "issue": "2026-11-12",
+      "lead": 24,
+      "grid_lat": 62.0,
+      "grid_lon": 353.20000000000005,
+      "wind_speed_10m": 3.39982271194458,
+      "wind_speed_100m": 4.393109321594238,
+      "wind_u_10m": 3.204313039779663,
+      "wind_v_10m": 0.5345350503921509,
+      "wind_u_100m": 4.122295379638672,
+      "wind_v_100m": 0.7544086575508118,
+      "temperature_2m": 3.306610107421875,
+      "dew_point_temperature_2m": -1.287841796875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 100937.453125,
+      "cloud_cover_low": 86.17910766601562,
+      "downward_short_wave_radiation_flux_surface": 0.13009792566299438,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-08-22",
+      "lead": 6,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 3.9474265575408936,
+      "wind_speed_100m": 6.585752010345459,
+      "wind_u_10m": 2.7768287658691406,
+      "wind_v_10m": 2.7432308197021484,
+      "wind_u_100m": 5.31925630569458,
+      "wind_v_100m": 3.7887279987335205,
+      "temperature_2m": 10.486358642578125,
+      "dew_point_temperature_2m": 9.611663818359375,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101753.140625,
+      "cloud_cover_low": 99.0846176147461,
+      "downward_short_wave_radiation_flux_surface": 13.211577415466309,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-08-22",
+      "lead": 12,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 5.248210430145264,
+      "wind_speed_100m": 7.86444616317749,
+      "wind_u_10m": 4.643834590911865,
+      "wind_v_10m": 2.3384671211242676,
+      "wind_u_100m": 7.165088653564453,
+      "wind_v_100m": 3.083625555038452,
+      "temperature_2m": 12.044677734375,
+      "dew_point_temperature_2m": 10.776123046875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101747.109375,
+      "cloud_cover_low": 99.0335922241211,
+      "downward_short_wave_radiation_flux_surface": 208.56625366210938,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-08-22",
+      "lead": 24,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 4.768506050109863,
+      "wind_speed_100m": 7.936306476593018,
+      "wind_u_10m": 3.687220573425293,
+      "wind_v_10m": 2.9785990715026855,
+      "wind_u_100m": 6.607051372528076,
+      "wind_v_100m": 4.333334922790527,
+      "temperature_2m": 10.84881591796875,
+      "dew_point_temperature_2m": 10.15167236328125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101853.59375,
+      "cloud_cover_low": 84.13908386230469,
+      "downward_short_wave_radiation_flux_surface": 0.062301162630319595,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-10-03",
+      "lead": 6,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 4.93827486038208,
+      "wind_speed_100m": 8.593762397766113,
+      "wind_u_10m": 3.6348793506622314,
+      "wind_v_10m": 3.3166418075561523,
+      "wind_u_100m": 6.961616516113281,
+      "wind_v_100m": 5.005349159240723,
+      "temperature_2m": 7.81011962890625,
+      "dew_point_temperature_2m": 5.180755615234375,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101094.4375,
+      "cloud_cover_low": 36.413883209228516,
+      "downward_short_wave_radiation_flux_surface": 0.1418389230966568,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-10-03",
+      "lead": 12,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 6.441149711608887,
+      "wind_speed_100m": 10.049066543579102,
+      "wind_u_10m": 3.524566888809204,
+      "wind_v_10m": 5.35297155380249,
+      "wind_u_100m": 5.909016132354736,
+      "wind_v_100m": 8.074220657348633,
+      "temperature_2m": 9.88775634765625,
+      "dew_point_temperature_2m": 6.99945068359375,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101219.5859375,
+      "cloud_cover_low": 72.68838500976562,
+      "downward_short_wave_radiation_flux_surface": 213.98788452148438,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-10-03",
+      "lead": 24,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 10.209253311157227,
+      "wind_speed_100m": 16.383853912353516,
+      "wind_u_10m": 4.052547454833984,
+      "wind_v_10m": 9.349614143371582,
+      "wind_u_100m": 7.034976482391357,
+      "wind_v_100m": 14.767728805541992,
+      "temperature_2m": 10.148773193359375,
+      "dew_point_temperature_2m": 9.0281982421875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 100186.125,
+      "cloud_cover_low": 99.55359649658203,
+      "downward_short_wave_radiation_flux_surface": 0.13332465291023254,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-11-12",
+      "lead": 6,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 10.151992797851562,
+      "wind_speed_100m": 14.156003952026367,
+      "wind_u_10m": 2.2494280338287354,
+      "wind_v_10m": -9.890238761901855,
+      "wind_u_100m": 2.961789131164551,
+      "wind_v_100m": -13.830636024475098,
+      "temperature_2m": 2.638824462890625,
+      "dew_point_temperature_2m": -1.100372314453125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101180.3515625,
+      "cloud_cover_low": 31.704282760620117,
+      "downward_short_wave_radiation_flux_surface": 0.18460991978645325,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-11-12",
+      "lead": 12,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 8.98395824432373,
+      "wind_speed_100m": 12.073225021362305,
+      "wind_u_10m": 3.8110320568084717,
+      "wind_v_10m": -8.114019393920898,
+      "wind_u_100m": 4.980226516723633,
+      "wind_v_100m": -10.969586372375488,
+      "temperature_2m": 1.974853515625,
+      "dew_point_temperature_2m": -1.596160888671875,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 101242.4375,
+      "cloud_cover_low": 38.227294921875,
+      "downward_short_wave_radiation_flux_surface": 102.09954833984375,
+      "status": "ok"
+    },
+    {
+      "station": "06014",
+      "issue": "2026-11-12",
+      "lead": 24,
+      "grid_lat": 62.30000000000001,
+      "grid_lon": 352.90000000000003,
+      "wind_speed_10m": 3.6584701538085938,
+      "wind_speed_100m": 4.954991817474365,
+      "wind_u_10m": 2.960742235183716,
+      "wind_v_10m": 1.897237777709961,
+      "wind_u_100m": 4.087430953979492,
+      "wind_v_100m": 2.4396278858184814,
+      "temperature_2m": 2.0712890625,
+      "dew_point_temperature_2m": -1.561767578125,
+      "sea_surface_temperature": null,
+      "pressure_reduced_to_mean_sea_level": 100918.234375,
+      "cloud_cover_low": 93.25057220458984,
+      "downward_short_wave_radiation_flux_surface": 0.1179041862487793,
+      "status": "ok"
+    }
+  ],
+  "units": {
+    "wind_speed_10m": "m s-1",
+    "wind_speed_100m": "m s-1",
+    "wind_u_10m": "m s-1",
+    "wind_v_10m": "m s-1",
+    "wind_u_100m": "m s-1",
+    "wind_v_100m": "m s-1",
+    "temperature_2m": "degree_Celsius",
+    "dew_point_temperature_2m": "degree_Celsius",
+    "sea_surface_temperature": "degree_Celsius",
+    "pressure_reduced_to_mean_sea_level": "Pa",
+    "cloud_cover_low": "percent",
+    "downward_short_wave_radiation_flux_surface": "W m-2"
+  },
+  "dmi_inventory": [
+    {
+      "collection": "harmonie_dini",
+      "http": 404,
+      "url": "https://opendataapi.dmi.dk/v1/forecastdata/collections/harmonie_dini/items?limit=3",
+      "error": "404 Client Error:  for url: https://opendataapi.dmi.dk/v1/forecastdata/collections/harmonie_dini/items?limit=3"
+    },
+    {
+      "collection": "harmonie_dini_sf",
+      "http": 200,
+      "url": "https://opendataapi.dmi.dk/v1/forecastdata/collections/harmonie_dini_sf/items?limit=3",
+      "features": [
+        {
+          "type": "Feature",
+          "bbox": [
+            -43.169833,
+            37.688397,
+            40.069849,
+            69.907191
+          ],
+          "id": "HARMONIE_DINI_SF_2026-11-20T120000Z_2026-11-23T000000Z.grib",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -43.169833,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  37.688397
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "datetime": "2026-11-23T00:00:00Z",
+            "created": "2026-11-20T15:14:11.271738Z",
+            "modelRun": "2026-11-20T12:00:00Z"
+          },
+          "stac_version": "1.0.0",
+          "collection": "harmonie_dini_sf",
+          "asset": {
+            "data": {
+              "type": "application/x-grib",
+              "title": "Forecast file download resource",
+              "roles": [
+                "data"
+              ],
+              "href": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-20T120000Z_2026-11-23T000000Z.grib"
+            }
+          }
+        },
+        {
+          "type": "Feature",
+          "bbox": [
+            -43.169833,
+            37.688397,
+            40.069849,
+            69.907191
+          ],
+          "id": "HARMONIE_DINI_SF_2026-11-20T120000Z_2026-11-22T230000Z.grib",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -43.169833,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  37.688397
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "datetime": "2026-11-22T23:00:00Z",
+            "created": "2026-11-20T15:07:29.454044Z",
+            "modelRun": "2026-11-20T12:00:00Z"
+          },
+          "stac_version": "1.0.0",
+          "collection": "harmonie_dini_sf",
+          "asset": {
+            "data": {
+              "type": "application/x-grib",
+              "title": "Forecast file download resource",
+              "roles": [
+                "data"
+              ],
+              "href": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-20T120000Z_2026-11-22T230000Z.grib"
+            }
+          }
+        },
+        {
+          "type": "Feature",
+          "bbox": [
+            -43.169833,
+            37.688397,
+            40.069849,
+            69.907191
+          ],
+          "id": "HARMONIE_DINI_SF_2026-11-20T120000Z_2026-11-22T220000Z.grib",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -43.169833,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  37.688397
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "datetime": "2026-11-22T22:00:00Z",
+            "created": "2026-11-20T15:09:07.45854Z",
+            "modelRun": "2026-11-20T12:00:00Z"
+          },
+          "stac_version": "1.0.0",
+          "collection": "harmonie_dini_sf",
+          "asset": {
+            "data": {
+              "type": "application/x-grib",
+              "title": "Forecast file download resource",
+              "roles": [
+                "data"
+              ],
+              "href": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-20T120000Z_2026-11-22T220000Z.grib"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "collection": "harmonie_dini_pl",
+      "http": 200,
+      "url": "https://opendataapi.dmi.dk/v1/forecastdata/collections/harmonie_dini_pl/items?limit=3",
+      "features": [
+        {
+          "type": "Feature",
+          "bbox": [
+            -43.169833,
+            37.688397,
+            40.069849,
+            69.907191
+          ],
+          "id": "HARMONIE_DINI_PL_2026-11-20T120000Z_2026-11-23T000000Z.grib",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -43.169833,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  37.688397
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "datetime": "2026-11-23T00:00:00Z",
+            "created": "2026-11-20T15:09:36.262818Z",
+            "modelRun": "2026-11-20T12:00:00Z"
+          },
+          "stac_version": "1.0.0",
+          "collection": "harmonie_dini_pl",
+          "asset": {
+            "data": {
+              "type": "application/x-grib",
+              "title": "Forecast file download resource",
+              "roles": [
+                "data"
+              ],
+              "href": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_PL/HARMONIE_DINI_PL_2026-11-20T120000Z_2026-11-23T000000Z.grib"
+            }
+          }
+        },
+        {
+          "type": "Feature",
+          "bbox": [
+            -43.169833,
+            37.688397,
+            40.069849,
+            69.907191
+          ],
+          "id": "HARMONIE_DINI_PL_2026-11-20T120000Z_2026-11-22T230000Z.grib",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -43.169833,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  37.688397
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "datetime": "2026-11-22T23:00:00Z",
+            "created": "2026-11-20T15:11:50.008081Z",
+            "modelRun": "2026-11-20T12:00:00Z"
+          },
+          "stac_version": "1.0.0",
+          "collection": "harmonie_dini_pl",
+          "asset": {
+            "data": {
+              "type": "application/x-grib",
+              "title": "Forecast file download resource",
+              "roles": [
+                "data"
+              ],
+              "href": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_PL/HARMONIE_DINI_PL_2026-11-20T120000Z_2026-11-22T230000Z.grib"
+            }
+          }
+        },
+        {
+          "type": "Feature",
+          "bbox": [
+            -43.169833,
+            37.688397,
+            40.069849,
+            69.907191
+          ],
+          "id": "HARMONIE_DINI_PL_2026-11-20T120000Z_2026-11-22T220000Z.grib",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -43.169833,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  37.688397
+                ],
+                [
+                  40.069849,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  69.907191
+                ],
+                [
+                  -43.169833,
+                  37.688397
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "datetime": "2026-11-22T22:00:00Z",
+            "created": "2026-11-20T15:04:58.14963Z",
+            "modelRun": "2026-11-20T12:00:00Z"
+          },
+          "stac_version": "1.0.0",
+          "collection": "harmonie_dini_pl",
+          "asset": {
+            "data": {
+              "type": "application/x-grib",
+              "title": "Forecast file download resource",
+              "roles": [
+                "data"
+              ],
+              "href": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_PL/HARMONIE_DINI_PL_2026-11-20T120000Z_2026-11-22T220000Z.grib"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44765656981",
+  "commit": "fa2e677fd450e1efdb1eb9a4de4491c676ef21a9"
+}
