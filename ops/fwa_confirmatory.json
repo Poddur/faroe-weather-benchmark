@@ -1,11 +1,7 @@
 {
-  "status": "failed",
+  "status": "exploratory_success",
   "planned_dates": 26,
   "missing": [
-    {
-      "issue": "2026-10-20 00:00:00+00:00",
-      "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
-    },
     {
       "issue": "2026-11-03 00:00:00+00:00",
       "error": "HTTPSConnectionPool(host='single-runs-api.open-meteo.com', port=443): Read timed out. (read timeout=15)"
@@ -13,110 +9,226 @@
   ],
   "bigquery_queries": 0,
   "frozen_weights_sha256": "817c6139a3360bacfdd2caf9ffc13fa12843e5b30894c11c5fcbdd820a1662ef",
-  "complete_forecast_dates": 24,
-  "paired_dates": 24,
-  "paired_cases": 414,
+  "complete_forecast_dates": 25,
+  "paired_dates": 25,
+  "paired_cases": 432,
   "frozen_scores": [
     {
       "variable": "temperature_2m",
       "model": "ECMWF_9km",
-      "n": 207,
-      "mae": 0.6782608695652175,
-      "rmse": 0.8641546649901016,
-      "bias": 0.42801932367149764
+      "n": 216,
+      "mae": 0.663425925925926,
+      "rmse": 0.8496458957401891,
+      "bias": 0.4115740740740741
     },
     {
       "variable": "temperature_2m",
       "model": "HARMONIE_DINI_OM",
-      "n": 207,
-      "mae": 0.6879227053140098,
-      "rmse": 0.8798330979187114,
-      "bias": 0.05217391304347821
+      "n": 216,
+      "mae": 0.6791666666666667,
+      "rmse": 0.872443354841681,
+      "bias": 0.03379629629629632
     },
     {
       "variable": "temperature_2m",
       "model": "WeatherNext3",
-      "n": 207,
-      "mae": 0.7170582057197313,
-      "rmse": 0.9155509932331763,
-      "bias": 0.45112702742866845
+      "n": 216,
+      "mae": 0.7037148652253328,
+      "rmse": 0.9007752856762542,
+      "bias": 0.43479944864908854
     },
     {
       "variable": "temperature_2m",
       "model": "FWA2",
-      "n": 207,
-      "mae": 0.5085720742457505,
-      "rmse": 0.6773654110732966,
-      "bias": 0.12612210143961922
+      "n": 216,
+      "mae": 0.506893637584664,
+      "rmse": 0.6716121173128767,
+      "bias": 0.10898275661103585
     },
     {
       "variable": "wind_speed_10m",
       "model": "ECMWF_9km",
-      "n": 207,
-      "mae": 2.5019806763285026,
-      "rmse": 3.1972402804024624,
-      "bias": -0.7460386473429951
+      "n": 216,
+      "mae": 2.5122222222222224,
+      "rmse": 3.2030162289571624,
+      "bias": -0.7386111111111112
     },
     {
       "variable": "wind_speed_10m",
       "model": "HARMONIE_DINI_OM",
-      "n": 207,
-      "mae": 1.976328502415459,
-      "rmse": 2.5413963980799834,
-      "bias": 0.0932367149758454
+      "n": 216,
+      "mae": 1.9740740740740739,
+      "rmse": 2.539156319491735,
+      "bias": 0.16203703703703698
     },
     {
       "variable": "wind_speed_10m",
       "model": "WeatherNext3",
-      "n": 207,
-      "mae": 2.434862619321703,
-      "rmse": 3.0954349790629174,
-      "bias": -0.7282119839663668
+      "n": 216,
+      "mae": 2.461226550848396,
+      "rmse": 3.1192956989764657,
+      "bias": -0.7168335465369401
     },
     {
       "variable": "wind_speed_10m",
       "model": "FWA2",
-      "n": 207,
-      "mae": 1.9466054576518554,
-      "rmse": 2.5094092116090208,
-      "bias": -0.06307633902395668
+      "n": 216,
+      "mae": 1.926622106799941,
+      "rmse": 2.487088044886262,
+      "bias": -0.03317852269096178
     }
   ],
   "temperature_intervals": [
     {
       "candidate": "FWA2",
       "baseline": "ECMWF_9km",
-      "delta": -0.16968879531946704,
+      "delta": -0.15653228834126198,
       "weeks": 14,
       "ci95": [
-        -0.2508209510553528,
-        -0.09225348455644944
+        -0.23726490687885624,
+        -0.07917885214374347
       ]
     },
     {
       "candidate": "FWA2",
       "baseline": "HARMONIE_DINI_OM",
-      "delta": -0.17935063106825933,
+      "delta": -0.17227302908200268,
       "weeks": 14,
       "ci95": [
-        -0.25849273369510534,
-        -0.10513461214132125
+        -0.25167032283158486,
+        -0.09729363501732276
       ]
     },
     {
       "candidate": "FWA2",
       "baseline": "WeatherNext3",
-      "delta": -0.20848613147398093,
+      "delta": -0.19682122764066878,
       "weeks": 14,
       "ci95": [
-        -0.27970159930545463,
-        -0.12726630664428998
+        -0.26937644066055777,
+        -0.11375393766604265
       ]
     }
   ],
   "temperature_validation": "adequate_pilot",
-  "error": "No module named 'rasterio'",
-  "job_status": "failure",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44716006152",
-  "commit": "62a64d27ab33d5d6c6a6c071021acbc775ad50ec"
+  "terrain_status": "evaluated",
+  "terrain_sha256": "c30eac4363b97ad7745ea2f2ab04d3f0263ff3984c39fe68abd6fa84a6bd9fb2",
+  "directional_train_dates": 19,
+  "directional_test_dates": 25,
+  "wind_validation": "adequate_pilot",
+  "wind_scores": [
+    {
+      "variable": "wind_speed_10m",
+      "model": "ECMWF_9km",
+      "n": 189,
+      "mae": 2.4886772486772486,
+      "rmse": 3.1403073350756863,
+      "bias": -0.7696296296296296
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "HARMONIE_DINI_OM",
+      "n": 189,
+      "mae": 1.9624338624338624,
+      "rmse": 2.520697392372862,
+      "bias": 0.14232804232804225
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "WeatherNext3",
+      "n": 189,
+      "mae": 2.45228193865882,
+      "rmse": 3.0974419581439756,
+      "bias": -0.7228506753053615
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "FWA2",
+      "n": 189,
+      "mae": 1.8900096330412832,
+      "rmse": 2.4342881563574656,
+      "bias": -0.09277650313038675
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "FWA4A",
+      "n": 189,
+      "mae": 1.7940276128295813,
+      "rmse": 2.3847444930921897,
+      "bias": 0.32428095138996754
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "FWA4B",
+      "n": 189,
+      "mae": 1.824270629688851,
+      "rmse": 2.40046273479315,
+      "bias": 0.16903838626597478
+    },
+    {
+      "variable": "wind_speed_10m",
+      "model": "FWA4C",
+      "n": 189,
+      "mae": 1.830269815828372,
+      "rmse": 2.395963156647416,
+      "bias": 0.1810960562465079
+    }
+  ],
+  "wind_train_dates": 19,
+  "wind_test_dates": 25,
+  "wind_intervals": [
+    {
+      "candidate": "FWA4A",
+      "baseline": "HARMONIE_DINI_OM",
+      "delta": -0.16840624960428097,
+      "weeks": 14,
+      "ci95": [
+        -0.2708253300052176,
+        -0.05973689893886488
+      ]
+    },
+    {
+      "candidate": "FWA4B",
+      "baseline": "HARMONIE_DINI_OM",
+      "delta": -0.13816323274501136,
+      "weeks": 14,
+      "ci95": [
+        -0.22442308314796497,
+        -0.041558703272437776
+      ]
+    },
+    {
+      "candidate": "FWA4C",
+      "baseline": "HARMONIE_DINI_OM",
+      "delta": -0.13216404660549036,
+      "weeks": 14,
+      "ci95": [
+        -0.21064051769004166,
+        -0.048640487801481565
+      ]
+    },
+    {
+      "candidate": "FWA4B",
+      "baseline": "FWA4A",
+      "delta": 0.0302430168592696,
+      "weeks": 14,
+      "ci95": [
+        -0.003987068874877609,
+        0.07179085458865238
+      ]
+    },
+    {
+      "candidate": "FWA4C",
+      "baseline": "FWA4B",
+      "delta": 0.005999186139521018,
+      "weeks": 14,
+      "ci95": [
+        -0.03164894081465039,
+        0.03679734960016304
+      ]
+    }
+  ],
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44718559350",
+  "commit": "1533cc0731bd03fe321e02d87bef5fe2b7fb5247"
 }
