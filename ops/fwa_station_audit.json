@@ -1,11 +1,12 @@
 {
-  "status": "partial",
-  "registry_error": "400 Client Error:  for url: https://opendataapi.dmi.dk/v2/metObs/collections/station/items?country=FRO&limit=1000&offset=0",
+  "status": "audit_complete",
+  "registry_error": null,
   "stations": [
     "06007",
     "06008",
     "06009",
     "06011",
+    "06012",
     "06013",
     "06014"
   ],
@@ -479,6 +480,123 @@
       "status": "ok"
     },
     {
+      "station_id": "06012",
+      "parameter": "temp_dry",
+      "start": "2026-04-02",
+      "end_exclusive": "2026-04-04",
+      "expected_hours": 48,
+      "hourly_unique": 48,
+      "duplicates": 0,
+      "raw_count": 289,
+      "min": -0.8,
+      "max": 4.4,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "wind_speed",
+      "start": "2026-04-02",
+      "end_exclusive": "2026-04-04",
+      "expected_hours": 48,
+      "hourly_unique": 48,
+      "duplicates": 0,
+      "raw_count": 287,
+      "min": 1.9,
+      "max": 16.1,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "wind_dir",
+      "start": "2026-04-02",
+      "end_exclusive": "2026-04-04",
+      "expected_hours": 48,
+      "hourly_unique": 48,
+      "duplicates": 0,
+      "raw_count": 287,
+      "min": 23.0,
+      "max": 357.0,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "temp_dry",
+      "start": "2026-08-22",
+      "end_exclusive": "2026-08-24",
+      "expected_hours": 48,
+      "hourly_unique": 48,
+      "duplicates": 0,
+      "raw_count": 289,
+      "min": 8.4,
+      "max": 15.6,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "wind_speed",
+      "start": "2026-08-22",
+      "end_exclusive": "2026-08-24",
+      "expected_hours": 48,
+      "hourly_unique": 0,
+      "duplicates": 0,
+      "raw_count": 0,
+      "min": null,
+      "max": null,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "wind_dir",
+      "start": "2026-08-22",
+      "end_exclusive": "2026-08-24",
+      "expected_hours": 48,
+      "hourly_unique": 0,
+      "duplicates": 0,
+      "raw_count": 0,
+      "min": null,
+      "max": null,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "temp_dry",
+      "start": "2026-11-12",
+      "end_exclusive": "2026-11-14",
+      "expected_hours": 48,
+      "hourly_unique": 44,
+      "duplicates": 0,
+      "raw_count": 272,
+      "min": 2.4,
+      "max": 7.8,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "wind_speed",
+      "start": "2026-11-12",
+      "end_exclusive": "2026-11-14",
+      "expected_hours": 48,
+      "hourly_unique": 0,
+      "duplicates": 0,
+      "raw_count": 2,
+      "min": null,
+      "max": null,
+      "status": "ok"
+    },
+    {
+      "station_id": "06012",
+      "parameter": "wind_dir",
+      "start": "2026-11-12",
+      "end_exclusive": "2026-11-14",
+      "expected_hours": 48,
+      "hourly_unique": 0,
+      "duplicates": 0,
+      "raw_count": 2,
+      "min": null,
+      "max": null,
+      "status": "ok"
+    },
+    {
       "station_id": "06013",
       "parameter": "temp_dry",
       "start": "2026-04-02",
@@ -714,7 +832,66 @@
     }
   ],
   "bigquery_queries": 0,
+  "vagar": {
+    "station": "EKVG",
+    "status": "downloaded",
+    "source": "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py",
+    "url": "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=EKVG&data=tmpf&data=sknt&data=drct&data=metar&year1=2026&month1=4&day1=1&year2=2026&month2=11&day2=20&tz=Etc%2FUTC&format=onlycomma&latlon=yes&elev=yes&missing=M&trace=T&report_type=3&report_type=4",
+    "sha256": "d776747ac4247ede6bbb9d55c1a7b2dc6bc8697e0f394c323b1fbd11330daa3f",
+    "reports": 11150,
+    "paired_valid_reports": 11149,
+    "duplicate_timestamps": 0,
+    "days": 233,
+    "minute_distribution": {
+      "20": 5379,
+      "50": 5372,
+      "51": 127,
+      "21": 124,
+      "52": 27,
+      "22": 25,
+      "23": 12,
+      "53": 11,
+      "54": 7,
+      "57": 7,
+      "24": 6,
+      "48": 5,
+      "55": 5,
+      "30": 4,
+      "19": 3,
+      "33": 3,
+      "56": 3,
+      "29": 3,
+      "41": 2,
+      "27": 2,
+      "28": 2,
+      "0": 2,
+      "49": 2,
+      "13": 2,
+      "8": 2,
+      "34": 2,
+      "59": 2,
+      "42": 2,
+      "10": 1,
+      "17": 1,
+      "46": 1,
+      "11": 1,
+      "14": 1,
+      "16": 1
+    },
+    "metadata": {
+      "lat": [
+        62.0664
+      ],
+      "lon": [
+        -7.2847
+      ],
+      "elevation": [
+        85.0
+      ]
+    },
+    "warning": "Native report times preserved. No assumption of exact-hour matching or validated sensor height; no training eligibility until metadata and timing reviewed."
+  },
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44735593125",
-  "commit": "2e5fe2b16f5e8c846b9a520191d05e43d42edee1"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44742970630",
+  "commit": "166080fe9f1486318a55215ad62376d77898407d"
 }
