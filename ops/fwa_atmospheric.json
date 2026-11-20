@@ -2653,21 +2653,21 @@
   "diagnostics": [
     {
       "station": "06009",
-      "status": "missing",
-      "error": "missing/ambiguous ['z', 'orog', 'gh']/0: 0"
+      "status": "diagnostic",
+      "error": null
     },
     {
       "station": "06011",
-      "status": "missing",
-      "error": "missing/ambiguous ['z', 'orog', 'gh']/0: 0"
+      "status": "diagnostic",
+      "error": null
     },
     {
       "station": "06014",
-      "status": "missing",
-      "error": "missing/ambiguous ['z', 'orog', 'gh']/0: 0"
+      "status": "diagnostic",
+      "error": null
     }
   ],
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44770004116",
-  "commit": "d948054628db1b17cb71947a56240be934ae42fa"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44772931889",
+  "commit": "c4fae09a860dcb64641784b346bae8caa1b3800a"
 }
