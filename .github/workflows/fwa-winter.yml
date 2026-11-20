@@ -1,0 +1,87 @@
+name: FWA locked winter validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-winter.yml'
+  schedule:
+    - cron: '37 9 * * *'
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: fwa-winter-validation
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.event_name != 'schedule' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt 'dynamical-catalog>=1,<2' scikit-learn rasterio pyproj
+      - name: Verify frozen model through historical replay
+        run: |
+          gh run download 44718559350 -n fwa-confirmatory-evidence -D replay-evidence
+          python src/fwa5_winter.py --replay replay-evidence
+      - uses: actions/cache/restore@v4
+        with:
+          path: winter-cache
+          key: fwa-winter-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fwa-winter-v1-
+      - name: Recover durable checkpoint archive if cache is absent
+        run: |
+          if [ ! -d winter-cache ]; then
+            mkdir -p winter-cache
+            RUN=$(gh run list --workflow fwa-winter.yml --status completed --limit 30 --json databaseId --jq '.[].databaseId' | while read -r id; do
+              if gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id/artifacts" --jq '.artifacts[] | select(.name=="fwa-winter-checkpoints" and .expired==false) | .id' | grep -q .; then echo "$id"; break; fi
+            done)
+            if [ -n "$RUN" ]; then
+              gh run download "$RUN" -n fwa-winter-checkpoints -D winter-cache
+            fi
+          fi
+      - name: Validate locked models on eligible winter archive dates
+        timeout-minutes: 145
+        run: python src/fwa5_winter.py
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: winter-cache
+          key: fwa-winter-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-winter-checkpoints
+          path: winter-cache/
+          retention-days: 90
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-winter-evidence
+          path: outputs/fwa-winter/
+          retention-days: 90
+      - name: Persist scientific status receipt
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path("outputs/fwa-winter/status.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_evaluation"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("winter-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_winter.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record locked winter validation status" -f content="$(base64 -w0 winter-receipt.json)" "${args[@]}"
