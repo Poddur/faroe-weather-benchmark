@@ -2,12 +2,12 @@
   "native": {
     "status": "regional_decoded",
     "bigquery_queries": 0,
-    "issue": "2026-11-20T15:00:00Z",
-    "valid": "2026-11-20T21:00:00Z",
-    "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-20T150000Z_2026-11-20T210000Z.grib",
+    "issue": "2026-11-21T09:00:00Z",
+    "valid": "2026-11-21T15:00:00Z",
+    "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-21T090000Z_2026-11-21T150000Z.grib",
     "source": {
-      "bytes": 614344023,
-      "sha256": "f92d9ae15dd662978adbc1ea6a3e805999055ca37fc08384fd825c6c45ab24c6"
+      "bytes": 620259446,
+      "sha256": "199760f200f22d03ade43922a479632f726b1a1592eccb99cedfe687f6ecb0a5"
     },
     "checks": {
       "wind_flags": {
@@ -17,8 +17,8 @@
         "v100": 1
       },
       "rotation": "lambert convergence sign -1; checked against native true direction",
-      "direction_error_p95_deg": 0.02072705692926888,
-      "speed_error_p95_ms": 0.05334354365856706
+      "direction_error_p95_deg": 0.019014074249184887,
+      "speed_error_p95_ms": 0.06987716944838206
     },
     "native_cells": 9179,
     "observation_matches": 7
@@ -30,9 +30,9 @@
     "paired": 9,
     "metar": {
       "status": "past_only",
-      "selected_time": "2026-11-20T20:50:00Z",
+      "selected_time": "2026-11-21T14:50:00Z",
       "offset_minutes": 10,
-      "archive_reports": 96
+      "archive_reports": 91
     },
     "scores": [
       {
@@ -42,9 +42,9 @@
         "n": 5,
         "all_observed": 5,
         "days": 1,
-        "raw_MAE": 0.8628466796875138,
-        "physics_MAE": 0.9838626585399168,
-        "delta_MAE": 0.121015978852403,
+        "raw_MAE": 0.9456604003906293,
+        "physics_MAE": 0.9518423385899182,
+        "delta_MAE": 0.006181938199288917,
         "eligible": false
       },
       {
@@ -54,9 +54,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.5561767578125227,
-        "physics_MAE": 0.39280908714818397,
-        "delta_MAE": -0.16336767066433877,
+        "raw_MAE": 1.1968566894531474,
+        "physics_MAE": 0.39405774532916915,
+        "delta_MAE": -0.8027989441239782,
         "eligible": false
       },
       {
@@ -66,9 +66,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.9405517578125226,
-        "physics_MAE": 0.8046751063102302,
-        "delta_MAE": -0.13587665150229244,
+        "raw_MAE": 1.2443176269531477,
+        "physics_MAE": 1.0183985363296362,
+        "delta_MAE": -0.22591909062351156,
         "eligible": false
       },
       {
@@ -78,9 +78,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 1.1901611328125228,
-        "physics_MAE": 1.4835950086295029,
-        "delta_MAE": 0.2934338758169801,
+        "raw_MAE": 1.0656066894531477,
+        "physics_MAE": 1.3104297491053196,
+        "delta_MAE": 0.24482305965217188,
         "eligible": false
       },
       {
@@ -90,9 +90,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.11613769531252272,
-        "physics_MAE": 0.13637752608998288,
-        "delta_MAE": 0.020239830777460166,
+        "raw_MAE": 0.05665893554685231,
+        "physics_MAE": 0.3534223689813044,
+        "delta_MAE": 0.2967634334344521,
         "eligible": false
       },
       {
@@ -102,33 +102,33 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 1.5112060546874773,
-        "physics_MAE": 2.1018565645216842,
-        "delta_MAE": 0.590650509834207,
+        "raw_MAE": 1.1648620605468514,
+        "physics_MAE": 1.6829032932041614,
+        "delta_MAE": 0.5180412326573101,
         "eligible": false
       },
       {
         "variable": "temp_dry",
         "group": "wind_sector",
-        "label": "N",
+        "label": "E",
         "n": 2,
         "all_observed": 2,
         "days": 1,
-        "raw_MAE": 0.7483642578125227,
-        "physics_MAE": 0.5987420967292071,
-        "delta_MAE": -0.1496221610833156,
+        "raw_MAE": 1.1808593749999994,
+        "physics_MAE": 1.0384805192666653,
+        "delta_MAE": -0.1423788557333341,
         "eligible": false
       },
       {
         "variable": "temp_dry",
         "group": "wind_sector",
-        "label": "NE",
+        "label": "SE",
         "n": 3,
         "all_observed": 3,
         "days": 1,
-        "raw_MAE": 0.9391682942708409,
-        "physics_MAE": 1.2406096997470566,
-        "delta_MAE": 0.3014414054762157,
+        "raw_MAE": 0.7888610839843825,
+        "physics_MAE": 0.8940835514720867,
+        "delta_MAE": 0.10522246748770425,
         "eligible": false
       },
       {
@@ -138,33 +138,33 @@
         "n": 5,
         "all_observed": 5,
         "days": 1,
-        "raw_MAE": 0.8628466796875138,
-        "physics_MAE": 0.9838626585399168,
-        "delta_MAE": 0.121015978852403,
+        "raw_MAE": 0.9456604003906293,
+        "physics_MAE": 0.9518423385899182,
+        "delta_MAE": 0.006181938199288917,
         "eligible": false
       },
       {
         "variable": "temp_dry",
         "group": "forecast_inversion",
         "label": "False",
-        "n": 4,
-        "all_observed": 4,
+        "n": 3,
+        "all_observed": 3,
         "days": 1,
-        "raw_MAE": 0.7007568359375228,
-        "physics_MAE": 0.704364182044475,
-        "delta_MAE": 0.003607346106952236,
+        "raw_MAE": 1.1689270019531477,
+        "physics_MAE": 0.9076286769213749,
+        "delta_MAE": -0.26129832503177275,
         "eligible": false
       },
       {
         "variable": "temp_dry",
         "group": "forecast_inversion",
         "label": "True",
-        "n": 1,
-        "all_observed": 1,
+        "n": 2,
+        "all_observed": 2,
         "days": 1,
-        "raw_MAE": 1.5112060546874773,
-        "physics_MAE": 2.1018565645216842,
-        "delta_MAE": 0.590650509834207,
+        "raw_MAE": 0.6107604980468518,
+        "physics_MAE": 1.0181628310927329,
+        "delta_MAE": 0.407402333045881,
         "eligible": false
       },
       {
@@ -174,9 +174,9 @@
         "n": 4,
         "all_observed": 4,
         "days": 1,
-        "raw_MAE": 1.1375988972609132,
-        "physics_MAE": 1.1913014265721502,
-        "delta_MAE": 0.05370252931123698,
+        "raw_MAE": 0.673641107540436,
+        "physics_MAE": 0.5867977562549618,
+        "delta_MAE": -0.08684335128547427,
         "eligible": false
       },
       {
@@ -186,9 +186,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 1.0451996857549117,
-        "physics_MAE": 1.3470469259777298,
-        "delta_MAE": 0.30184724022281806,
+        "raw_MAE": 0.04839020744888245,
+        "physics_MAE": 0.04839020744888245,
+        "delta_MAE": 0.0,
         "eligible": false
       },
       {
@@ -198,9 +198,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.9039578374477908,
-        "physics_MAE": 0.7958515119135017,
-        "delta_MAE": -0.10810632553428912,
+        "raw_MAE": 0.4672902518890263,
+        "physics_MAE": 0.4672902518890263,
+        "delta_MAE": 0.0,
         "eligible": false
       },
       {
@@ -210,9 +210,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 1.034099806375103,
-        "physics_MAE": 1.1981743346359193,
-        "delta_MAE": 0.16407452826081625,
+        "raw_MAE": 1.6826584405876366,
+        "physics_MAE": 1.3598996588214298,
+        "delta_MAE": -0.32275878176620676,
         "eligible": false
       },
       {
@@ -222,33 +222,33 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 1.567138259465847,
-        "physics_MAE": 1.4241329337614497,
-        "delta_MAE": -0.14300532570439728,
+        "raw_MAE": 0.49622553023619886,
+        "physics_MAE": 0.47161090686050855,
+        "delta_MAE": -0.024614623375690314,
         "eligible": false
       },
       {
         "variable": "wind_speed",
         "group": "wind_sector",
-        "label": "N",
+        "label": "E",
         "n": 2,
         "all_observed": 2,
         "days": 1,
-        "raw_MAE": 0.9745787616013513,
-        "physics_MAE": 1.0714492189456157,
-        "delta_MAE": 0.09687045734426447,
+        "raw_MAE": 0.27230786884254066,
+        "physics_MAE": 0.2600005571546955,
+        "delta_MAE": -0.012307311687845157,
         "eligible": false
       },
       {
         "variable": "wind_speed",
         "group": "wind_sector",
-        "label": "NE",
+        "label": "SE",
         "n": 2,
         "all_observed": 2,
         "days": 1,
-        "raw_MAE": 1.300619032920475,
-        "physics_MAE": 1.3111536341986845,
-        "delta_MAE": 0.010534601278209488,
+        "raw_MAE": 1.0749743462383314,
+        "physics_MAE": 0.9135949553552281,
+        "delta_MAE": -0.16137939088310338,
         "eligible": false
       },
       {
@@ -258,39 +258,39 @@
         "n": 4,
         "all_observed": 4,
         "days": 1,
-        "raw_MAE": 1.1375988972609132,
-        "physics_MAE": 1.1913014265721502,
-        "delta_MAE": 0.05370252931123698,
+        "raw_MAE": 0.673641107540436,
+        "physics_MAE": 0.5867977562549618,
+        "delta_MAE": -0.08684335128547427,
         "eligible": false
       },
       {
         "variable": "wind_speed",
         "group": "forecast_inversion",
         "label": "False",
-        "n": 3,
-        "all_observed": 3,
+        "n": 2,
+        "all_observed": 2,
         "days": 1,
-        "raw_MAE": 0.9944191098592685,
-        "physics_MAE": 1.113690924175717,
-        "delta_MAE": 0.1192718143164484,
+        "raw_MAE": 0.25784022966895437,
+        "physics_MAE": 0.25784022966895437,
+        "delta_MAE": 0.0,
         "eligible": false
       },
       {
         "variable": "wind_speed",
         "group": "forecast_inversion",
         "label": "True",
-        "n": 1,
-        "all_observed": 1,
+        "n": 2,
+        "all_observed": 2,
         "days": 1,
-        "raw_MAE": 1.567138259465847,
-        "physics_MAE": 1.4241329337614497,
-        "delta_MAE": -0.14300532570439728,
+        "raw_MAE": 1.0894419854119177,
+        "physics_MAE": 0.9157552828409692,
+        "delta_MAE": -0.17368670257094854,
         "eligible": false
       }
     ],
     "limitation": "Exploratory new-site geographic proxies; forecast-defined inversion and wind regimes; METAR temperature integer precision and preceding-report timing differ from hourly DMI observations."
   },
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44861806254",
-  "commit": "6400bc71d480829130f8ce6e228f8ad36c207193"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44953450794",
+  "commit": "0f9ce9fac2e7935eab86b0368c41b45272cb130a"
 }
