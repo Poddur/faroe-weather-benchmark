@@ -68,11 +68,23 @@ def decode(path,issue,valid):
     if np.percentile(e,95)>2 or np.percentile(speed_error,95)>.3:raise ValueError(f"wind direction/speed validation failed {np.percentile(e,95)} {np.percentile(speed_error,95)}")
     return a,dict(wind_flags=flags,rotation=rotation,direction_error_p95_deg=float(np.percentile(e,95)),speed_error_p95_ms=float(np.percentile(speed_error,95)))
 def main():
+    global OUT
+    import argparse
+    ap=argparse.ArgumentParser()
+    ap.add_argument("--issue",help="UTC ISO YYYY-MM-DDTHH:MM:SSZ; deterministic bounded test")
+    ap.add_argument("--lead-hours",type=int,choices=[6,12,18,24])
+    ap.add_argument("--output")
+    args=ap.parse_args()
+    if (args.issue is None)!=(args.lead_hours is None):raise ValueError("issue and lead required together")
+    if args.output:OUT=Path(args.output)
     OUT.mkdir(parents=True,exist_ok=True)
     r={"status":"started","bigquery_queries":0};path=OUT/"source.grib"
     try:
-        now=dt.datetime.now(dt.timezone.utc);issue=now.replace(hour=now.hour//3*3,minute=0,second=0,microsecond=0)-dt.timedelta(hours=12);valid=issue+dt.timedelta(hours=6)
-        assert valid<now-dt.timedelta(hours=3)
+        now=dt.datetime.now(dt.timezone.utc)
+        issue=(dt.datetime.fromisoformat(args.issue.replace("Z","+00:00")) if args.issue else now.replace(hour=now.hour//3*3,minute=0,second=0,microsecond=0)-dt.timedelta(hours=12))
+        valid=issue+dt.timedelta(hours=args.lead_hours if args.lead_hours is not None else 6)
+        if issue.tzinfo is None or issue.tzinfo.utcoffset(issue)!=dt.timedelta(0):raise ValueError("issue must be timezone-aware UTC")
+        if valid>=now-dt.timedelta(hours=3) or issue<now-dt.timedelta(hours=46) or issue>now:raise ValueError("forecast not mature or outside allowed DMI rolling window")
         q=requests.get(BASE+"/harmonie_dini_sf/items",params={"modelRun":iso(issue),"datetime":iso(valid),"limit":5},timeout=60);q.raise_for_status()
         fs=[x for x in q.json()["features"] if x["properties"]["modelRun"]==iso(issue) and x["properties"]["datetime"]==iso(valid)]
         if len(fs)!=1:raise ValueError("exact past forecast unavailable")
