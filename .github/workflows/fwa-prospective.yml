@@ -1,0 +1,98 @@
+name: FWA prospective native atmospheric benchmark
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 16 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-prospective.yml'
+      - 'src/fwa_prospective_benchmark.py'
+      - 'src/fwa_benchmark_history.py'
+permissions:
+  contents: write
+concurrency:
+  group: fwa-prospective-history
+  cancel-in-progress: false
+jobs:
+  prospective:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install meteorological decoders
+        run: pip install -r requirements.txt scipy eccodes eccodeslib pyproj 'dynamical-catalog>=1,<2'
+      - name: Compile and test immutable benchmark logic
+        run: |
+          python -m py_compile src/fwa_atmospheric_regional.py src/fwa_prospective_benchmark.py src/fwa_benchmark_history.py
+          PYTHONPATH=src python - <<'PY'
+          from fwa_benchmark_history import update
+          from fwa_prospective_benchmark import correct
+          t={"station_elevation_m":100.,"sectors":[{"coverage":1.,"shelter_deg":5.}]*72}
+          a={"orog_m":0.,"t2_K":280.,"t100_K":279.,"u10":3.,"v10":4.,"u100":6.,"v100":7.}
+          p=correct(a,t)
+          assert 0<=p["wind_ms"]<=5 and 4.<p["temperature_C"]<7.
+          assert p["temperature_C"]!=p["raw_temperature_C"]
+          prior={"evidence":[]}
+          row={"algorithm":"fixed_native_boundary_v1","run":"2026-11-20T03:00:00Z","valid":"2026-11-20T09:00:00Z","station":"06009","parameter":"wind_speed","physics_prediction":2.,"raw_abs_error":1.,"physics_abs_error":.5}
+          s=update(prior,[row]);assert len(update(s,[row])["evidence"])==1
+          try: update(s,[dict(row,physics_abs_error=2.)])
+          except ValueError: pass
+          else: raise AssertionError("must reject conflicting evidence")
+          PY
+      - name: Retrieve completed native forecast and observations
+        run: python src/fwa_atmospheric_regional.py
+      - name: Evaluate fixed physics against the same matched observations
+        run: |
+          PYTHONPATH=src python src/fwa_prospective_benchmark.py --input outputs/atmospheric-regional/native_grid.npz --meta outputs/atmospheric-regional/native_grid.json --obs outputs/atmospheric-regional/observations.json --output outputs/prospective
+      - name: Retrieve prior evidence and append-only scorecard
+        run: |
+          mkdir -p outputs/prospective
+          gh api "repos/$GITHUB_REPOSITORY/contents/ops/fwa_benchmark_history.json" --jq .content 2>/dev/null | tr -d '\n' | base64 -d > outputs/prospective/prior.json || true
+          test ! -s outputs/prospective/prior.json || python -m json.tool outputs/prospective/prior.json > /dev/null
+          PYTHONPATH=src python src/fwa_benchmark_history.py --prior outputs/prospective/prior.json --new outputs/prospective/paired.json --output outputs/prospective/history.json
+      - name: Store immutable paired historical evidence
+        env:
+          REPO: ${{ github.repository }}
+        run: |
+          URL="repos/$REPO/contents/ops/fwa_benchmark_history.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Append completed FWA prospective native benchmark evidence" -f content="$(base64 -w0 outputs/prospective/history.json)" "${args[@]}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-prospective-benchmark
+          path: |
+            outputs/atmospheric-regional/status.json
+            outputs/atmospheric-regional/native_grid.json
+            outputs/prospective/status.json
+            outputs/prospective/paired.json
+            outputs/prospective/history.json
+          retention-days: 90
+      - name: Record audit status
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,pathlib,os
+          a=pathlib.Path("outputs/atmospheric-regional/status.json")
+          b=pathlib.Path("outputs/prospective/status.json")
+          d=json.loads(a.read_text()) if a.exists() else {"status":"failed_before_native_download"}
+          d["benchmark"]=json.loads(b.read_text()) if b.exists() else {"status":"not_scored"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("benchmark-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_benchmark_latest.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record latest FWA prospective benchmark run" -f content="$(base64 -w0 benchmark-receipt.json)" "${args[@]}"
