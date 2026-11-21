@@ -60,7 +60,7 @@ def test_incomplete_excluded_without_scoring(tmp_path,monkeypatch):
 
 def test_statistical_gate_rejects_insufficient_week_coverage():
     dates=pd.date_range("2026-11-21",periods=7,freq="D",tz="UTC")
-    z=pd.DataFrame({"init_time":dates})
+    z=pd.DataFrame({"init_time":dates,"variable":"temperature_2m",\n        "station_id":"06009","lead_hours":6})
     out={"complete_dates":len(dates),"comparisons":[]}
     decision=scorecard.judge(z,out,{"minimum_dates":60,"minimum_weeks":10,"minimum_cases_per_station_lead":63})
     assert decision["overall"]=="insufficient_data"
