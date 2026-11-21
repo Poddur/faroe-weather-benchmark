@@ -1,0 +1,54 @@
+name: FWA historical observed weather regime census
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-observed-regimes.yml'
+      - 'src/fwa_observation_regime_census.py'
+permissions:
+  contents: write
+concurrency:
+  group: fwa-observed-regimes
+  cancel-in-progress: false
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m py_compile src/fwa_observation_regime_census.py
+      - name: Download actual observed weather history
+        run: python src/fwa_observation_regime_census.py --output outputs/observed-regimes
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-observed-regimes-2026
+          path: |
+            outputs/observed-regimes/observations.csv.gz
+            outputs/observed-regimes/status.json
+          retention-days: 90
+      - name: Publish observation coverage, not forecast-skill claims
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path("outputs/observed-regimes/status.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_collection"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("coverage-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_observed_regimes_2026.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record historical observed Faroe wind regime coverage" -f content="$(base64 -w0 coverage-receipt.json)" "${args[@]}" > /dev/null
