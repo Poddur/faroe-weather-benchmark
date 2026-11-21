@@ -30,7 +30,10 @@ def weekly_cluster_interval(frame,candidate,baseline,draws,seed):
     rng=np.random.default_rng(seed)
     selected=rng.integers(len(blocks),size=(draws,len(blocks)))
     values=totals[selected].sum(axis=1)/counts[selected].sum(axis=1)
-    # Nine prespecified comparisons: six overall + three strong-wind.\n    # Bonferroni adjustment protects the simultaneous 95% decision.\n    alpha=.05/9\n    return [float(x) for x in np.quantile(values,[alpha/2,1-alpha/2])]
+    # Nine prespecified comparisons: six overall + three strong-wind.
+    # Bonferroni adjustment protects the simultaneous 95% decision.
+    alpha=.05/9
+    return [float(x) for x in np.quantile(values,[alpha/2,1-alpha/2])]
 
 def judge(data,out,protocol):
     """Pre-winter, fixed evidence gate; no coefficients or forecasts are changed."""
