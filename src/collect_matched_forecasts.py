@@ -33,16 +33,32 @@ def dmi_request(url,params=None):
 def iso(t): return t.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def pick_common_instance(ids,now,min_age_hours=15,max_age_hours=44):
-    allowed=[]
+    """Prefer mature issues, but recover from a temporary DMI inventory gap.
+
+    A 12–15h issue is a fallback ONLY when no 15–44h issue is listed.
+    Forecast issuance is never inferred: both sources must still provide the
+    exact same 00/12 UTC run, and every requested lead is validated downstream.
+    """
+    mature=[]
+    fallback=[]
     for item in ids:
         m=re.fullmatch(r"(\d{4}-\d{2}-\d{2}T\d{6}Z)",str(item))
         if not m:continue
         t=datetime.strptime(m.group(1),"%Y-%m-%dT%H%M%SZ").replace(tzinfo=timezone.utc)
         age=(now-t).total_seconds()/3600
-        if t.hour in (0,12) and t.minute==0 and min_age_hours<=age<=max_age_hours:
-            allowed.append((t,item))
-    if not allowed:raise ValueError("No available HARMONIE 00/12 UTC issue aged 15–44h")
-    return max(allowed)[0],max(allowed)[1]
+        if t.hour not in (0,12) or t.minute!=0 or age>max_age_hours:
+            continue
+        if age>=min_age_hours:
+            mature.append((t,item))
+        elif min_age_hours==15 and age>=12:
+            fallback.append((t,item))
+    if mature:
+        return max(mature)
+    if fallback:
+        selected=max(fallback)
+        print(f"HARMONIE inventory fallback: using already-issued 00/12 UTC run {selected[1]} aged 12–15h; exact ECMWF issue and all leads remain mandatory",file=sys.stderr,flush=True)
+        return selected
+    raise ValueError("No available HARMONIE 00/12 UTC issue aged 12–44h (preferred 15–44h)")
 def haversine(lat1,lon1,lat2,lon2):
     r1,r2=map(math.radians,[lat1,lat2]);dlat=r2-r1;dlon=math.radians(lon2-lon1)
     a=math.sin(dlat/2)**2+math.cos(r1)*math.cos(r2)*math.sin(dlon/2)**2
