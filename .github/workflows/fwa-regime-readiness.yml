@@ -30,7 +30,7 @@ jobs:
           import sys
           sys.path.insert(0,'src')
           from fwa_regime_readiness import build
-          d=build([dict(parameter='wind_speed',station='06009',date='2026-11-20',valid='2026-11-20T18:00:00Z',physics_abs_error=.6,raw_abs_error=1.,physics_prediction=2.,observed_strong_wind=False,forecast_inversion=True,wind_sector='N',forecast_strong_wind=False,observation_source='DMI metObs',lead_hours=6,site_class='raised_ridge_proxy',coastal=True)])
+          d=build([dict(parameter='wind_speed',station='06009',date='2026-11-20',valid='2026-11-20T18:00:00Z',physics_abs_error=.6,raw_abs_error=1.,paired_delta_MAE=-.4,physics_prediction=2.,observed_strong_wind=False,forecast_inversion=True,wind_sector='N',forecast_strong_wind=False,observation_source='DMI metObs',lead_hours=6,site_class='raised_ridge_proxy',coastal=True)])
           assert d['readiness']['overall'] is False
           assert not any(x['eligible_for_descriptive_inference'] for x in d['groups'])
           PY
