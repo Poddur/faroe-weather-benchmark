@@ -1,0 +1,63 @@
+{
+  "version": "fwa_topography_site_strata_v1",
+  "source": "FO_DTM_2009_10m.tif, derived static 100m terrain cells",
+  "source_sha256": "c30eac4363b97ad7745ea2f2ab04d3f0263ff3984c39fe68abd6fa84a6bd9fb2",
+  "derived_static_sha256": "3fda0d494f5f41d21edf332561dbe615e8b9953e50d0dd6195f9ce10204f62fd",
+  "precommitted_thresholds": {
+    "tpi_2km_ridge_min_m": 25,
+    "tpi_2km_hollow_max_m": -25,
+    "flat_zero_distance_proxy_near_max_m": 500
+  },
+  "limitations": [
+    "TPI class is a topographic proxy, not certified fjord/channel/ridge exposure",
+    "flat_zero_distance is NOT an authoritative coastline distance or sea mask",
+    "Only 5 sites; no independent evidence for causality of terrain class"
+  ],
+  "stations": {
+    "06009": {
+      "name": "Akraberg",
+      "tpi_2km_m": 59.09,
+      "roughness_2km_m": 70.06,
+      "slope_deg": 8.56,
+      "flat_zero_distance_proxy_m": 300,
+      "topographic_class": "raised_ridge_proxy",
+      "near_flat_zero_proxy": true
+    },
+    "06011": {
+      "name": "Tórshavn",
+      "tpi_2km_m": -0.05,
+      "roughness_2km_m": 58.62,
+      "slope_deg": 5,
+      "flat_zero_distance_proxy_m": 500,
+      "topographic_class": "neutral_tpi_proxy",
+      "near_flat_zero_proxy": true
+    },
+    "06012": {
+      "name": "Fugloy",
+      "tpi_2km_m": -33.68,
+      "roughness_2km_m": 154.69,
+      "slope_deg": 23.41,
+      "flat_zero_distance_proxy_m": 223.61,
+      "topographic_class": "lowered_hollow_proxy",
+      "near_flat_zero_proxy": true
+    },
+    "06014": {
+      "name": "Eiði",
+      "tpi_2km_m": 58.36,
+      "roughness_2km_m": 101.12,
+      "slope_deg": 2.81,
+      "flat_zero_distance_proxy_m": 707.11,
+      "topographic_class": "raised_ridge_proxy",
+      "near_flat_zero_proxy": false
+    },
+    "EKVG": {
+      "name": "Vágar",
+      "tpi_2km_m": -38.14,
+      "roughness_2km_m": 74.89,
+      "slope_deg": 0.54,
+      "flat_zero_distance_proxy_m": 1676.31,
+      "topographic_class": "lowered_hollow_proxy",
+      "near_flat_zero_proxy": false
+    }
+  }
+}
