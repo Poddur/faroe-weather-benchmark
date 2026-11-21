@@ -18,6 +18,7 @@ def read(history_path,geo_path):
         v["site_class"]=sites[x["station"]]["topographic_position"]
         v["coastal"]=bool(sites[x["station"]]["coastal"])
         v["date"]=x["valid"][:10]
+        v["issue_date"]=x["run"][:10]
         v["paired_delta_MAE"]=float(x["physics_abs_error"])-float(x["raw_abs_error"])
         if not np.isfinite(v["paired_delta_MAE"]):raise ValueError("Nonfinite forecast error")
         out.append(v)
@@ -32,13 +33,13 @@ def build(rows):
             for val in values:
                 group=[x for x in subset if dim=="overall" or x.get(dim)==val]
                 if not group:continue
-                days=sorted(set(x["date"] for x in group));sites=set(x["station"] for x in group)
+                days=sorted(set(x["issue_date"] for x in group));sites=set(x["station"] for x in group)
                 eligible=len(days)>=MIN_DAYS and len(sites)>=MIN_STATIONS
                 mean=float(np.mean([x["paired_delta_MAE"] for x in group]))
                 ci=None
                 if eligible:
                     clusters=defaultdict(list)
-                    for x in group:clusters[x["date"]].append(x["paired_delta_MAE"])
+                    for x in group:clusters[x["issue_date"]].append(x["paired_delta_MAE"])
                     c=list(clusters.values());rng=np.random.default_rng(20261121);bs=[]
                     for _ in range(2000):
                         ix=rng.integers(0,len(c),size=len(c));v=[e for i in ix for e in c[i]]
@@ -50,8 +51,8 @@ def build(rows):
     # One modeled atmospheric profile per station/issue/validity: do not count
     # temperature and wind verification of the SAME atmosphere twice.
     unique_inversions={(r["run"],r["valid"],r["station"]) for r in inversions}
-    conditions={"strong_observed":{"n":len(strong),"days":len(set(x["date"] for x in strong)),"stations":len(set(x["station"] for x in strong))},"forecast_inversions":{"n":len(unique_inversions),"days":len(set(x["date"] for x in inversions)),"stations":len(set(x["station"] for x in inversions))}}
-    return dict(status="evaluation_only",distinct_dates=len(set(x["date"] for x in rows)),paired_cases=len(rows),groups=groups,conditions=conditions,readiness={"overall":any(x["eligible_for_descriptive_inference"] and x["dimension"]=="overall" for x in groups),"strong_wind":conditions["strong_observed"]["n"]>=30 and conditions["strong_observed"]["days"]>=10 and conditions["strong_observed"]["stations"]>=3,"inversion":conditions["forecast_inversions"]["n"]>=30 and conditions["forecast_inversions"]["days"]>=10 and conditions["forecast_inversions"]["stations"]>=3,"terrain_effect":False},limitations=["No evidence may be used for tuning this frozen candidate","With only 5 stations, geographical subgroup differences confounded with site identities; a future independent site replication is required before causal claims","Forecast-defined inversion is not directly observed inversion","METAR temperature/wind and DMI observed variables differ in sampling, time and sensor conditions","High-wind observed threshold is an EX POST regime, not permissible inference input","Dataset cannot establish best-model status without external baselines and seasonal skill evidence"])
+    conditions={"strong_observed":{"n":len(strong),"days":len(set(x["issue_date"] for x in strong)),"stations":len(set(x["station"] for x in strong))},"forecast_inversions":{"n":len(unique_inversions),"days":len(set(x["issue_date"] for x in inversions)),"stations":len(set(x["station"] for x in inversions))}}
+    return dict(status="evaluation_only",distinct_dates=len(set(x["issue_date"] for x in rows)),distinct_valid_dates=len(set(x["date"] for x in rows)),paired_cases=len(rows),groups=groups,conditions=conditions,readiness={"overall":any(x["eligible_for_descriptive_inference"] and x["dimension"]=="overall" for x in groups),"strong_wind":conditions["strong_observed"]["n"]>=30 and conditions["strong_observed"]["days"]>=10 and conditions["strong_observed"]["stations"]>=3,"inversion":conditions["forecast_inversions"]["n"]>=30 and conditions["forecast_inversions"]["days"]>=10 and conditions["forecast_inversions"]["stations"]>=3,"terrain_effect":False},limitations=["No evidence may be used for tuning this frozen candidate","With only 5 stations, geographical subgroup differences confounded with site identities; a future independent site replication is required before causal claims","Forecast-defined inversion is not directly observed inversion","METAR temperature/wind and DMI observed variables differ in sampling, time and sensor conditions","High-wind observed threshold is an EX POST regime, not permissible inference input","Dataset cannot establish best-model status without external baselines and seasonal skill evidence"])
 def main():
     p=argparse.ArgumentParser();p.add_argument("--history",required=True);p.add_argument("--geography",required=True);p.add_argument("--output",required=True);a=p.parse_args()
     d=build(read(a.history,a.geography))
