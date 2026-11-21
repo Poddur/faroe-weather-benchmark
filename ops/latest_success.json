@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-21T21:49:11.909738+00:00",
+  "updated_utc": "2026-11-21T23:13:04.773312+00:00",
   "state": "success",
   "issue_time_utc": "2026-11-21T00:00:00Z",
   "source_models": [
@@ -8,7 +8,7 @@
   ],
   "forecast_rows": 36,
   "observation_rows": 540,
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44953053894",
-  "source_commit": "0f9ce9fac2e7935eab86b0368c41b45272cb130a",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44960593103",
+  "source_commit": "7f2a61c402b90ae35464e2557a3c588668885bb5",
   "archive_tag": "weather-data-2026-W47"
 }
