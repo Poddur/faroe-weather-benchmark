@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "algorithm": "fixed_native_boundary_v1",
+  "evidence": [
+    {
+      "station": "06009",
+      "parameter": "temp_dry",
+      "run": "2026-11-20T12:00:00Z",
+      "valid": "2026-11-20T18:00:00Z",
+      "lead_hours": 6.0,
+      "observation": 3.3,
+      "raw_prediction": 4.448571777343773,
+      "physics_prediction": 3.8178574291306853,
+      "raw_abs_error": 1.148571777343773,
+      "physics_abs_error": 0.5178574291306854,
+      "terrain_match": "matched_terrain",
+      "terrain_distance_m": 0.0,
+      "native_distance_km": 0.17818813230694544,
+      "algorithm": "fixed_native_boundary_v1"
+    },
+    {
+      "station": "06009",
+      "parameter": "wind_speed",
+      "run": "2026-11-20T12:00:00Z",
+      "valid": "2026-11-20T18:00:00Z",
+      "lead_hours": 6.0,
+      "observation": 6.4,
+      "raw_prediction": 6.805729904226188,
+      "physics_prediction": 6.39112373263407,
+      "raw_abs_error": 0.40572990422618727,
+      "physics_abs_error": 0.008876267365930168,
+      "terrain_match": "matched_terrain",
+      "terrain_distance_m": 0.0,
+      "native_distance_km": 0.17818813230694544,
+      "algorithm": "fixed_native_boundary_v1"
+    },
+    {
+      "station": "06011",
+      "parameter": "temp_dry",
+      "run": "2026-11-20T12:00:00Z",
+      "valid": "2026-11-20T18:00:00Z",
+      "lead_hours": 6.0,
+      "observation": 1.8,
+      "raw_prediction": 2.4847045898437727,
+      "physics_prediction": 2.4113215350321546,
+      "raw_abs_error": 0.6847045898437727,
+      "physics_abs_error": 0.6113215350321546,
+      "terrain_match": "matched_terrain",
+      "terrain_distance_m": 0.0,
+      "native_distance_km": 0.48238599748717226,
+      "algorithm": "fixed_native_boundary_v1"
+    },
+    {
+      "station": "06011",
+      "parameter": "wind_speed",
+      "run": "2026-11-20T12:00:00Z",
+      "valid": "2026-11-20T18:00:00Z",
+      "lead_hours": 6.0,
+      "observation": 4.2,
+      "raw_prediction": 4.283206511012776,
+      "physics_prediction": 4.171665263159146,
+      "raw_abs_error": 0.08320651101277576,
+      "physics_abs_error": 0.02833473684085419,
+      "terrain_match": "matched_terrain",
+      "terrain_distance_m": 0.0,
+      "native_distance_km": 0.48238599748717226,
+      "algorithm": "fixed_native_boundary_v1"
+    },
+    {
+      "station": "06012",
+      "parameter": "temp_dry",
+      "run": "2026-11-20T12:00:00Z",
+      "valid": "2026-11-20T18:00:00Z",
+      "lead_hours": 6.0,
+      "observation": 1.6,
+      "raw_prediction": 2.1751342773437727,
+      "physics_prediction": null,
+      "raw_abs_error": 0.5751342773437726,
+      "physics_abs_error": null,
+      "terrain_match": "no_terrain_profile",
+      "terrain_distance_m": null,
+      "native_distance_km": 0.9276854236072268,
+      "algorithm": "fixed_native_boundary_v1"
+    },
+    {
+      "station": "06014",
+      "parameter": "temp_dry",
+      "run": "2026-11-20T12:00:00Z",
+      "valid": "2026-11-20T18:00:00Z",
+      "lead_hours": 6.0,
+      "observation": 1.1,
+      "raw_prediction": 0.44075927734377274,
+      "physics_prediction": 0.6366475175969657,
+      "raw_abs_error": 0.6592407226562274,
+      "physics_abs_error": 0.4633524824030344,
+      "terrain_match": "matched_terrain",
+      "terrain_distance_m": 0.0,
+      "native_distance_km": 0.9908131203054733,
+      "algorithm": "fixed_native_boundary_v1"
+    },
+    {
+      "station": "06014",
+      "parameter": "wind_speed",
+      "run": "2026-11-20T12:00:00Z",
+      "valid": "2026-11-20T18:00:00Z",
+      "lead_hours": 6.0,
+      "observation": 7.6,
+      "raw_prediction": 5.486507278480323,
+      "physics_prediction": 5.486507278480323,
+      "raw_abs_error": 2.113492721519677,
+      "physics_abs_error": 2.113492721519677,
+      "terrain_match": "matched_terrain",
+      "terrain_distance_m": 0.0,
+      "native_distance_km": 0.9908131203054733,
+      "algorithm": "fixed_native_boundary_v1"
+    }
+  ],
+  "summary": [
+    {
+      "parameter": "temp_dry",
+      "all_observations": 4,
+      "paired": 3,
+      "unique_dates": 1,
+      "stations": [
+        "06009",
+        "06011",
+        "06014"
+      ],
+      "raw_MAE": 0.8308390299479242,
+      "physics_MAE": 0.5308438155219581,
+      "improvement_pct": 36.10750140671285,
+      "paired_MAE_delta_ci95": null,
+      "conclusion": "insufficient_prospective_evidence"
+    },
+    {
+      "parameter": "wind_speed",
+      "all_observations": 3,
+      "paired": 3,
+      "unique_dates": 1,
+      "stations": [
+        "06009",
+        "06011",
+        "06014"
+      ],
+      "raw_MAE": 0.8674763789195467,
+      "physics_MAE": 0.7169012419088204,
+      "improvement_pct": 17.357837131919318,
+      "paired_MAE_delta_ci95": null,
+      "conclusion": "insufficient_prospective_evidence"
+    }
+  ],
+  "validation_policy": {
+    "minimum_distinct_dates": 30,
+    "minimum_stations": 3,
+    "uncertainty": "date cluster bootstrap 2000, deterministic seed",
+    "no_parameter_refitting": true,
+    "comparison": "identical valid-time and station pairs"
+  },
+  "provenance": "DMI native HARMONIE past-valid forecasts and DMI metObs"
+}
