@@ -47,7 +47,7 @@
     "forecast_valid": "2026-11-20T18:00:00Z",
     "restrictions": "One forecast snapshot. Pre-registered fixed algorithm, no fit. Only same-station paired observations; do not infer scientific gain from a single day."
   },
-  "job_status": "failure",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44858636392",
-  "commit": "462dd01f7b0edd8915c034a5eaf4e809e0bd7200"
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44858774609",
+  "commit": "62e50c1af68585f4b015a7a77e481cfd1631e86a"
 }
