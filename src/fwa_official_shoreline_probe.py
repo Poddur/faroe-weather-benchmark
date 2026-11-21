@@ -40,6 +40,13 @@ def main():
         coast=frame.to_crs(meter)
         if coast.geom_type.isin(["LineString","MultiLineString"]).mean()<.9:raise ValueError("Not a shoreline line dataset")
         union=unary_union(coast.geometry.values)
+        # Preserve the exact projected shoreline geometry as a reusable national asset.
+        # WKB retains the original Umhvørvisstovan geometry; record EPSG separately.
+        geo_path=OUT/"shoreline_epsg5316.wkb"
+        geo_path.write_bytes(union.wkb)
+        rec["shoreline_wkb_sha256"]=hashlib.sha256(geo_path.read_bytes()).hexdigest()
+        rec["shoreline_wkb_bytes"]=geo_path.stat().st_size
+        rec["shoreline_wkb_crs"]=meter
         project=Transformer.from_crs("EPSG:4326",meter,always_xy=True)
         rec["site_distances_m"]={}
         for station,(lat,lon) in STATIONS.items():
