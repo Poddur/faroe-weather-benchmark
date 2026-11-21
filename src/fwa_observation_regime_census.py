@@ -2,7 +2,22 @@
 import json,io,hashlib,math,argparse
 from pathlib import Path
 import numpy as np,pandas as pd,requests
-from fetch_dmi_observations import fetch
+from fetch_dmi_observations import polite_get
+DMI_BASE="https://opendataapi.dmi.dk/v2/metObs/collections/observation/items"
+def fetch_batched(sid,param,start,end):
+    # DMI officially allows up to 300000 items per response; bounded to 20000
+    # to avoid 1000-item pagination latency. Reject incomplete pages.
+    limit=20000;offset=0
+    for page in range(15):
+        request=dict(stationId=sid,parameterId=param,datetime=f"{start}/{end}",limit=limit,offset=offset)
+        response=polite_get(request)
+        data=response.json()
+        records=data.get("features",[])
+        if len(records)>limit:raise ValueError("Unexpected API page size")
+        yield from records
+        if len(records)<limit:return
+        offset+=limit
+    raise RuntimeError("DMI oversized pagination exceeded 15 pages")
 START="2026-04-01T00:00:00Z";END="2026-11-21T00:00:00Z"
 IDS=["06009","06011","06012","06014"];PARAMS=["temp_dry","wind_speed","wind_dir"]
 NAMES={"06009":"Akraberg","06011":"Torshavn","06012":"Fugloy","06014":"Eidi","EKVG":"Vagar Airport"}
@@ -10,7 +25,7 @@ def collect_dmi():
     rows=[];counts=[]
     for sid in IDS:
         for param in PARAMS:
-            features=list(fetch(sid,START,END,param))
+            features=list(fetch_batched(sid,param,START,END))
             counts.append({"station":sid,"parameter":param,"features":len(features)})
             for x in features:
                 p=x["properties"];v=p.get("value")
