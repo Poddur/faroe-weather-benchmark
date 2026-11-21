@@ -36,16 +36,23 @@ jobs:
           path: winter-cache
           key: fwa-winter-v1-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: fwa-winter-v1-
-      - name: Recover durable checkpoint archive if cache is absent
+      - name: Recover durable checkpoints when cache is absent or empty
         run: |
-          if [ ! -d winter-cache ]; then
-            mkdir -p winter-cache
-            RUN=$(gh run list --workflow fwa-winter.yml --status completed --limit 30 --json databaseId --jq '.[].databaseId' | while read -r id; do
+          set -euo pipefail
+          mkdir -p winter-cache
+          # An empty restored directory is NOT evidence that any issue was saved.
+          if ! find winter-cache -maxdepth 1 -type f -name '????????.json' -print -quit | grep -q .; then
+            RUN=$(gh run list --workflow fwa-winter.yml --status completed --limit 100 --json databaseId --jq '.[].databaseId' | while read -r id; do
               if gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id/artifacts" --jq '.artifacts[] | select(.name=="fwa-winter-checkpoints" and .expired==false) | .id' | grep -q .; then echo "$id"; break; fi
             done)
             if [ -n "$RUN" ]; then
               gh run download "$RUN" -n fwa-winter-checkpoints -D winter-cache
+              echo "Recovered FWA winter checkpoint archive from run $RUN"
+            else
+              echo "No previous durable winter checkpoint artifact exists"
             fi
+          else
+            echo "Existing winter issue checkpoints found; keeping them unchanged"
           fi
       - name: Validate locked models on eligible winter archive dates
         timeout-minutes: 145
