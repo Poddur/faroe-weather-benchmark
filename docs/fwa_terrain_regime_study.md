@@ -28,6 +28,26 @@ Exact site-to-vector shoreline distances:
 
 The 100 m national coastline-distance layer is developed separately from the original 10 m DEM; unlike the old flat-zero indicator, its geometry is official shoreline. Topographic position index (TPI) is only a landscape form proxy, not definitive wind exposure, fjord channelling or aerodynamics.
 
+## Verified full observed-weather census (2026-04-01 through 2026-11-20)
+The fast batched DMI+METAR collection completed successfully at https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44863268211 . Raw hourly DMI and native-time METAR records were preserved as a source-attributed gzip artifact, with coverage receipt `ops/fwa_observed_regimes_fast_2026.json`.
+- **33,259 observational rows, 234 calendar days, five station sites.**
+- **4,665 measured wind reports >=10 m/s across 173 unique calendar days at least one site** (multiple reports within storms/days are dependent).
+- Akraberg: 5,527 rows, 1,520 high-wind reports, 143 days; maximum 30.7 m/s.
+- Tórshavn: 5,543 rows, 560 high-wind reports, 88 days; maximum 24.8 m/s.
+- Fugloy: 5,517 rows, 1,177 wind measurements, 218 high-wind reports, 37 days; maximum 17.3 m/s. Note incomplete wind availability.
+- Eiði: 5,474 rows, 1,374 high-wind reports, 145 days; maximum 29.2 m/s.
+- Vágar EKVG: 11,198 METAR rows, 993 high-wind reports, 90 days; maximum 21.09 m/s; reporting intervals generally 30 min, not hourly.
+- Different strong-wind directions dominate at different sites: Akraberg SW, Eiði S, Vágar E/NW. This is *descriptive climatology* not a comparison of forecast skill.
+- Surface-only observations **cannot verify an atmospheric temperature inversion**. The distinct native-model inversion cases must be evaluated prospectively with multi-level data.
+
+## Four-lead prospective capture, verified
+First successful fixed 00Z HARMONIE model-run batch: https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44862554919 . All 6/12/18/24-hour lead cases collected.
+- 20 matched temperature cases: original HARMONIE MAE 1.17665°C; frozen FWA 1.26228°C (worse).
+- 16 matched wind cases: original HARMONIE MAE 1.33015 m/s; frozen FWA 1.29900 m/s (slightly better).
+- Seven *unique station/valid-time modeled* temperature inversions, zero independent measured inversion verifications, no matched measured strong-wind events.
+- These forecasts span **two valid dates but just one independent originating model issue**. Inferential cluster and readiness must be computed by forecast *issue day*, not valid day or individual lead. Updated evaluation: `src/fwa_dense_issue_audit.py` and `src/fwa_regime_readiness.py`.
+- The physical correction must remain unchanged. No selection or tuning based on these prospective results.
+
 ## What can and cannot be inferred
 **Observed**: higher error and material underforecasting for high-wind cases; signed baseline errors differ among locations. **Not established**: a causal link from coastline, valley/hollow or ridge category to the correction effect; prospective FWA improvements in high winds or inversions; transferability to an unseen station.
 
