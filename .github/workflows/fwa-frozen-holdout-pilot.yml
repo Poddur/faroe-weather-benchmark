@@ -1,0 +1,39 @@
+name: Verify frozen FWA2/FWA4A on new dates
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-frozen-holdout-pilot.yml'
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing evaluation dependencies
+        run: python -m pip install -r requirements.txt 'dynamical-catalog>=1,<2' scikit-learn rasterio pyproj
+      - name: Verify exact frozen FWA2/FWA4A replay from original evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 44718559350 -n fwa-confirmatory-evidence -D replay-evidence
+          python src/fwa5_winter.py --replay replay-evidence
+      - name: Compare frozen FWA2/FWA4A with ECMWF, HARMONIE and WeatherNext3 on post-training issues
+        timeout-minutes: 70
+        run: python src/fwa_frozen_holdout_pilot.py
+      - name: Preserve paired evidence and results even on incomplete source coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fwa-frozen-post-training-exact-run
+          path: outputs/fwa-frozen-holdout/
+          retention-days: 90
+          if-no-files-found: warn
