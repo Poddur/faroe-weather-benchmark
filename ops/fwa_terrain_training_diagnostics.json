@@ -1,0 +1,207 @@
+{
+  "status": "exploratory_only",
+  "forecast_source_sha256": "cffb1e2f830e7e8e2cd735a56be79bf090efdf88d47bd8e148648f012f4960a9",
+  "train_issue_cutoff_exclusive": "2026-08-20T00:00:00+00:00",
+  "records": 340,
+  "training_issue_dates": 19,
+  "results": [
+    {
+      "variable": "temperature_2m",
+      "dimension": "station_id",
+      "group": "06009",
+      "cases": 57,
+      "dates": 19,
+      "MAE": 0.887719298245614,
+      "signed_bias": 0.7824561403508772,
+      "mean_observation": 8.594736842105263,
+      "strong_observed_cases": 0,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "temperature_2m",
+      "dimension": "station_id",
+      "group": "06011",
+      "cases": 56,
+      "dates": 19,
+      "MAE": 0.8053571428571428,
+      "signed_bias": -0.08392857142857138,
+      "mean_observation": 9.423214285714286,
+      "strong_observed_cases": 0,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "temperature_2m",
+      "dimension": "station_id",
+      "group": "06014",
+      "cases": 57,
+      "dates": 19,
+      "MAE": 0.9842105263157895,
+      "signed_bias": -0.8298245614035087,
+      "mean_observation": 8.412280701754385,
+      "strong_observed_cases": 0,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "temperature_2m",
+      "dimension": "terrain_class",
+      "group": "neutral_tpi_proxy",
+      "cases": 56,
+      "dates": 19,
+      "MAE": 0.8053571428571428,
+      "signed_bias": -0.08392857142857138,
+      "mean_observation": 9.423214285714286,
+      "strong_observed_cases": 0,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "temperature_2m",
+      "dimension": "terrain_class",
+      "group": "raised_ridge_proxy",
+      "cases": 114,
+      "dates": 19,
+      "MAE": 0.9359649122807018,
+      "signed_bias": -0.023684210526315797,
+      "mean_observation": 8.503508771929825,
+      "strong_observed_cases": 0,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "wind_speed_10m",
+      "dimension": "station_id",
+      "group": "06009",
+      "cases": 57,
+      "dates": 19,
+      "MAE": 1.5298245614035089,
+      "signed_bias": -0.424561403508772,
+      "mean_observation": 6.9,
+      "strong_observed_cases": 11,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "wind_speed_10m",
+      "dimension": "station_id",
+      "group": "06011",
+      "cases": 56,
+      "dates": 19,
+      "MAE": 1.6964285714285714,
+      "signed_bias": 0.5964285714285713,
+      "mean_observation": 4.946428571428571,
+      "strong_observed_cases": 4,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "wind_speed_10m",
+      "dimension": "station_id",
+      "group": "06014",
+      "cases": 57,
+      "dates": 19,
+      "MAE": 1.9631578947368422,
+      "signed_bias": -0.6508771929824562,
+      "mean_observation": 7.014035087719297,
+      "strong_observed_cases": 9,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "wind_speed_10m",
+      "dimension": "terrain_class",
+      "group": "neutral_tpi_proxy",
+      "cases": 56,
+      "dates": 19,
+      "MAE": 1.6964285714285714,
+      "signed_bias": 0.5964285714285713,
+      "mean_observation": 4.946428571428571,
+      "strong_observed_cases": 4,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "wind_speed_10m",
+      "dimension": "terrain_class",
+      "group": "raised_ridge_proxy",
+      "cases": 114,
+      "dates": 19,
+      "MAE": 1.7464912280701754,
+      "signed_bias": -0.537719298245614,
+      "mean_observation": 6.95701754385965,
+      "strong_observed_cases": 20,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "wind_speed_10m",
+      "dimension": "observed_wind_ge_10ms",
+      "group": "False",
+      "cases": 146,
+      "dates": 19,
+      "MAE": 1.4616438356164383,
+      "signed_bias": 0.3534246575342465,
+      "mean_observation": 5.1938356164383555,
+      "strong_observed_cases": 0,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    },
+    {
+      "variable": "wind_speed_10m",
+      "dimension": "observed_wind_ge_10ms",
+      "group": "True",
+      "cases": 24,
+      "dates": 9,
+      "MAE": 3.3624999999999994,
+      "signed_bias": -3.3125,
+      "mean_observation": 12.991666666666669,
+      "strong_observed_cases": 24,
+      "lead_hours": [
+        6,
+        12,
+        24
+      ]
+    }
+  ],
+  "geographic_limit": "3 training stations: two elevated-TPI, one neutral-TPI, NO valley proxy station in training. Class effects are not identifiable independently of site and sensor.",
+  "inversion_limit": "Historical pilot contains no atmospheric 2m-100m temperature difference, so inversion cannot be retrospectively assessed.",
+  "prohibition": "Never optimize the v2 frozen model or evaluate deployment on prospective v2 evidence.",
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44862396826",
+  "commit": "a13c4c6607f4d88d98fe7ea5f48b235810fb9f00"
+}
