@@ -5,7 +5,9 @@ training cutoff. This does not alter the registered winter 2026-11-21+
 confirmatory protocol. Archive provenance is retrospective, not live issuance.
 """
 import json
+import time
 from pathlib import Path
+import requests
 import numpy as np
 import pandas as pd
 from fwa5_winter import load_lock,load_terrain,wide_forecasts,predict,MODELS,VARS,KEY,DKEY
@@ -38,7 +40,15 @@ def test(out=Path("outputs/fwa-frozen-holdout")):
             result["issues"].append(info)
             try:
                 raw=[]
-                f=pd.DataFrame(om_rows(issue,raw,source_cache))
+                # Retry transient source timeouts without changing dates or model identities.
+                for attempt in range(3):
+                    try:
+                        f=pd.DataFrame(om_rows(issue,raw,source_cache))
+                        break
+                    except (requests.Timeout, requests.ConnectionError, TimeoutError, ConnectionError) as exc:
+                        if attempt==2:raise
+                        print("EXACT-SOURCE RETRY",str(issue),type(exc).__name__,flush=True)
+                        time.sleep(8*(attempt+1))
                 for lead in (6,12,24):
                     f=pd.concat([f,pd.DataFrame(forecast_rows(ds,issue,lead))],ignore_index=True)
                 w=wide_forecasts(f,issue)
@@ -46,9 +56,16 @@ def test(out=Path("outputs/fwa-frozen-holdout")):
                 # FWA4A does not depend on wind direction; frozen FWA5 predictor
                 # uses the original FWA4A coefficients and makes the missing-
                 # direction fallback explicit. We score FWA4A only, NOT FWA5W.
-                empty_direction=pd.DataFrame(columns=DKEY+["sin","cos"])
+                empty_direction=pd.DataFrame(columns=DKEY+["sin","cos"]).astype({"sin":"float64","cos":"float64"})
                 forecast=predict(w,empty_direction,lock,terrain)
-                obs,obs_raw,queries=collect_observations([issue],[6,12,24])
+                for attempt in range(3):
+                    try:
+                        obs,obs_raw,queries=collect_observations([issue],[6,12,24])
+                        break
+                    except (requests.Timeout, requests.ConnectionError, TimeoutError, ConnectionError) as exc:
+                        if attempt==2:raise
+                        print("OBSERVATION RETRY",str(issue),type(exc).__name__,flush=True)
+                        time.sleep(8*(attempt+1))
                 obs=obs.copy()
                 obs["valid_time"]=pd.to_datetime(obs.valid_time,utc=True,format="ISO8601")
                 if obs.duplicated(["station_id","variable","valid_time"]).any():
