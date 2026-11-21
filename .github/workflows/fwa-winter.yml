@@ -36,6 +36,22 @@ jobs:
           path: winter-cache
           key: fwa-winter-v1-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: fwa-winter-v1-
+      - name: Restore immutable winter evidence from durable GitHub Release
+        run: |
+          set -euo pipefail
+          TAG="fwa-winter-locked-2026-2027"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            ASSET=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" --jq '[.assets[] | select(.name | startswith("fwa-winter-checkpoints-"))] | sort_by(.created_at) | last | .name // empty')
+            if [ -n "$ASSET" ]; then
+              mkdir -p durable-recovery
+              gh release download "$TAG" --pattern "$ASSET" --dir durable-recovery
+              python src/fwa_winter_restore.py --cache winter-cache --archive "durable-recovery/$ASSET"
+            else
+              echo "No durable winter snapshot yet"
+            fi
+          else
+            echo "Durable winter release not created before first eligible issue"
+          fi
       - name: Recover durable checkpoints when cache is absent or empty
         run: |
           set -euo pipefail
@@ -60,6 +76,29 @@ jobs:
       - name: Score frozen FWA2 and FWA4A against all three reference models
         if: success()
         run: python src/fwa_locked_reference_scorecard.py --cache winter-cache --out outputs/fwa-winter/frozen_reference_scorecard.json
+      - name: Preserve immutable winter checkpoint snapshot beyond Actions artifact expiry
+        if: success()
+        run: |
+          set -euo pipefail
+          if ! find winter-cache -maxdepth 1 -type f -name '????????.json' -print -quit | grep -q .; then
+            echo "No eligible checkpoint manifests; skip durable snapshot"
+            exit 0
+          fi
+          TAG="fwa-winter-locked-2026-2027"
+          ARCHIVE="fwa-winter-checkpoints-${GITHUB_RUN_ID}.zip"
+          zip -qr "$ARCHIVE" winter-cache
+          python - "$ARCHIVE" <<'PY'
+          import pathlib,sys,zipfile
+          p=pathlib.Path(sys.argv[1])
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None, 'Invalid durable archive'
+              assert any(x.startswith('winter-cache/') and x.endswith('.json') for x in z.namelist())
+          PY
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "Frozen FWA winter validation evidence 2026–2027" --latest=false --notes "Immutable per-run snapshots of locked FWA2/FWA4A/FWA5 validation checkpoints. Historical exact-run model sources, not live issuance. Scientific skill must be evaluated from paired observations and independent model days."
+          fi
+          gh release upload "$TAG" "$ARCHIVE"
+          echo "Durable independent evidence snapshot: $TAG/$ARCHIVE"
       - uses: actions/cache/save@v4
         if: always()
         with:
