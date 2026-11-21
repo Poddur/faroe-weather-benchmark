@@ -1,0 +1,60 @@
+name: FWA terrain development analysis, pre-holdout only
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-terrain-training.yml'
+      - 'src/fwa_terrain_training_analysis.py'
+      - 'config/fwa_topographic_site_strata_v1.json'
+permissions:
+  contents: write
+jobs:
+  terrain-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m py_compile src/fwa_terrain_training_analysis.py
+      - name: Fetch original immutable 2026 historical pilot artifact
+        run: |
+          mkdir -p outputs/terrain-development/archive
+          gh run download 44603911240 -n fwa-research-evidence -D outputs/terrain-development/archive
+          test -f outputs/terrain-development/archive/forecasts.csv
+          test -f outputs/terrain-development/archive/observations.csv
+          (cd outputs/terrain-development/archive && zip -q ../original-pilot.zip forecasts.csv observations.csv)
+      - name: Compute pre-August development-only terrain bias and strong winds
+        run: |
+          python src/fwa_terrain_training_analysis.py \
+          --archive outputs/terrain-development/original-pilot.zip \
+          --classes config/fwa_topographic_site_strata_v1.json \
+          --output outputs/terrain-development/result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-terrain-training-diagnostics
+          path: outputs/terrain-development/result.json
+          retention-days: 90
+      - name: Record audit
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path("outputs/terrain-development/result.json")
+          d=json.loads(p.read_text()) if p.exists() else {"status":"failed_before_analysis"}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("terrain-dev-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_terrain_training_diagnostics.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record pre-holdout terrain training diagnostics" -f content="$(base64 -w0 terrain-dev-receipt.json)" "${args[@]}" > /dev/null
