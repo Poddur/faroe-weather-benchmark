@@ -10,7 +10,7 @@ permissions:
   contents: write
 concurrency:
   group: fwa-observed-regimes
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   census:
     runs-on: ubuntu-latest
