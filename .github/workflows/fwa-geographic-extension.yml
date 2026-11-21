@@ -1,0 +1,110 @@
+name: FWA geographic extension (Fugloy + Vagar)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '31 16 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-geographic-extension.yml'
+      - 'src/fwa_spatial_extension_v2.py'
+      - 'src/fwa_geo_history.py'
+      - 'config/fwa_extended_station_profiles.json'
+permissions:
+  contents: write
+concurrency:
+  group: fwa-geographic-extension
+  cancel-in-progress: false
+jobs:
+  geographic-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt scipy eccodes eccodeslib pyproj 'dynamical-catalog>=1,<2'
+      - name: Test geographic model without network
+        run: |
+          python -m py_compile src/fwa_spatial_extension_v2.py src/fwa_geo_history.py src/fwa_prospective_benchmark.py
+          PYTHONPATH=src python - <<'PY'
+          import json
+          from fwa_spatial_extension_v2 import VERSION,summarize
+          from fwa_geo_history import update
+          new=json.load(open("config/fwa_extended_station_profiles.json"))["stations"]
+          assert set(new)=={"06012","EKVG"}
+          for sid,p in new.items():
+            assert len(p["sectors"])==72
+            assert all(x["coverage"]>=.8 for x in p["sectors"])
+            assert p["terrain_match_distance_m"]<100
+            assert abs(p["terrain_cell_elevation_m"]-p["station_elevation_m"])<30
+          row=dict(algorithm=VERSION,run="2026-11-20T12:00:00Z",valid="2026-11-20T18:00:00Z",station="EKVG",parameter="wind_speed",wind_sector="N",forecast_strong_wind=False,forecast_inversion=False,raw_abs_error=1.,physics_abs_error=.5,physics_prediction=3.,observation=2.)
+          a=update({},[row]);assert len(update(a,[row])["evidence"])==1
+          try:update(a,[dict(row,physics_abs_error=.1)])
+          except ValueError:pass
+          else:raise AssertionError("changed evidence must fail")
+          assert not [x for x in a["summary"] if x["eligible"]]
+          PY
+      - name: Download completed native HARMONIE and exact DMI observations
+        run: python src/fwa_atmospheric_regional.py
+      - name: Score geographic extension using past-only Vágar METAR
+        run: |
+          PYTHONPATH=src python src/fwa_spatial_extension_v2.py \
+            --input outputs/atmospheric-regional/native_grid.npz \
+            --meta outputs/atmospheric-regional/native_grid.json \
+            --dmi outputs/atmospheric-regional/observations.json \
+            --profiles config/faroe_terrain_profiles.json \
+            --new-profiles config/fwa_extended_station_profiles.json \
+            --output outputs/geographic-v2
+      - name: Load separate historical geographic evidence
+        run: |
+          mkdir -p outputs/geographic-v2
+          if gh api "repos/$GITHUB_REPOSITORY/contents/ops/fwa_geo_history_v2.json" --jq .content > outputs/geographic-v2/prior.b64 2>/dev/null; then
+            tr -d '\n' < outputs/geographic-v2/prior.b64 | base64 -d > outputs/geographic-v2/prior.json
+          else
+            printf '{}' > outputs/geographic-v2/prior.json
+          fi
+          python -m json.tool outputs/geographic-v2/prior.json > /dev/null
+          PYTHONPATH=src python src/fwa_geo_history.py \
+            --prior outputs/geographic-v2/prior.json \
+            --new outputs/geographic-v2/paired.json \
+            --output outputs/geographic-v2/history.json
+      - name: Publish separate append-only v2 evidence
+        run: |
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_geo_history_v2.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Append FWA geographic extension v2 evidence" -f content="$(base64 -w0 outputs/geographic-v2/history.json)" "${args[@]}" > /dev/null
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-geographic-extension-v2
+          path: |
+            outputs/atmospheric-regional/status.json
+            outputs/geographic-v2/paired.json
+            outputs/geographic-v2/status.json
+            outputs/geographic-v2/history.json
+          retention-days: 90
+      - name: Publish run health receipt
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          s=pathlib.Path("outputs/atmospheric-regional/status.json")
+          p=pathlib.Path("outputs/geographic-v2/status.json")
+          d={"native":json.loads(s.read_text()) if s.exists() else {"status":"missing"},"benchmark":json.loads(p.read_text()) if p.exists() else {"status":"not_scored"}}
+          d.update(job_status=os.environ["JOB_STATUS"],run_url=os.environ["GITHUB_SERVER_URL"]+"/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"],commit=os.environ["GITHUB_SHA"])
+          pathlib.Path("geo-receipt.json").write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_geo_latest_v2.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record geographic v2 benchmark health" -f content="$(base64 -w0 geo-receipt.json)" "${args[@]}" > /dev/null
