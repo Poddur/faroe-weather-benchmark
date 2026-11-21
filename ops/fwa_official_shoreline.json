@@ -1,0 +1,46 @@
+{
+  "status": "verified_shoreline",
+  "source_url": "https://cdn.foroyakort.fo/geodata/vector/lendiskort/FGDB/lendiskort_fgdb.zip",
+  "attribution": "Data from the Faroese Environment Agency, Umhv\u00f8rvisstovan: Lendiskort / Strandalinja",
+  "access": "https://www.foroyakort.fo/um-foeroyakort/terms-and-conditions-in-english",
+  "http": 200,
+  "source_sha256": "ca5c1a4d7f50aadddf2a48e7942c004b6e664ac87470056bbf36c7ea6da4b433",
+  "layers": [
+    {
+      "name": "bruksoki",
+      "geometry": "MultiPolygon"
+    },
+    {
+      "name": "air",
+      "geometry": "MultiLineString"
+    },
+    {
+      "name": "vegir",
+      "geometry": "MultiLineString Z"
+    },
+    {
+      "name": "oyggjar",
+      "geometry": "MultiPolygon"
+    },
+    {
+      "name": "strandalinja",
+      "geometry": "MultiLineString"
+    },
+    {
+      "name": "bygningar",
+      "geometry": "MultiPolygon Z"
+    }
+  ],
+  "site_distances_m": {
+    "06009": 92.66233389626396,
+    "06011": 384.0521065682413,
+    "06012": 70.79658186274978,
+    "06014": 663.2688821022703,
+    "EKVG": 1622.4930122140136
+  },
+  "feature_count": 6185,
+  "crs": "EPSG:5316",
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44862637076",
+  "commit": "5d6bf2465b1a08e3ecadea6a675b592228c8a024"
+}
