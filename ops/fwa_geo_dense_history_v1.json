@@ -857,7 +857,7 @@
       "parameter": "temp_dry",
       "run": "2026-11-20T00:00:00Z",
       "valid": "2026-11-21T00:00:00Z",
-      "observation": 0.0,
+      "observation": 0,
       "observation_time": "2026-11-20T23:50:00Z",
       "observation_offset_minutes": 10,
       "observation_source": "IEM METAR",
@@ -915,7 +915,10 @@
       "physics_MAE": 1.2622814073454287,
       "delta_MAE": 0.08563269518721639,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -928,7 +931,10 @@
       "physics_MAE": 0.5603010891685702,
       "delta_MAE": -0.40792019379042554,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -941,7 +947,10 @@
       "physics_MAE": 1.821006838149995,
       "delta_MAE": -0.06659921043401207,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -954,7 +963,10 @@
       "physics_MAE": 1.3760155087841535,
       "delta_MAE": 0.42527469457514644,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -967,7 +979,10 @@
       "physics_MAE": 0.9574242067005299,
       "delta_MAE": 0.11646580215951419,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -980,7 +995,10 @@
       "physics_MAE": 1.5966593939238938,
       "delta_MAE": 0.36094238342585805,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -993,7 +1011,10 @@
       "physics_MAE": 1.1539083162733914,
       "delta_MAE": 0.012335173268011701,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -1006,7 +1027,10 @@
       "physics_MAE": 1.7288992798000453,
       "delta_MAE": 0.491833646662017,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -1019,7 +1043,10 @@
       "physics_MAE": 1.5963972471341734,
       "delta_MAE": 0.03979019147008822,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 1,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "temp_dry",
@@ -1032,7 +1059,10 @@
       "physics_MAE": 1.2622814073454287,
       "delta_MAE": 0.08563269518721639,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 0,
+      "distinct_forecast_runs": 0
     },
     {
       "variable": "temp_dry",
@@ -1045,7 +1075,10 @@
       "physics_MAE": 1.2331720482667043,
       "delta_MAE": 0.020456547215009335,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 0,
+      "distinct_forecast_runs": 0
     },
     {
       "variable": "temp_dry",
@@ -1058,7 +1091,10 @@
       "physics_MAE": 1.316341645634488,
       "delta_MAE": 0.20667411284988657,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 0,
+      "distinct_forecast_runs": 0
     },
     {
       "variable": "wind_speed",
@@ -1071,7 +1107,10 @@
       "physics_MAE": 1.2990021092738546,
       "delta_MAE": -0.031147330499048387,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1084,7 +1123,10 @@
       "physics_MAE": 0.954294858214734,
       "delta_MAE": 0.1349086419388491,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1097,7 +1139,10 @@
       "physics_MAE": 1.3516919411265769,
       "delta_MAE": -0.015782760893904735,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1110,7 +1155,10 @@
       "physics_MAE": 1.6049622414586195,
       "delta_MAE": 2.220446049250313e-16,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1123,7 +1171,10 @@
       "physics_MAE": 1.2850593962954875,
       "delta_MAE": -0.24371520304113892,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1136,7 +1187,10 @@
       "physics_MAE": 1.2590359075687416,
       "delta_MAE": -0.01830395330315948,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1149,7 +1203,10 @@
       "physics_MAE": 2.0299072116716594,
       "delta_MAE": -0.12721610851528276,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 1,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1162,7 +1219,10 @@
       "physics_MAE": 1.1276238307476256,
       "delta_MAE": -0.11488583322526447,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 1,
+      "unique_issue_days": 1,
+      "distinct_forecast_runs": 1
     },
     {
       "variable": "wind_speed",
@@ -1175,7 +1235,10 @@
       "physics_MAE": 1.2990021092738546,
       "delta_MAE": -0.031147330499048387,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 0,
+      "distinct_forecast_runs": 0
     },
     {
       "variable": "wind_speed",
@@ -1188,7 +1251,10 @@
       "physics_MAE": 1.2192483527019387,
       "delta_MAE": -0.031378365910370354,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 0,
+      "distinct_forecast_runs": 0
     },
     {
       "variable": "wind_speed",
@@ -1201,7 +1267,10 @@
       "physics_MAE": 1.401542653437746,
       "delta_MAE": -0.030850284970206587,
       "eligible": false,
-      "paired_MAE_delta_CI95": null
+      "paired_MAE_delta_CI95": null,
+      "valid_dates": 2,
+      "unique_issue_days": 0,
+      "distinct_forecast_runs": 0
     }
   ],
   "policy": {
@@ -1280,5 +1349,9 @@
       "raw_MAE": 2.222432592293842,
       "physics_MAE": 2.2434718509927665
     }
-  ]
+  ],
+  "independent_forecast_issue_days": 1,
+  "sampling_unit": "originating forecast issue UTC date, NOT all valid dates or station-variable records",
+  "uncertainty": "cluster bootstrap by model issue day, 2000 draws, fixed seed",
+  "readiness_gate": "at least 30 different issue days and 3 stations"
 }
