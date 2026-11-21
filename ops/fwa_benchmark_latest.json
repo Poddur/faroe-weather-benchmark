@@ -1,0 +1,53 @@
+{
+  "status": "regional_decoded",
+  "bigquery_queries": 0,
+  "issue": "2026-11-20T12:00:00Z",
+  "valid": "2026-11-20T18:00:00Z",
+  "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-20T120000Z_2026-11-20T180000Z.grib",
+  "source": {
+    "bytes": 620746949,
+    "sha256": "a759927b48cc6782599b5a258b77c75b65e2b742a7cc850b77b75827dd4bcef3"
+  },
+  "checks": {
+    "wind_flags": {
+      "u10": 1,
+      "u100": 1,
+      "v10": 1,
+      "v100": 1
+    },
+    "rotation": "lambert convergence sign -1; checked against native true direction",
+    "direction_error_p95_deg": 0.01955953411443261,
+    "speed_error_p95_ms": 0.05876218887924446
+  },
+  "native_cells": 9179,
+  "observation_matches": 7,
+  "benchmark": {
+    "status": "scored",
+    "method": "fixed_native_boundary_v1",
+    "records": 7,
+    "scores": [
+      {
+        "parameter": "temp_dry",
+        "matched": 3,
+        "all_observed": 4,
+        "raw_MAE": 0.8308390299479242,
+        "physics_MAE": 0.5308438155219581,
+        "improvement_pct": 36.10750140671285
+      },
+      {
+        "parameter": "wind_speed",
+        "matched": 3,
+        "all_observed": 3,
+        "raw_MAE": 0.8674763789195467,
+        "physics_MAE": 0.7169012419088204,
+        "improvement_pct": 17.357837131919318
+      }
+    ],
+    "forecast_run": "2026-11-20T12:00:00Z",
+    "forecast_valid": "2026-11-20T18:00:00Z",
+    "restrictions": "One forecast snapshot. Pre-registered fixed algorithm, no fit. Only same-station paired observations; do not infer scientific gain from a single day."
+  },
+  "job_status": "failure",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44858636392",
+  "commit": "462dd01f7b0edd8915c034a5eaf4e809e0bd7200"
+}
