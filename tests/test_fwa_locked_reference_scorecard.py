@@ -45,7 +45,8 @@ def test_paired_frozen_comparisons(tmp_path,monkeypatch):
     assert len(result["station_lead_scores"])==18
     assert all(q["cases"]==9 for q in result["comparisons"])
     assert result["comparisons"][0]["delta_mae"]==-0.5
-    assert all(q["insufficient_for_final_inference"] for q in result["comparisons"])\n    assert result["decision"]["overall"]=="insufficient_data"
+    assert all(q["insufficient_for_final_inference"] for q in result["comparisons"])
+    assert result["decision"]["overall"]=="insufficient_data"
     paired.write_text(paired.read_text().replace("5.0","9.0",1))
     with pytest.raises(ValueError,match="tampered"):
         scorecard.score(cache,lock)
@@ -60,7 +61,8 @@ def test_incomplete_excluded_without_scoring(tmp_path,monkeypatch):
 
 def test_statistical_gate_rejects_insufficient_week_coverage():
     dates=pd.date_range("2026-11-21",periods=7,freq="D",tz="UTC")
-    z=pd.DataFrame({"init_time":dates,"variable":"temperature_2m",\n        "station_id":"06009","lead_hours":6})
+    z=pd.DataFrame({"init_time":dates,"variable":"temperature_2m",
+        "station_id":"06009","lead_hours":6})
     out={"complete_dates":len(dates),"comparisons":[]}
     decision=scorecard.judge(z,out,{"minimum_dates":60,"minimum_weeks":10,"minimum_cases_per_station_lead":63})
     assert decision["overall"]=="insufficient_data"
