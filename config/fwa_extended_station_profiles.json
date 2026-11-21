@@ -1,0 +1,753 @@
+{
+  "version": "fwa_geo_v2_100m_proxy",
+  "terrain_source_sha256": "c30eac4363b97ad7745ea2f2ab04d3f0263ff3984c39fe68abd6fa84a6bd9fb2",
+  "terrain_original": "FO_DTM_2009_10m.tif",
+  "terrain_derived_source": "fwa_terrain/data/directional.npz (2 km radius, 100m cells, original DEM)",
+  "limitation": "Derived nearest-cell 100m sectors, NOT a station-centred 10m obstruction profile; research candidate, not verified 10m local airflow.",
+  "stations": {
+    "06012": {
+      "name": "Fugloy",
+      "lat": 62.3195,
+      "lon": -6.3205,
+      "station_elevation_m": 54,
+      "terrain_cell_elevation_m": 66.67043,
+      "terrain_match_distance_m": 41.9184,
+      "reference_radius_m": 2000,
+      "source": "DMI metObs station record current after 2024-11-22; 100m DEM nearest-cell proxy",
+      "sectors": [
+        {
+          "direction_deg": 0,
+          "coverage": 1,
+          "shelter_deg": 20.7
+        },
+        {
+          "direction_deg": 5,
+          "coverage": 1,
+          "shelter_deg": 20.7
+        },
+        {
+          "direction_deg": 10,
+          "coverage": 1,
+          "shelter_deg": 21.75
+        },
+        {
+          "direction_deg": 15,
+          "coverage": 1,
+          "shelter_deg": 22.5
+        },
+        {
+          "direction_deg": 20,
+          "coverage": 1,
+          "shelter_deg": 23.81
+        },
+        {
+          "direction_deg": 25,
+          "coverage": 1,
+          "shelter_deg": 23.81
+        },
+        {
+          "direction_deg": 30,
+          "coverage": 1,
+          "shelter_deg": 23.81
+        },
+        {
+          "direction_deg": 35,
+          "coverage": 1,
+          "shelter_deg": 27.79
+        },
+        {
+          "direction_deg": 40,
+          "coverage": 1,
+          "shelter_deg": 27.79
+        },
+        {
+          "direction_deg": 45,
+          "coverage": 1,
+          "shelter_deg": 27.79
+        },
+        {
+          "direction_deg": 50,
+          "coverage": 1,
+          "shelter_deg": 27.79
+        },
+        {
+          "direction_deg": 55,
+          "coverage": 1,
+          "shelter_deg": 27.79
+        },
+        {
+          "direction_deg": 60,
+          "coverage": 1,
+          "shelter_deg": 27.79
+        },
+        {
+          "direction_deg": 65,
+          "coverage": 1,
+          "shelter_deg": 19.29
+        },
+        {
+          "direction_deg": 70,
+          "coverage": 1,
+          "shelter_deg": 19.29
+        },
+        {
+          "direction_deg": 75,
+          "coverage": 1,
+          "shelter_deg": 19.29
+        },
+        {
+          "direction_deg": 80,
+          "coverage": 1,
+          "shelter_deg": 16.48
+        },
+        {
+          "direction_deg": 85,
+          "coverage": 1,
+          "shelter_deg": 10.95
+        },
+        {
+          "direction_deg": 90,
+          "coverage": 1,
+          "shelter_deg": 9.86
+        },
+        {
+          "direction_deg": 95,
+          "coverage": 1,
+          "shelter_deg": 9.86
+        },
+        {
+          "direction_deg": 100,
+          "coverage": 1,
+          "shelter_deg": 9.78
+        },
+        {
+          "direction_deg": 105,
+          "coverage": 1,
+          "shelter_deg": 9.57
+        },
+        {
+          "direction_deg": 110,
+          "coverage": 1,
+          "shelter_deg": 9.36
+        },
+        {
+          "direction_deg": 115,
+          "coverage": 1,
+          "shelter_deg": 9.36
+        },
+        {
+          "direction_deg": 120,
+          "coverage": 1,
+          "shelter_deg": 9.36
+        },
+        {
+          "direction_deg": 125,
+          "coverage": 1,
+          "shelter_deg": -0.95
+        },
+        {
+          "direction_deg": 130,
+          "coverage": 1,
+          "shelter_deg": -0.95
+        },
+        {
+          "direction_deg": 135,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 140,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 145,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 150,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 155,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 160,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 165,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 170,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 175,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 180,
+          "coverage": 1,
+          "shelter_deg": -1.38
+        },
+        {
+          "direction_deg": 185,
+          "coverage": 1,
+          "shelter_deg": 1.26
+        },
+        {
+          "direction_deg": 190,
+          "coverage": 1,
+          "shelter_deg": 1.68
+        },
+        {
+          "direction_deg": 195,
+          "coverage": 1,
+          "shelter_deg": 1.81
+        },
+        {
+          "direction_deg": 200,
+          "coverage": 1,
+          "shelter_deg": 2.51
+        },
+        {
+          "direction_deg": 205,
+          "coverage": 1,
+          "shelter_deg": 2.34
+        },
+        {
+          "direction_deg": 210,
+          "coverage": 1,
+          "shelter_deg": -0.18
+        },
+        {
+          "direction_deg": 215,
+          "coverage": 1,
+          "shelter_deg": -1.52
+        },
+        {
+          "direction_deg": 220,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 225,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 230,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 235,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 240,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 245,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 250,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 255,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 260,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 265,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 270,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 275,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 280,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 285,
+          "coverage": 1,
+          "shelter_deg": -1.91
+        },
+        {
+          "direction_deg": 290,
+          "coverage": 1,
+          "shelter_deg": -1.54
+        },
+        {
+          "direction_deg": 295,
+          "coverage": 1,
+          "shelter_deg": -1.54
+        },
+        {
+          "direction_deg": 300,
+          "coverage": 1,
+          "shelter_deg": -0.09
+        },
+        {
+          "direction_deg": 305,
+          "coverage": 1,
+          "shelter_deg": 10.08
+        },
+        {
+          "direction_deg": 310,
+          "coverage": 1,
+          "shelter_deg": 10.08
+        },
+        {
+          "direction_deg": 315,
+          "coverage": 1,
+          "shelter_deg": 10.08
+        },
+        {
+          "direction_deg": 320,
+          "coverage": 1,
+          "shelter_deg": 13.8
+        },
+        {
+          "direction_deg": 325,
+          "coverage": 1,
+          "shelter_deg": 13.8
+        },
+        {
+          "direction_deg": 330,
+          "coverage": 1,
+          "shelter_deg": 13.8
+        },
+        {
+          "direction_deg": 335,
+          "coverage": 1,
+          "shelter_deg": 20.7
+        },
+        {
+          "direction_deg": 340,
+          "coverage": 1,
+          "shelter_deg": 20.7
+        },
+        {
+          "direction_deg": 345,
+          "coverage": 1,
+          "shelter_deg": 20.7
+        },
+        {
+          "direction_deg": 350,
+          "coverage": 1,
+          "shelter_deg": 20.7
+        },
+        {
+          "direction_deg": 355,
+          "coverage": 1,
+          "shelter_deg": 20.7
+        }
+      ]
+    },
+    "EKVG": {
+      "name": "Vagar airport",
+      "lat": 62.0664,
+      "lon": -7.2847,
+      "station_elevation_m": 85,
+      "terrain_cell_elevation_m": 82.63831,
+      "terrain_match_distance_m": 8.7457,
+      "reference_radius_m": 2000,
+      "source": "Iowa Environmental Mesonet EKVG metadata; 100m DEM nearest-cell proxy",
+      "sectors": [
+        {
+          "direction_deg": 0,
+          "coverage": 1,
+          "shelter_deg": 8.14
+        },
+        {
+          "direction_deg": 5,
+          "coverage": 1,
+          "shelter_deg": 7.68
+        },
+        {
+          "direction_deg": 10,
+          "coverage": 1,
+          "shelter_deg": 6.86
+        },
+        {
+          "direction_deg": 15,
+          "coverage": 1,
+          "shelter_deg": 6.01
+        },
+        {
+          "direction_deg": 20,
+          "coverage": 1,
+          "shelter_deg": 5.2
+        },
+        {
+          "direction_deg": 25,
+          "coverage": 1,
+          "shelter_deg": 4.48
+        },
+        {
+          "direction_deg": 30,
+          "coverage": 1,
+          "shelter_deg": 4.04
+        },
+        {
+          "direction_deg": 35,
+          "coverage": 1,
+          "shelter_deg": 3.06
+        },
+        {
+          "direction_deg": 40,
+          "coverage": 1,
+          "shelter_deg": 2.48
+        },
+        {
+          "direction_deg": 45,
+          "coverage": 1,
+          "shelter_deg": 1.34
+        },
+        {
+          "direction_deg": 50,
+          "coverage": 1,
+          "shelter_deg": 1.34
+        },
+        {
+          "direction_deg": 55,
+          "coverage": 1,
+          "shelter_deg": 0.98
+        },
+        {
+          "direction_deg": 60,
+          "coverage": 1,
+          "shelter_deg": 0.77
+        },
+        {
+          "direction_deg": 65,
+          "coverage": 1,
+          "shelter_deg": 0.6
+        },
+        {
+          "direction_deg": 70,
+          "coverage": 1,
+          "shelter_deg": 0.6
+        },
+        {
+          "direction_deg": 75,
+          "coverage": 1,
+          "shelter_deg": 0.6
+        },
+        {
+          "direction_deg": 80,
+          "coverage": 1,
+          "shelter_deg": 0.46
+        },
+        {
+          "direction_deg": 85,
+          "coverage": 1,
+          "shelter_deg": 0.45
+        },
+        {
+          "direction_deg": 90,
+          "coverage": 1,
+          "shelter_deg": 0.45
+        },
+        {
+          "direction_deg": 95,
+          "coverage": 1,
+          "shelter_deg": 0.45
+        },
+        {
+          "direction_deg": 100,
+          "coverage": 1,
+          "shelter_deg": 0.45
+        },
+        {
+          "direction_deg": 105,
+          "coverage": 1,
+          "shelter_deg": 0.4
+        },
+        {
+          "direction_deg": 110,
+          "coverage": 1,
+          "shelter_deg": 0.4
+        },
+        {
+          "direction_deg": 115,
+          "coverage": 1,
+          "shelter_deg": 0.4
+        },
+        {
+          "direction_deg": 120,
+          "coverage": 1,
+          "shelter_deg": 0.25
+        },
+        {
+          "direction_deg": 125,
+          "coverage": 1,
+          "shelter_deg": 0.26
+        },
+        {
+          "direction_deg": 130,
+          "coverage": 1,
+          "shelter_deg": 0.55
+        },
+        {
+          "direction_deg": 135,
+          "coverage": 1,
+          "shelter_deg": 0.8
+        },
+        {
+          "direction_deg": 140,
+          "coverage": 1,
+          "shelter_deg": 1.32
+        },
+        {
+          "direction_deg": 145,
+          "coverage": 1,
+          "shelter_deg": 1.83
+        },
+        {
+          "direction_deg": 150,
+          "coverage": 1,
+          "shelter_deg": 2.57
+        },
+        {
+          "direction_deg": 155,
+          "coverage": 1,
+          "shelter_deg": 3.22
+        },
+        {
+          "direction_deg": 160,
+          "coverage": 1,
+          "shelter_deg": 4.13
+        },
+        {
+          "direction_deg": 165,
+          "coverage": 1,
+          "shelter_deg": 4.79
+        },
+        {
+          "direction_deg": 170,
+          "coverage": 1,
+          "shelter_deg": 5.85
+        },
+        {
+          "direction_deg": 175,
+          "coverage": 1,
+          "shelter_deg": 5.86
+        },
+        {
+          "direction_deg": 180,
+          "coverage": 1,
+          "shelter_deg": 5.39
+        },
+        {
+          "direction_deg": 185,
+          "coverage": 1,
+          "shelter_deg": 4.94
+        },
+        {
+          "direction_deg": 190,
+          "coverage": 1,
+          "shelter_deg": 4.18
+        },
+        {
+          "direction_deg": 195,
+          "coverage": 1,
+          "shelter_deg": 3.6
+        },
+        {
+          "direction_deg": 200,
+          "coverage": 1,
+          "shelter_deg": 3.54
+        },
+        {
+          "direction_deg": 205,
+          "coverage": 1,
+          "shelter_deg": 3.03
+        },
+        {
+          "direction_deg": 210,
+          "coverage": 1,
+          "shelter_deg": 2.46
+        },
+        {
+          "direction_deg": 215,
+          "coverage": 1,
+          "shelter_deg": 1.84
+        },
+        {
+          "direction_deg": 220,
+          "coverage": 1,
+          "shelter_deg": 1.98
+        },
+        {
+          "direction_deg": 225,
+          "coverage": 1,
+          "shelter_deg": 2.38
+        },
+        {
+          "direction_deg": 230,
+          "coverage": 1,
+          "shelter_deg": 3.58
+        },
+        {
+          "direction_deg": 235,
+          "coverage": 1,
+          "shelter_deg": 4.44
+        },
+        {
+          "direction_deg": 240,
+          "coverage": 1,
+          "shelter_deg": 5.06
+        },
+        {
+          "direction_deg": 245,
+          "coverage": 1,
+          "shelter_deg": 4.89
+        },
+        {
+          "direction_deg": 250,
+          "coverage": 1,
+          "shelter_deg": 4.73
+        },
+        {
+          "direction_deg": 255,
+          "coverage": 1,
+          "shelter_deg": 3.27
+        },
+        {
+          "direction_deg": 260,
+          "coverage": 1,
+          "shelter_deg": 1.85
+        },
+        {
+          "direction_deg": 265,
+          "coverage": 1,
+          "shelter_deg": 0.78
+        },
+        {
+          "direction_deg": 270,
+          "coverage": 1,
+          "shelter_deg": -0.13
+        },
+        {
+          "direction_deg": 275,
+          "coverage": 1,
+          "shelter_deg": -0.63
+        },
+        {
+          "direction_deg": 280,
+          "coverage": 1,
+          "shelter_deg": -0.63
+        },
+        {
+          "direction_deg": 285,
+          "coverage": 1,
+          "shelter_deg": -0.66
+        },
+        {
+          "direction_deg": 290,
+          "coverage": 1,
+          "shelter_deg": -0.66
+        },
+        {
+          "direction_deg": 295,
+          "coverage": 1,
+          "shelter_deg": -0.66
+        },
+        {
+          "direction_deg": 300,
+          "coverage": 1,
+          "shelter_deg": -0.48
+        },
+        {
+          "direction_deg": 305,
+          "coverage": 1,
+          "shelter_deg": 2.31
+        },
+        {
+          "direction_deg": 310,
+          "coverage": 1,
+          "shelter_deg": 2.8
+        },
+        {
+          "direction_deg": 315,
+          "coverage": 1,
+          "shelter_deg": 3.21
+        },
+        {
+          "direction_deg": 320,
+          "coverage": 1,
+          "shelter_deg": 5.04
+        },
+        {
+          "direction_deg": 325,
+          "coverage": 1,
+          "shelter_deg": 6.1
+        },
+        {
+          "direction_deg": 330,
+          "coverage": 1,
+          "shelter_deg": 8.45
+        },
+        {
+          "direction_deg": 335,
+          "coverage": 1,
+          "shelter_deg": 8.45
+        },
+        {
+          "direction_deg": 340,
+          "coverage": 1,
+          "shelter_deg": 8.26
+        },
+        {
+          "direction_deg": 345,
+          "coverage": 1,
+          "shelter_deg": 8.98
+        },
+        {
+          "direction_deg": 350,
+          "coverage": 1,
+          "shelter_deg": 8.8
+        },
+        {
+          "direction_deg": 355,
+          "coverage": 1,
+          "shelter_deg": 8.51
+        }
+      ]
+    }
+  }
+}
