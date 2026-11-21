@@ -48,7 +48,7 @@ def test_mature_issue_has_priority_over_fallback():
 def test_no_early_or_expired_issue_fallback():
     now=datetime(2026,11,21,12,50,tzinfo=timezone.utc)
     with pytest.raises(ValueError,match="No available"):
-        pick_common_instance(["2026-11-21T120000Z","2026-11-20T000000Z"],now)
+        pick_common_instance(["2026-11-21T120000Z","2026-11-19T120000Z"],now)
 
 
 def test_custom_stricter_age_does_not_enable_12h_fallback():
