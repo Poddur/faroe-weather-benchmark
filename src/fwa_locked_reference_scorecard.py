@@ -30,7 +30,7 @@ def weekly_cluster_interval(frame,candidate,baseline,draws,seed):
     rng=np.random.default_rng(seed)
     selected=rng.integers(len(blocks),size=(draws,len(blocks)))
     values=totals[selected].sum(axis=1)/counts[selected].sum(axis=1)
-    return [float(x) for x in np.quantile(values,[.025,.975])]
+    # Nine prespecified comparisons: six overall + three strong-wind.\n    # Bonferroni adjustment protects the simultaneous 95% decision.\n    alpha=.05/9\n    return [float(x) for x in np.quantile(values,[alpha/2,1-alpha/2])]
 
 def judge(data,out,protocol):
     """Pre-winter, fixed evidence gate; no coefficients or forecasts are changed."""
@@ -44,7 +44,7 @@ def judge(data,out,protocol):
     coverage=out["complete_dates"]>=min_dates and weeks>=min_weeks and minimum_cases>=min_group
     result={"status":"insufficient_data","minimum_dates":min_dates,
             "independent_issue_days":out["complete_dates"],
-            "independent_issue_weeks":weeks,"minimum_station_lead_cases":minimum_cases,
+            "independent_issue_weeks":weeks,"multiplicity_control":"Bonferroni 9 predeclared paired comparisons, familywise 95% confidence","minimum_station_lead_cases":minimum_cases,
             "coverage_eligible":bool(coverage),
             "temperature_vs_three":"insufficient_data",
             "wind_average_vs_three":"insufficient_data",
@@ -55,7 +55,7 @@ def judge(data,out,protocol):
     seed=protocol.get("seed",20261120)
     for item in out["comparisons"]:
         part=data[data.variable==item["variable"]]
-        item["paired_week_bootstrap_ci95"]=weekly_cluster_interval(part,item["candidate"],item["baseline"],draws,seed)
+        item["paired_week_bootstrap_familywise_ci"]=weekly_cluster_interval(part,item["candidate"],item["baseline"],draws,seed)
         item["week_clusters"]=weeks
         item["superiority_demonstrated"]=item["paired_week_bootstrap_ci95"][1]<0
         item["inferiority_demonstrated"]=item["paired_week_bootstrap_ci95"][0]>0
@@ -82,7 +82,7 @@ def judge(data,out,protocol):
             safety.append({"baseline":model,"strong_cases":int(len(storm)),
                 "fwa_mae":float((storm.FWA4A-storm.observed).abs().mean()),
                 "baseline_mae":float((storm[model]-storm.observed).abs().mean()),
-                "delta_mae_ci95":ci,
+                "delta_mae_familywise_ci":ci,
                 "fwa_misses":missing_fwa,"baseline_misses":missing_base,
                 "safety_pass":bool(ci is not None and ci[1]<=0 and missing_fwa<=missing_base)})
         result["storm_comparisons"]=safety
