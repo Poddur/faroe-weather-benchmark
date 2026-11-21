@@ -31,6 +31,9 @@
       "geometry": "MultiPolygon Z"
     }
   ],
+  "shoreline_wkb_sha256": "cdc3d9645cf4844921a370924dfd28c1005e7aee7ddff0a6cfb26394331b1460",
+  "shoreline_wkb_bytes": 5805025,
+  "shoreline_wkb_crs": "EPSG:5316",
   "site_distances_m": {
     "06009": 92.66233389626396,
     "06011": 384.0521065682413,
@@ -41,6 +44,6 @@
   "feature_count": 6185,
   "crs": "EPSG:5316",
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44862637076",
-  "commit": "5d6bf2465b1a08e3ecadea6a675b592228c8a024"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44862715313",
+  "commit": "564e05c2a7e0830efa7f6eab1d50ce20a5200b67"
 }
