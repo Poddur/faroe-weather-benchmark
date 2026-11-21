@@ -1,0 +1,138 @@
+name: FWA dense independent weather regimes (4 valid times daily)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '31 16 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-dense-regimes.yml'
+permissions:
+  contents: write
+concurrency:
+  group: fwa-dense-regimes
+  cancel-in-progress: false
+jobs:
+  regime-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 95
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt scipy eccodes eccodeslib pyproj 'dynamical-catalog>=1,<2'
+      - name: Verify source/solver and fixed geography
+        run: |
+          python -m py_compile src/fwa_atmospheric_regional.py src/fwa_spatial_extension_v2.py src/fwa_geo_history.py
+          PYTHONPATH=src python - <<'PY'
+          import json
+          p=json.load(open("config/fwa_extended_station_profiles.json"))
+          assert set(p["stations"])=={"06012","EKVG"}
+          for s in p["stations"].values():assert len(s["sectors"])==72
+          PY
+      - name: Collect four predeclared lead times (no selection based on observed weather)
+        run: |
+          set -uo pipefail
+          mkdir -p outputs/dense
+          ISSUE="$(date -u -d yesterday +%Y-%m-%d)T00:00:00Z"
+          printf '%s' "$ISSUE" > outputs/dense/issue.txt
+          for LEAD in 6 12 18 24; do
+            DIR="outputs/dense/lead-$LEAD"
+            mkdir -p "$DIR"
+            echo "Predeclared native HARMONIE issue=$ISSUE lead=$LEAD"
+            if python src/fwa_atmospheric_regional.py --issue "$ISSUE" --lead-hours "$LEAD" --output "$DIR/native" \
+               && PYTHONPATH=src python src/fwa_spatial_extension_v2.py \
+                  --input "$DIR/native/native_grid.npz" \
+                  --meta "$DIR/native/native_grid.json" \
+                  --dmi "$DIR/native/observations.json" \
+                  --profiles config/faroe_terrain_profiles.json \
+                  --new-profiles config/fwa_extended_station_profiles.json \
+                  --output "$DIR/scored"; then
+              printf 'complete\n' > "$DIR/result.txt"
+            else
+              printf 'failed\n' > "$DIR/result.txt"
+            fi
+            rm -f "$DIR/native/native_grid.npz"
+          done
+          PYTHONPATH=src python - <<'PY'
+          import json,pathlib
+          d=pathlib.Path('outputs/dense')
+          issue=(d/'issue.txt').read_text()
+          records=[];availability={}
+          for lead in (6,12,18,24):
+              sub=d/f'lead-{lead}'
+              status=(sub/'result.txt').read_text().strip()
+              availability[str(lead)]={'status':status}
+              p=sub/'scored/paired.json'
+              if status=='complete' and p.exists():
+                  for r in json.loads(p.read_text()):
+                      r['lead_hours']=lead
+                      records.append(r)
+              else:
+                  q=sub/'native/status.json'
+                  if q.exists():availability[str(lead)]['error']=json.loads(q.read_text()).get('error')
+          d.joinpath('availability.json').write_text(json.dumps({'issue':issue,'leads':availability,'rows':len(records)},indent=2))
+          d.joinpath('pairs.json').write_text(json.dumps(records,indent=2))
+          if not records:raise ValueError('No complete forecast-observation matches in predeclared lead set')
+          PY
+      - name: Merge separate dense evidence with no modification of original v2 benchmark
+        run: |
+          if gh api "repos/$GITHUB_REPOSITORY/contents/ops/fwa_geo_dense_history_v1.json" --jq .content > outputs/dense/prior.b64 2>/dev/null; then
+            tr -d '\n' < outputs/dense/prior.b64 | base64 -d > outputs/dense/prior.json
+          else
+            printf '{}' > outputs/dense/prior.json
+          fi
+          python -m json.tool outputs/dense/prior.json > /dev/null
+          PYTHONPATH=src python src/fwa_geo_history.py --prior outputs/dense/prior.json --new outputs/dense/pairs.json --output outputs/dense/history.json
+          python - <<'PY'
+          import json,pathlib,collections,numpy as np
+          p=pathlib.Path('outputs/dense/history.json');d=json.loads(p.read_text())
+          assert all(r['lead_hours'] in (6,12,18,24) for r in d['evidence'])
+          d['sampling_protocol']='One prior-calendar-day 00Z issue, fixed 6/12/18/24 hour leads; each 16:31 UTC. All failed leads recorded in availability receipt.'
+          d['model_policy']='Exact same frozen v2 corrections; original HARMONIE control; cannot fit on any dense holdout outcomes.'
+          d['lead_summary']=[]
+          for param in ('temp_dry','wind_speed'):
+              for lead in (6,12,18,24):
+                  a=[r for r in d['evidence'] if r['parameter']==param and r['lead_hours']==lead and r['physics_prediction'] is not None]
+                  d['lead_summary'].append(dict(parameter=param,lead_hours=lead,n=len(a),dates=len(set(r['valid'][:10] for r in a)),raw_MAE=float(np.mean([r['raw_abs_error'] for r in a])) if a else None,physics_MAE=float(np.mean([r['physics_abs_error'] for r in a])) if a else None))
+          p.write_text(json.dumps(d,indent=2,allow_nan=False))
+          PY
+      - name: Publish strictly separated dense benchmark results
+        run: |
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_geo_dense_history_v1.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Append predeclared multi-lead native HARMONIE cases" -f content="$(base64 -w0 outputs/dense/history.json)" "${args[@]}" > /dev/null
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-dense-regime-capture
+          path: |
+            outputs/dense/issue.txt
+            outputs/dense/availability.json
+            outputs/dense/pairs.json
+            outputs/dense/history.json
+            outputs/dense/lead-*/native/status.json
+          retention-days: 90
+      - name: Report dense collection health
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import os,json,pathlib
+          f=pathlib.Path('outputs/dense/availability.json')
+          x=json.loads(f.read_text()) if f.exists() else {'status':'no_availability_receipt'}
+          x.update(job_status=os.environ['JOB_STATUS'],run_url=os.environ['GITHUB_SERVER_URL']+'/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],commit=os.environ['GITHUB_SHA'])
+          pathlib.Path('dense-receipt.json').write_text(json.dumps(x,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_geo_dense_latest.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record dense Faroe weather regime archive availability" -f content="$(base64 -w0 dense-receipt.json)" "${args[@]}" > /dev/null
