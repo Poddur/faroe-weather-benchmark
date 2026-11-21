@@ -24,6 +24,9 @@ def read(history_path,geo_path):
         out.append(v)
     return out
 def build(rows):
+    # Accept both normalized historical records and direct synthetic fixtures,
+    # always deriving the uncertainty cluster from the original model run.
+    rows=[dict(x,issue_date=x.get("issue_date",x["run"][:10])) for x in rows]
     groups=[]
     dimensions=["overall","station","site_class","coastal","wind_sector","forecast_strong_wind","observed_strong_wind","forecast_inversion","observation_source","lead_hours"]
     for variable in ("temp_dry","wind_speed"):
