@@ -1,0 +1,65 @@
+name: FWA frozen terrain-regime evidence readiness
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 17 * * 3'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-regime-readiness.yml'
+      - 'src/fwa_regime_readiness.py'
+      - 'config/fwa_official_morphology_v2.json'
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy
+      - name: Static checks of prospective isolation
+        run: |
+          python -m py_compile src/fwa_regime_readiness.py
+          python - <<'PY'
+          import sys
+          sys.path.insert(0,'src')
+          from fwa_regime_readiness import build
+          d=build([dict(parameter='wind_speed',station='06009',date='2026-11-20',valid='2026-11-20T18:00:00Z',physics_abs_error=.6,raw_abs_error=1.,physics_prediction=2.,observed_strong_wind=False,forecast_inversion=True,wind_sector='N',forecast_strong_wind=False,observation_source='DMI metObs',lead_hours=6,site_class='raised_ridge_proxy',coastal=True)])
+          assert d['readiness']['overall'] is False
+          assert not any(x['eligible_for_descriptive_inference'] for x in d['groups'])
+          PY
+      - name: Evaluate immutable dense history only; never train
+        run: |
+          python src/fwa_regime_readiness.py \
+          --history ops/fwa_geo_dense_history_v1.json \
+          --geography config/fwa_official_morphology_v2.json \
+          --output outputs/fwa-regime/readiness.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-frozen-regime-readiness
+          path: outputs/fwa-regime/readiness.json
+          retention-days: 90
+      - name: Publish evidence readiness receipt
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import pathlib,json,os
+          p=pathlib.Path('outputs/fwa-regime/readiness.json')
+          d=json.loads(p.read_text()) if p.exists() else {'status':'failed_before_evaluation'}
+          d.update(job_status=os.environ['JOB_STATUS'],run_url=os.environ['GITHUB_SERVER_URL']+'/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],commit=os.environ['GITHUB_SHA'])
+          pathlib.Path('readiness-receipt.json').write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_regime_readiness.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record frozen regime evidence readiness without model adjustment" -f content="$(base64 -w0 readiness-receipt.json)" "${args[@]}" > /dev/null
