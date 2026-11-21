@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/fwa-frozen-holdout-pilot.yml'
+      - 'src/fwa_frozen_holdout_pilot.py'
 permissions:
   contents: read
 jobs:
