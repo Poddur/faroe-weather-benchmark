@@ -28,3 +28,30 @@ def test_harmonie_conversion_and_lead():
     assert len(result)==2
     assert next(r for r in result if r["variable"]=="temperature_2m")["value"]==pytest.approx(2)
     assert result[0]["lead_hours"]==6
+
+
+def test_fallback_when_mature_issue_missing():
+    # Regression: 21 Nov 12:50 UTC operational run could not find a 15–44h
+    # issue, despite a potentially available 00Z issue aged 12h50m.
+    now=datetime(2026,11,21,12,50,tzinfo=timezone.utc)
+    issue,source=pick_common_instance(["2026-11-21T000000Z","2026-11-21T030000Z"],now)
+    assert source=="2026-11-21T000000Z"
+    assert issue.hour==0
+
+
+def test_mature_issue_has_priority_over_fallback():
+    now=datetime(2026,11,21,12,50,tzinfo=timezone.utc)
+    issue,source=pick_common_instance(["2026-11-21T000000Z","2026-11-20T120000Z"],now)
+    assert source=="2026-11-20T120000Z"
+
+
+def test_no_early_or_expired_issue_fallback():
+    now=datetime(2026,11,21,12,50,tzinfo=timezone.utc)
+    with pytest.raises(ValueError,match="No available"):
+        pick_common_instance(["2026-11-21T120000Z","2026-11-20T000000Z"],now)
+
+
+def test_custom_stricter_age_does_not_enable_12h_fallback():
+    now=datetime(2026,11,21,12,50,tzinfo=timezone.utc)
+    with pytest.raises(ValueError,match="No available"):
+        pick_common_instance(["2026-11-21T000000Z"],now,min_age_hours=18)
