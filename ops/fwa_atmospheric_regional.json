@@ -1,12 +1,12 @@
 {
   "status": "regional_decoded",
   "bigquery_queries": 0,
-  "issue": "2026-11-20T03:00:00Z",
-  "valid": "2026-11-20T09:00:00Z",
-  "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-20T030000Z_2026-11-20T090000Z.grib",
+  "issue": "2026-11-20T15:00:00Z",
+  "valid": "2026-11-20T21:00:00Z",
+  "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-20T150000Z_2026-11-20T210000Z.grib",
   "source": {
-    "bytes": 620192888,
-    "sha256": "0157af63164120421c98fd513b7bd07ade109b2c542ba8d46e0effd333791364"
+    "bytes": 614344023,
+    "sha256": "f92d9ae15dd662978adbc1ea6a3e805999055ca37fc08384fd825c6c45ab24c6"
   },
   "checks": {
     "wind_flags": {
@@ -16,12 +16,12 @@
       "v100": 1
     },
     "rotation": "lambert convergence sign -1; checked against native true direction",
-    "direction_error_p95_deg": 0.019117250670834095,
-    "speed_error_p95_ms": 0.0837581550251727
+    "direction_error_p95_deg": 0.02072705692926888,
+    "speed_error_p95_ms": 0.05334354365856706
   },
   "native_cells": 9179,
   "observation_matches": 7,
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44775046409",
-  "commit": "541d4856accae3471fa7e5e9e87e66adced77df3"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44862516824",
+  "commit": "861122ce7fc13b461c7e053d00b0abc09da0902c"
 }
