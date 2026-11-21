@@ -50,6 +50,9 @@ jobs:
       - name: Validate locked models on eligible winter archive dates
         timeout-minutes: 145
         run: python src/fwa5_winter.py
+      - name: Score frozen FWA2 and FWA4A against all three reference models
+        if: success()
+        run: python src/fwa_locked_reference_scorecard.py --cache winter-cache --out outputs/fwa-winter/frozen_reference_scorecard.json
       - uses: actions/cache/save@v4
         if: always()
         with:
