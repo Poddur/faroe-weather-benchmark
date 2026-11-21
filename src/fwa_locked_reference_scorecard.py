@@ -57,8 +57,8 @@ def judge(data,out,protocol):
         part=data[data.variable==item["variable"]]
         item["paired_week_bootstrap_familywise_ci"]=weekly_cluster_interval(part,item["candidate"],item["baseline"],draws,seed)
         item["week_clusters"]=weeks
-        item["superiority_demonstrated"]=item["paired_week_bootstrap_ci95"][1]<0
-        item["inferiority_demonstrated"]=item["paired_week_bootstrap_ci95"][0]>0
+        item["superiority_demonstrated"]=item["paired_week_bootstrap_familywise_ci"][1]<0
+        item["inferiority_demonstrated"]=item["paired_week_bootstrap_familywise_ci"][0]>0
         item["insufficient_for_final_inference"]=False
     temperature=[x for x in out["comparisons"] if x["variable"]=="temperature_2m"]
     wind=[x for x in out["comparisons"] if x["variable"]=="wind_speed_10m"]
