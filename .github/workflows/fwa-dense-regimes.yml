@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/fwa-dense-regimes.yml'
+      - 'src/fwa_dense_issue_audit.py'
 permissions:
   contents: write
 concurrency:
@@ -101,6 +102,7 @@ jobs:
                   d['lead_summary'].append(dict(parameter=param,lead_hours=lead,n=len(a),dates=len(set(r['valid'][:10] for r in a)),raw_MAE=float(np.mean([r['raw_abs_error'] for r in a])) if a else None,physics_MAE=float(np.mean([r['physics_abs_error'] for r in a])) if a else None))
           p.write_text(json.dumps(d,indent=2,allow_nan=False))
           PY
+          python src/fwa_dense_issue_audit.py --input outputs/dense/history.json --output outputs/dense/history.json
       - name: Publish strictly separated dense benchmark results
         run: |
           URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_geo_dense_history_v1.json"
