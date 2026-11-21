@@ -1,0 +1,47 @@
+name: FWA official shoreline geometry verification
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fwa-shoreline.yml'
+      - 'src/fwa_official_shoreline_probe.py'
+permissions:
+  contents: write
+jobs:
+  shore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests pyogrio geopandas shapely pyproj numpy
+      - run: python -m py_compile src/fwa_official_shoreline_probe.py
+      - run: python src/fwa_official_shoreline_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fwa-official-shoreline-coverage
+          path: outputs/shoreline/status.json
+          retention-days: 90
+      - name: Record official coastline source availability
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          python - <<'PY'
+          import pathlib,json,os
+          p=pathlib.Path('outputs/shoreline/status.json')
+          d=json.loads(p.read_text()) if p.exists() else {'status':'failed_before_probe'}
+          d.update(job_status=os.environ['JOB_STATUS'],run_url=os.environ['GITHUB_SERVER_URL']+'/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],commit=os.environ['GITHUB_SHA'])
+          pathlib.Path('shore-receipt.json').write_text(json.dumps(d,indent=2))
+          PY
+          URL="repos/$GITHUB_REPOSITORY/contents/ops/fwa_official_shoreline.json"
+          SHA="$(gh api "$URL" --jq .sha 2>/dev/null || true)"
+          args=()
+          if [ -n "$SHA" ]; then args+=(-f "sha=$SHA"); fi
+          gh api --method PUT "$URL" -f message="Record verified Faroese official shoreline source results" -f content="$(base64 -w0 shore-receipt.json)" "${args[@]}" > /dev/null
