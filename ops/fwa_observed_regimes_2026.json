@@ -1,6 +1,207 @@
 {
-  "status": "failed_before_collection",
-  "job_status": "cancelled",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44862305192",
-  "commit": "2db5afd5818eb47e6de57cabf020b9ab313c46bf"
+  "status": "complete",
+  "start": "2026-04-01T00:00:00Z",
+  "end_exclusive": "2026-11-21T00:00:00Z",
+  "strong_wind_threshold_ms": 10,
+  "stations": [
+    {
+      "station": "06009",
+      "name": "Akraberg",
+      "source": "DMI metObs",
+      "reports": 5527,
+      "days": 234,
+      "temperature": 5527,
+      "wind_speed": 5527,
+      "wind_direction": 5527,
+      "paired_wind_direction": 5527,
+      "strong_10ms_reports": 1520,
+      "strong_10ms_days": 143,
+      "max_wind_ms": 30.7,
+      "direction_counts": {
+        "N": 358,
+        "NE": 618,
+        "E": 375,
+        "SE": 278,
+        "S": 258,
+        "SW": 3077,
+        "W": 299,
+        "NW": 264
+      },
+      "inversion": "not observable from surface-only records"
+    },
+    {
+      "station": "06011",
+      "name": "Torshavn",
+      "source": "DMI metObs",
+      "reports": 5543,
+      "days": 234,
+      "temperature": 5543,
+      "wind_speed": 5543,
+      "wind_direction": 5543,
+      "paired_wind_direction": 5543,
+      "strong_10ms_reports": 560,
+      "strong_10ms_days": 88,
+      "max_wind_ms": 24.8,
+      "direction_counts": {
+        "N": 396,
+        "NE": 412,
+        "E": 507,
+        "SE": 561,
+        "S": 373,
+        "SW": 1169,
+        "W": 1389,
+        "NW": 736
+      },
+      "inversion": "not observable from surface-only records"
+    },
+    {
+      "station": "06012",
+      "name": "Fugloy",
+      "source": "DMI metObs",
+      "reports": 5517,
+      "days": 234,
+      "temperature": 5517,
+      "wind_speed": 1177,
+      "wind_direction": 1177,
+      "paired_wind_direction": 1177,
+      "strong_10ms_reports": 218,
+      "strong_10ms_days": 37,
+      "max_wind_ms": 17.3,
+      "direction_counts": {
+        "N": 13,
+        "NE": 25,
+        "E": 132,
+        "SE": 162,
+        "S": 80,
+        "SW": 163,
+        "W": 304,
+        "NW": 298
+      },
+      "inversion": "not observable from surface-only records"
+    },
+    {
+      "station": "06014",
+      "name": "Eidi",
+      "source": "DMI metObs",
+      "reports": 5474,
+      "days": 234,
+      "temperature": 5474,
+      "wind_speed": 5474,
+      "wind_direction": 5474,
+      "paired_wind_direction": 5474,
+      "strong_10ms_reports": 1374,
+      "strong_10ms_days": 145,
+      "max_wind_ms": 29.2,
+      "direction_counts": {
+        "N": 865,
+        "NE": 529,
+        "E": 132,
+        "SE": 551,
+        "S": 1806,
+        "SW": 788,
+        "W": 420,
+        "NW": 383
+      },
+      "inversion": "not observable from surface-only records"
+    },
+    {
+      "station": "EKVG",
+      "name": "Vagar Airport",
+      "source": "IEM METAR",
+      "reports": 11198,
+      "days": 234,
+      "temperature": 11198,
+      "wind_speed": 11197,
+      "wind_direction": 11053,
+      "paired_wind_direction": 11053,
+      "strong_10ms_reports": 993,
+      "strong_10ms_days": 90,
+      "max_wind_ms": 21.092222222222222,
+      "direction_counts": {
+        "N": 1690,
+        "NE": 205,
+        "E": 1033,
+        "SE": 1589,
+        "S": 1606,
+        "SW": 1417,
+        "W": 2131,
+        "NW": 1382
+      },
+      "inversion": "not observable from surface-only records"
+    }
+  ],
+  "rows": 33259,
+  "days": 234,
+  "dmi_request_counts": [
+    {
+      "station": "06009",
+      "parameter": "temp_dry",
+      "features": 33230
+    },
+    {
+      "station": "06009",
+      "parameter": "wind_speed",
+      "features": 33229
+    },
+    {
+      "station": "06009",
+      "parameter": "wind_dir",
+      "features": 33229
+    },
+    {
+      "station": "06011",
+      "parameter": "temp_dry",
+      "features": 33264
+    },
+    {
+      "station": "06011",
+      "parameter": "wind_speed",
+      "features": 33262
+    },
+    {
+      "station": "06011",
+      "parameter": "wind_dir",
+      "features": 33262
+    },
+    {
+      "station": "06012",
+      "parameter": "temp_dry",
+      "features": 33197
+    },
+    {
+      "station": "06012",
+      "parameter": "wind_speed",
+      "features": 7066
+    },
+    {
+      "station": "06012",
+      "parameter": "wind_dir",
+      "features": 7066
+    },
+    {
+      "station": "06014",
+      "parameter": "temp_dry",
+      "features": 33089
+    },
+    {
+      "station": "06014",
+      "parameter": "wind_speed",
+      "features": 33089
+    },
+    {
+      "station": "06014",
+      "parameter": "wind_dir",
+      "features": 33089
+    }
+  ],
+  "metar": {
+    "url": "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=EKVG&data=tmpf&data=sknt&data=drct&data=metar&year1=2026&month1=4&day1=1&year2=2026&month2=11&day2=21&tz=Etc%2FUTC&format=onlycomma&latlon=yes&elev=yes&missing=M&trace=T&report_type=3&report_type=4",
+    "raw_sha256": "8970c74bef702b0766da25d19b59d1bbcb53231ebb2032e06438bb57bdd68495",
+    "reports": 11198
+  },
+  "training_prohibition": "Descriptive weather regimes only. No fitting to prospective benchmark dates.",
+  "inversion": "Native vertical model profiles needed; no observed inversion evidence in this table.",
+  "job_status": "success",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44863224709",
+  "commit": "3c0ed3a685073898a73119d55b7a703da4cf72fb"
 }
