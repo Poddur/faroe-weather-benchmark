@@ -1,0 +1,57 @@
+{
+  "version": "fwa_geo_morphology_v2_2026-11-21",
+  "source": "Umhvørvisstovan Lendiskort / Strandalinja, official vector shoreline",
+  "source_url": "https://cdn.foroyakort.fo/geodata/vector/lendiskort/FGDB/lendiskort_fgdb.zip",
+  "source_sha256": "cdc3d9645cf4844921a370924dfd28c1005e7aee7ddff0a6cfb26394331b1460",
+  "crs": "EPSG:5316",
+  "source_terms": "https://www.foroyakort.fo/um-foeroyakort/terms-and-conditions-in-english",
+  "terrain_source_sha256": "c30eac4363b97ad7745ea2f2ab04d3f0263ff3984c39fe68abd6fa84a6bd9fb2",
+  "thresholds_predeclared": {
+    "coastal_max_m": 500,
+    "tpi2km_ridge_min_m": 25,
+    "tpi2km_valley_max_m": -25
+  },
+  "isolation_policy": "descriptive grouping only; do not train on prospective FWA v2 outcomes",
+  "stations": {
+    "06009": {
+      "name": "Akraberg",
+      "coast_distance_m": 92.66233389626396,
+      "tpi_2km_m": 59.09,
+      "coastal": true,
+      "topographic_position": "raised_ridge_proxy"
+    },
+    "06011": {
+      "name": "Tórshavn",
+      "coast_distance_m": 384.0521065682413,
+      "tpi_2km_m": -0.05,
+      "coastal": true,
+      "topographic_position": "neutral_tpi_proxy"
+    },
+    "06012": {
+      "name": "Fugloy",
+      "coast_distance_m": 70.79658186274978,
+      "tpi_2km_m": -33.68,
+      "coastal": true,
+      "topographic_position": "lowered_hollow_proxy"
+    },
+    "06014": {
+      "name": "Eiði",
+      "coast_distance_m": 663.2688821022703,
+      "tpi_2km_m": 58.36,
+      "coastal": false,
+      "topographic_position": "raised_ridge_proxy"
+    },
+    "EKVG": {
+      "name": "Vágar",
+      "coast_distance_m": 1622.4930122140136,
+      "tpi_2km_m": -38.14,
+      "coastal": false,
+      "topographic_position": "lowered_hollow_proxy"
+    }
+  },
+  "limits": [
+    "Actual shoreline distance verified from vector; TPI remains a geometry proxy and not meteorological exposure",
+    "Single station each in some crossed classes; physical effect cannot yet be isolated",
+    "No model prediction correction changed"
+  ]
+}
