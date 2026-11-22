@@ -32,7 +32,7 @@
       "status": "past_only",
       "selected_time": "2026-11-22T05:50:00Z",
       "offset_minutes": 10,
-      "archive_reports": 91
+      "archive_reports": 92
     },
     "scores": [
       {
@@ -267,6 +267,6 @@
     "limitation": "Exploratory new-site geographic proxies; forecast-defined inversion and wind regimes; METAR temperature integer precision and preceding-report timing differ from hourly DMI observations."
   },
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45073277750",
-  "commit": "63ca515349cc227bdaba1cfc2014dc6486f4b4ff"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45074870867",
+  "commit": "1bcc6490b8ada9392e07fab4425bd189b9cc34b3"
 }
