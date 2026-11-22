@@ -1,5 +1,5 @@
 {
-  "issue": "2026-11-20T00:00:00Z",
+  "issue": "2026-11-21T00:00:00Z",
   "leads": {
     "6": {
       "status": "complete"
@@ -16,6 +16,6 @@
   },
   "rows": 36,
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44953554841",
-  "commit": "68094e163270ec83c62448837970ba7f38c0dd81"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45073287371",
+  "commit": "7d493c75ded072666dd9a40c5126265f40743f26"
 }
