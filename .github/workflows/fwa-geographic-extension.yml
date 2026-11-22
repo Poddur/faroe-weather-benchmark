@@ -61,7 +61,7 @@ jobs:
           issue=dt.datetime.fromisoformat(p['issue_time_utc'].replace('Z','+00:00'))
           age=(dt.datetime.now(dt.timezone.utc)-issue).total_seconds()/3600
           if not 9<age<46:raise ValueError(f'archived issue outside mature native window: {age:.1f} hours')
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('issue='+p['issue_time_utc']+'\\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('issue='+p['issue_time_utc']+'\n')
           PY
       - name: Download exact archived-issue native HARMONIE lead 6 and DMI observations
         run: python src/fwa_atmospheric_regional.py --issue "${{ steps.archived.outputs.issue }}" --lead-hours 6
