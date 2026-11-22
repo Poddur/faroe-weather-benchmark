@@ -1,8 +1,8 @@
 {
-  "valid_source_bundles": 2,
+  "valid_source_bundles": 5,
   "excluded_bundles": [],
-  "forecast_rows": 36,
-  "observation_rows": 652,
+  "forecast_rows": 144,
+  "observation_rows": 1498,
   "models": [
     "ECMWF_IFS",
     "HARMONIE_DINI"
@@ -12,8 +12,8 @@
     "This is exploratory verification, not proof of model superiority.",
     "Fewer than 10 model issue dates: insufficient independent cases for claims."
   ],
-  "paired_model_rows": 24,
-  "independent_init_days": 1,
-  "updated_utc": "2026-11-15T15:52:57.956759+00:00",
-  "workflow_run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/43732310218"
+  "paired_model_rows": 120,
+  "independent_init_days": 4,
+  "updated_utc": "2026-11-22T16:38:13.966552+00:00",
+  "workflow_run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45044914062"
 }
