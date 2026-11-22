@@ -7,16 +7,24 @@ BASE="https://opendataapi.dmi.dk/v2/metObs/collections/observation/items"
 def polite_get(params):
     for attempt in range(5):
         time.sleep(2.5)
-        response=requests.get(BASE,params=params,timeout=60)
-        if response.status_code!=429:
+        try:
+            response=requests.get(BASE,params=params,timeout=(15,60))
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+            wait=min(120,15*2**attempt)
+            print(f"DMI observation transient connection failure {type(exc).__name__}, attempt {attempt+1}/5, next wait {wait:.0f}s",file=sys.stderr,flush=True)
+            if attempt<4:
+                time.sleep(wait)
+                continue
+            raise RuntimeError("DMI observation connection failed after five attempts") from exc
+        if response.status_code not in (429,500,502,503,504):
             response.raise_for_status()
             return response
         header=response.headers.get("Retry-After","").strip()
         try: wait=max(5,min(120,float(header)))
         except ValueError: wait=min(120,15*2**attempt)
-        print(f"DMI observation HTTP 429, attempt {attempt+1}/5, next wait {wait:.0f}s",file=sys.stderr,flush=True)
+        print(f"DMI observation HTTP {response.status_code}, attempt {attempt+1}/5, next wait {wait:.0f}s",file=sys.stderr,flush=True)
         if attempt<4:time.sleep(wait)
-    raise RuntimeError("DMI observation API still rate-limited after five retries")
+    raise RuntimeError("DMI observation API unavailable after five retries")
 
 PARAMS={"temp_dry":("temperature_2m","C"),"wind_speed":("wind_speed_10m","m/s"),"pressure_at_sea":("msl_pressure","hPa"),"precip_past1h":("precipitation_1h","mm")}
 def fetch(station,start,end,parameter):
