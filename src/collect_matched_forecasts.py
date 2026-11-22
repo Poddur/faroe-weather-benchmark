@@ -18,8 +18,16 @@ def dmi_request(url,params=None):
     """DMI API calls are rate-limited. One request at a time, honor HTTP 429."""
     for attempt in range(5):
         time.sleep(2.5)
-        response=requests.get(url,params=params,timeout=75)
-        if response.status_code!=429:
+        try:
+            response=requests.get(url,params=params,timeout=(15,75))
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+            wait=min(120,15*(2**attempt))
+            print(f"DMI transient {type(exc).__name__} on attempt {attempt+1}/5; retry in {wait:.0f}s",file=sys.stderr,flush=True)
+            if attempt<4:
+                time.sleep(wait)
+                continue
+            raise RuntimeError("DMI forecast API connection failed after five attempts") from exc
+        if response.status_code not in (429,500,502,503,504):
             response.raise_for_status()
             return response
         header=response.headers.get("Retry-After","").strip()
@@ -27,9 +35,9 @@ def dmi_request(url,params=None):
             wait=max(5,min(120,float(header)))
         except ValueError:
             wait=min(120,15*(2**attempt))
-        print(f"DMI HTTP 429 on attempt {attempt+1}/5; retry in {wait:.0f}s",file=sys.stderr,flush=True)
+        print(f"DMI HTTP {response.status_code} on attempt {attempt+1}/5; retry in {wait:.0f}s",file=sys.stderr,flush=True)
         if attempt<4:time.sleep(wait)
-    raise RuntimeError("DMI API rate limit persisted through five polite retries")
+    raise RuntimeError("DMI forecast API unavailable after five attempts")
 def iso(t): return t.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def pick_common_instance(ids,now,min_age_hours=15,max_age_hours=44):
