@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/fwa-dense-regimes.yml'
       - 'src/fwa_dense_issue_audit.py'
+      - 'ops/latest_success.json'
 permissions:
   contents: write
 concurrency:
@@ -39,7 +40,19 @@ jobs:
         run: |
           set -uo pipefail
           mkdir -p outputs/dense
-          ISSUE="$(date -u -d yesterday +%Y-%m-%d)T00:00:00Z"
+          # Prefer the archived HARMONIE issue when all four fixed leads have matured.
+          # Otherwise use yesterday's fixed 00Z issue; never use future observations.
+          ISSUE="$(python - <<'PY'
+          import datetime as dt,json
+          now=dt.datetime.now(dt.timezone.utc)
+          fallback=(now-dt.timedelta(days=1)).strftime('%Y-%m-%dT00:00:00Z')
+          p=json.load(open('ops/latest_success.json'))
+          if p.get('state')!='success' or 'HARMONIE_DINI' not in p.get('source_models',[]):raise ValueError('missing verified HARMONIE archive receipt')
+          archived=dt.datetime.fromisoformat(p['issue_time_utc'].replace('Z','+00:00'))
+          age=(now-archived).total_seconds()/3600
+          print(p['issue_time_utc'] if 27<age<46 and archived.hour==0 else fallback)
+          PY
+          )"
           printf '%s' "$ISSUE" > outputs/dense/issue.txt
           for LEAD in 6 12 18 24; do
             DIR="outputs/dense/lead-$LEAD"
