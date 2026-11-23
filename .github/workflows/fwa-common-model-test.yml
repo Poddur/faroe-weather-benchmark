@@ -1,0 +1,46 @@
+name: FWA common-case five-model database
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/build_common_model_test.py'
+      - '.github/workflows/fwa-common-model-test.yml'
+permissions:
+  contents: read
+jobs:
+  build-common-cases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate warehouse source
+        run: python -m py_compile src/build_common_model_test.py
+      - name: Build verified common-case SQLite database
+        run: |
+          python src/build_common_model_test.py \
+            --geo ops/fwa_geo_dense_history_v1.json \
+            --geo ops/fwa_geo_history_v2.json \
+            --db outputs/common-model-test.sqlite \
+            --report outputs/common-model-test-report.json
+      - name: Verify database integrity and fail-closed identity status
+        run: |
+          python - <<'PY'
+          import sqlite3,json
+          d=sqlite3.connect('outputs/common-model-test.sqlite')
+          assert d.execute('PRAGMA integrity_check').fetchone()[0]=='ok'
+          r=json.load(open('outputs/common-model-test-report.json'))
+          assert r['verified_five_model_cases']==0 or r['score_status']=='eligible'
+          assert not r['model_registry']['FWA-2']['identity_verified']
+          assert not r['model_registry']['FWA-4A']['identity_verified']
+          print('Warehouse integrity OK; unverified aliases not scored')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fwa-common-model-test
+          path: |
+            outputs/common-model-test.sqlite
+            outputs/common-model-test-report.json
+          retention-days: 90
