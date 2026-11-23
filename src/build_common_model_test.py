@@ -99,6 +99,6 @@ def main():
  complete=db.execute("SELECT COUNT(*) FROM common_cases WHERE required_models=5 AND verified_models=5").fetchone()[0]
  counts=dict(db.execute("SELECT model_id,COUNT(*) FROM forecasts GROUP BY model_id").fetchall())
  report=dict(schema=1,model_registry={r[0]:dict(path=r[1],version=r[2],code_sha=r[3],identity_verified=bool(r[4])) for r in db.execute("SELECT * FROM models")},forecast_rows=counts,observed_case_keys=allcases,verified_five_model_cases=complete,score_status="eligible" if complete else "BLOCKED_NO_FIVE_MODEL_COMMON_CASES",note="FWA-2 and FWA-4A identity must be independently pinned to immutable code SHA before scoring.")
- Path(a.report).parent.mkdir(parents=True,exist_ok=True);Path(a.report).write_text(json.dumps(report,indent=2)+"\\n")
+ Path(a.report).parent.mkdir(parents=True,exist_ok=True);Path(a.report).write_text(json.dumps(report,indent=2)+"\n")
  print(json.dumps(report,indent=2))
 if __name__=="__main__":main()
