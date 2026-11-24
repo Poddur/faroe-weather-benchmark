@@ -5,31 +5,33 @@
   "mode": "retrospective",
   "bigquery_queries": 0,
   "missing_issues": [],
-  "valid_source_bundles": 7,
+  "valid_source_bundles": 8,
   "excluded_bundles": [],
   "eligible_issues": [
     "2026-11-14 00:00:00+00:00",
     "2026-11-19 00:00:00+00:00",
     "2026-11-20 00:00:00+00:00",
     "2026-11-21 00:00:00+00:00",
-    "2026-11-22 00:00:00+00:00"
+    "2026-11-22 00:00:00+00:00",
+    "2026-11-23 00:00:00+00:00",
+    "2026-11-23 12:00:00+00:00"
   ],
-  "refreshed_observation_rows": 6,
+  "refreshed_observation_rows": 12,
   "coverage_by_lead": [
     {
       "lead_hours": 6,
-      "expected": 30,
-      "paired": 30
+      "expected": 42,
+      "paired": 42
     },
     {
       "lead_hours": 12,
-      "expected": 30,
-      "paired": 30
+      "expected": 42,
+      "paired": 42
     },
     {
       "lead_hours": 24,
-      "expected": 30,
-      "paired": 30
+      "expected": 42,
+      "paired": 42
     }
   ],
   "models": [
@@ -37,24 +39,24 @@
     "HARMONIE_DINI",
     "WeatherNext3"
   ],
-  "common_cases": 90,
-  "independent_issue_days": 5,
+  "common_cases": 126,
+  "independent_issue_days": 6,
   "forecast_rows_by_model": {
-    "ECMWF_IFS": 90,
-    "HARMONIE_DINI": 90,
-    "WeatherNext3": 90
+    "ECMWF_IFS": 126,
+    "HARMONIE_DINI": 126,
+    "WeatherNext3": 126
   },
   "interpretation": "Retrospective archive comparison; not evidence of prospective availability or superiority.",
-  "complete_weathernext_issues": 5,
+  "complete_weathernext_issues": 7,
   "source_hashes": {
-    "base_forecasts.csv": "30d3e9b8ee714cc4975d0b0e4b4fe771a73187513005a49df3a5aa186c3f5576",
-    "weathernext_forecasts.csv": "eca8dc62a35d99968ac13c5ad8a3696a837ed4dbc645db29daa4b1659aad4b5c",
-    "observations.csv": "2cafd4ea09f34398f3625ad1f25d10e5770e0a4cf3df1f6333ccbd241c6bb15e"
+    "base_forecasts.csv": "1ce762a6992711a5043090149257d86aedb71cafa369b0d00d178393b04f08c4",
+    "weathernext_forecasts.csv": "3dc3655047bacfc861036288fdf22ae04dc19c437234aaa7b3f711b37d9131e4",
+    "observations.csv": "58d687405d61ed14ddc89989a5b450609496d31afd85584d417100cd120f51b1"
   },
-  "newest_archived_issue": "2026-11-23 00:00:00+00:00",
-  "retrieved_utc": "2026-11-23T21:29:06.322101+00:00",
+  "newest_archived_issue": "2026-11-23 12:00:00+00:00",
+  "retrieved_utc": "2026-11-24T20:12:28.936116+00:00",
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45270044736",
-  "commit": "0e7a7dd1ee5b351810164eccdc1286c6b5644605",
-  "updated_utc": "2026-11-23T21:30:20.001960+00:00"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45478276622",
+  "commit": "7d811c588c338617ffdfc3a20a785d7da1b08acc",
+  "updated_utc": "2026-11-24T20:14:30.207809+00:00"
 }
