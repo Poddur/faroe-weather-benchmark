@@ -1,22 +1,6 @@
 {
-  "issue": "2026-11-24T00:00:00Z",
-  "leads": {
-    "6": {
-      "status": "complete"
-    },
-    "12": {
-      "status": "complete"
-    },
-    "18": {
-      "status": "complete"
-    },
-    "24": {
-      "status": "failed",
-      "error": "forecast not mature or outside allowed DMI rolling window"
-    }
-  },
-  "rows": 27,
+  "status": "no_availability_receipt",
   "job_status": "failure",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45522329234",
-  "commit": "ae0346f7241fef7161e23fdcd7424b7ddfa92a5a"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45697816634",
+  "commit": "7231a1b392c2c1467a006a1687546f780d06c3f9"
 }
