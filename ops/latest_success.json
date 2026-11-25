@@ -1,14 +1,14 @@
 {
-  "updated_utc": "2026-11-24T03:00:09.007664+00:00",
+  "updated_utc": "2026-11-25T00:56:52.663997+00:00",
   "state": "success",
-  "issue_time_utc": "2026-11-23T12:00:00Z",
+  "issue_time_utc": "2026-11-24T12:00:00Z",
   "source_models": [
     "ECMWF_IFS",
     "HARMONIE_DINI"
   ],
   "forecast_rows": 36,
   "observation_rows": 546,
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45316143966",
-  "source_commit": "ad8c76ff7549d4a597f804053c521ac8dc645f41",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45521772587",
+  "source_commit": "29d72ac131b19d79b6cfcb79d42cd5cc3751f054",
   "archive_tag": "weather-data-2026-W48"
 }
