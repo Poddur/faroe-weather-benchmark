@@ -1,14 +1,199 @@
 {
   "status": "evaluation_only",
-  "distinct_dates": 1,
-  "distinct_valid_dates": 2,
-  "paired_cases": 36,
+  "distinct_dates": 2,
+  "distinct_valid_dates": 3,
+  "paired_cases": 72,
   "groups": [
     {
       "variable": "temp_dry",
       "dimension": "overall",
       "value": "None",
-      "n": 20,
+      "n": 40,
+      "distinct_dates": 2,
+      "distinct_stations": 5,
+      "stations": [
+        "06009",
+        "06011",
+        "06012",
+        "06014",
+        "EKVG"
+      ],
+      "raw_MAE": 1.0480542755127011,
+      "physics_MAE": 1.1197382765321653,
+      "paired_delta_MAE": 0.07168400101946411,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "station",
+      "value": "06009",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06009"
+      ],
+      "raw_MAE": 0.9243801116943531,
+      "physics_MAE": 0.5069577710906366,
+      "paired_delta_MAE": -0.4174223406037164,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "station",
+      "value": "06011",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06011"
+      ],
+      "raw_MAE": 1.2999156951904467,
+      "physics_MAE": 1.2069894543932136,
+      "paired_delta_MAE": -0.09292624079723316,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "station",
+      "value": "06012",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06012"
+      ],
+      "raw_MAE": 0.7127155303955193,
+      "physics_MAE": 0.9650702881705157,
+      "paired_delta_MAE": 0.2523547577749963,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "station",
+      "value": "06014",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06014"
+      ],
+      "raw_MAE": 0.9930538177490235,
+      "physics_MAE": 1.1859714305870601,
+      "paired_delta_MAE": 0.19291761283803666,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "station",
+      "value": "EKVG",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "EKVG"
+      ],
+      "raw_MAE": 1.3102062225341626,
+      "physics_MAE": 1.7337024384194,
+      "paired_delta_MAE": 0.42349621588523717,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "site_class",
+      "value": "lowered_hollow_proxy",
+      "n": 16,
+      "distinct_dates": 2,
+      "distinct_stations": 2,
+      "stations": [
+        "06012",
+        "EKVG"
+      ],
+      "raw_MAE": 1.011460876464841,
+      "physics_MAE": 1.3493863632949576,
+      "paired_delta_MAE": 0.3379254868301167,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "site_class",
+      "value": "neutral_tpi_proxy",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06011"
+      ],
+      "raw_MAE": 1.2999156951904467,
+      "physics_MAE": 1.2069894543932136,
+      "paired_delta_MAE": -0.09292624079723316,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "site_class",
+      "value": "raised_ridge_proxy",
+      "n": 16,
+      "distinct_dates": 2,
+      "distinct_stations": 2,
+      "stations": [
+        "06009",
+        "06014"
+      ],
+      "raw_MAE": 0.9587169647216882,
+      "physics_MAE": 0.8464646008388483,
+      "paired_delta_MAE": -0.11225236388283988,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "coastal",
+      "value": "False",
+      "n": 16,
+      "distinct_dates": 2,
+      "distinct_stations": 2,
+      "stations": [
+        "06014",
+        "EKVG"
+      ],
+      "raw_MAE": 1.1516300201415932,
+      "physics_MAE": 1.45983693450323,
+      "paired_delta_MAE": 0.30820691436163694,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "coastal",
+      "value": "True",
+      "n": 24,
+      "distinct_dates": 2,
+      "distinct_stations": 3,
+      "stations": [
+        "06009",
+        "06011",
+        "06012"
+      ],
+      "raw_MAE": 0.9790037790934397,
+      "physics_MAE": 0.8930058378847886,
+      "paired_delta_MAE": -0.0859979412086511,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "wind_sector",
+      "value": "E",
+      "n": 9,
       "distinct_dates": 1,
       "distinct_stations": 5,
       "stations": [
@@ -18,174 +203,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.1766487121582123,
-      "physics_MAE": 1.2622814073454287,
-      "paired_delta_MAE": 0.08563269518721628,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "station",
-      "value": "06009",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06009"
-      ],
-      "raw_MAE": 0.9682212829589958,
-      "physics_MAE": 0.5603010891685702,
-      "paired_delta_MAE": -0.40792019379042554,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "station",
-      "value": "06011",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06011"
-      ],
-      "raw_MAE": 1.8876060485840072,
-      "physics_MAE": 1.821006838149995,
-      "paired_delta_MAE": -0.06659921043401207,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "station",
-      "value": "06012",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06012"
-      ],
-      "raw_MAE": 0.950740814209007,
-      "physics_MAE": 1.3760155087841535,
-      "paired_delta_MAE": 0.42527469457514644,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "station",
-      "value": "06014",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06014"
-      ],
-      "raw_MAE": 0.8409584045410157,
-      "physics_MAE": 0.9574242067005299,
-      "paired_delta_MAE": 0.11646580215951433,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "station",
-      "value": "EKVG",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "EKVG"
-      ],
-      "raw_MAE": 1.2357170104980357,
-      "physics_MAE": 1.5966593939238938,
-      "paired_delta_MAE": 0.36094238342585827,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "site_class",
-      "value": "lowered_hollow_proxy",
-      "n": 8,
-      "distinct_dates": 1,
-      "distinct_stations": 2,
-      "stations": [
-        "06012",
-        "EKVG"
-      ],
-      "raw_MAE": 1.0932289123535213,
-      "physics_MAE": 1.4863374513540237,
-      "paired_delta_MAE": 0.39310853900050235,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "site_class",
-      "value": "neutral_tpi_proxy",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06011"
-      ],
-      "raw_MAE": 1.8876060485840072,
-      "physics_MAE": 1.821006838149995,
-      "paired_delta_MAE": -0.06659921043401207,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "site_class",
-      "value": "raised_ridge_proxy",
-      "n": 8,
-      "distinct_dates": 1,
-      "distinct_stations": 2,
-      "stations": [
-        "06009",
-        "06014"
-      ],
-      "raw_MAE": 0.9045898437500057,
-      "physics_MAE": 0.75886264793455,
-      "paired_delta_MAE": -0.14572719581545562,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "coastal",
-      "value": "False",
-      "n": 8,
-      "distinct_dates": 1,
-      "distinct_stations": 2,
-      "stations": [
-        "06014",
-        "EKVG"
-      ],
-      "raw_MAE": 1.0383377075195257,
-      "physics_MAE": 1.277041800312212,
-      "paired_delta_MAE": 0.23870409279268628,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "temp_dry",
-      "dimension": "coastal",
-      "value": "True",
-      "n": 12,
-      "distinct_dates": 1,
-      "distinct_stations": 3,
-      "stations": [
-        "06009",
-        "06011",
-        "06012"
-      ],
-      "raw_MAE": 1.2688560485840032,
-      "physics_MAE": 1.2524411453675728,
-      "paired_delta_MAE": -0.016414903216430392,
+      "raw_MAE": 0.9618699815538321,
+      "physics_MAE": 0.9113223580843568,
+      "paired_delta_MAE": -0.050547623469475104,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -213,16 +233,17 @@
       "variable": "temp_dry",
       "dimension": "wind_sector",
       "value": "NE",
-      "n": 3,
-      "distinct_dates": 1,
-      "distinct_stations": 2,
+      "n": 5,
+      "distinct_dates": 2,
+      "distinct_stations": 3,
       "stations": [
+        "06011",
         "06012",
         "EKVG"
       ],
-      "raw_MAE": 1.2370656331380283,
-      "physics_MAE": 1.7288992798000453,
-      "paired_delta_MAE": 0.491833646662017,
+      "raw_MAE": 1.061947631835951,
+      "physics_MAE": 1.360059469294589,
+      "paired_delta_MAE": 0.2981118374586379,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -244,9 +265,9 @@
     },
     {
       "variable": "temp_dry",
-      "dimension": "forecast_strong_wind",
-      "value": "False",
-      "n": 20,
+      "dimension": "wind_sector",
+      "value": "SE",
+      "n": 9,
       "distinct_dates": 1,
       "distinct_stations": 5,
       "stations": [
@@ -256,9 +277,29 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.1766487121582123,
-      "physics_MAE": 1.2622814073454287,
-      "paired_delta_MAE": 0.08563269518721628,
+      "raw_MAE": 0.9037584092881821,
+      "physics_MAE": 1.0809335760606682,
+      "paired_delta_MAE": 0.17717516677248624,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "temp_dry",
+      "dimension": "forecast_strong_wind",
+      "value": "False",
+      "n": 40,
+      "distinct_dates": 2,
+      "distinct_stations": 5,
+      "stations": [
+        "06009",
+        "06011",
+        "06012",
+        "06014",
+        "EKVG"
+      ],
+      "raw_MAE": 1.0480542755127011,
+      "physics_MAE": 1.1197382765321653,
+      "paired_delta_MAE": 0.07168400101946411,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -266,8 +307,8 @@
       "variable": "temp_dry",
       "dimension": "observed_strong_wind",
       "value": "False",
-      "n": 20,
-      "distinct_dates": 1,
+      "n": 40,
+      "distinct_dates": 2,
       "distinct_stations": 5,
       "stations": [
         "06009",
@@ -276,9 +317,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.1766487121582123,
-      "physics_MAE": 1.2622814073454287,
-      "paired_delta_MAE": 0.08563269518721628,
+      "raw_MAE": 1.0480542755127011,
+      "physics_MAE": 1.1197382765321653,
+      "paired_delta_MAE": 0.07168400101946411,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -286,8 +327,8 @@
       "variable": "temp_dry",
       "dimension": "forecast_inversion",
       "value": "False",
-      "n": 13,
-      "distinct_dates": 1,
+      "n": 26,
+      "distinct_dates": 2,
       "distinct_stations": 5,
       "stations": [
         "06009",
@@ -296,9 +337,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.212715501051695,
-      "physics_MAE": 1.2331720482667043,
-      "paired_delta_MAE": 0.02045654721500909,
+      "raw_MAE": 0.9625645564152767,
+      "physics_MAE": 0.9045800520701708,
+      "paired_delta_MAE": -0.057984504345105964,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -306,17 +347,18 @@
       "variable": "temp_dry",
       "dimension": "forecast_inversion",
       "value": "True",
-      "n": 7,
-      "distinct_dates": 1,
-      "distinct_stations": 3,
+      "n": 14,
+      "distinct_dates": 2,
+      "distinct_stations": 4,
       "stations": [
         "06009",
         "06011",
+        "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.1096675327846015,
-      "physics_MAE": 1.316341645634488,
-      "paired_delta_MAE": 0.2066741128498868,
+      "raw_MAE": 1.2068208966936318,
+      "physics_MAE": 1.5193178362472977,
+      "paired_delta_MAE": 0.3124969395536657,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -324,8 +366,8 @@
       "variable": "temp_dry",
       "dimension": "observation_source",
       "value": "DMI metObs",
-      "n": 16,
-      "distinct_dates": 1,
+      "n": 32,
+      "distinct_dates": 2,
       "distinct_stations": 4,
       "stations": [
         "06009",
@@ -333,9 +375,9 @@
         "06012",
         "06014"
       ],
-      "raw_MAE": 1.1618816375732564,
-      "physics_MAE": 1.1786869107008122,
-      "paired_delta_MAE": 0.01680527312755578,
+      "raw_MAE": 0.9825162887573357,
+      "physics_MAE": 0.9662472360603565,
+      "paired_delta_MAE": -0.016269052696979154,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -343,15 +385,15 @@
       "variable": "temp_dry",
       "dimension": "observation_source",
       "value": "IEM METAR",
-      "n": 4,
-      "distinct_dates": 1,
+      "n": 8,
+      "distinct_dates": 2,
       "distinct_stations": 1,
       "stations": [
         "EKVG"
       ],
-      "raw_MAE": 1.2357170104980357,
-      "physics_MAE": 1.5966593939238938,
-      "paired_delta_MAE": 0.36094238342585827,
+      "raw_MAE": 1.3102062225341626,
+      "physics_MAE": 1.7337024384194,
+      "paired_delta_MAE": 0.42349621588523717,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -359,8 +401,8 @@
       "variable": "temp_dry",
       "dimension": "lead_hours",
       "value": "12",
-      "n": 5,
-      "distinct_dates": 1,
+      "n": 10,
+      "distinct_dates": 2,
       "distinct_stations": 5,
       "stations": [
         "06009",
@@ -369,9 +411,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.1337890625000138,
-      "physics_MAE": 1.083733721248155,
-      "paired_delta_MAE": -0.05005534125185862,
+      "raw_MAE": 0.9981512451172012,
+      "physics_MAE": 0.9671236301645244,
+      "paired_delta_MAE": -0.031027614952676752,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -379,8 +421,8 @@
       "variable": "temp_dry",
       "dimension": "lead_hours",
       "value": "18",
-      "n": 5,
-      "distinct_dates": 1,
+      "n": 10,
+      "distinct_dates": 2,
       "distinct_stations": 5,
       "stations": [
         "06009",
@@ -389,9 +431,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.0865173339843792,
-      "physics_MAE": 1.1471977326643976,
-      "paired_delta_MAE": 0.06068039868001831,
+      "raw_MAE": 1.0831930541992185,
+      "physics_MAE": 1.1089014050815351,
+      "paired_delta_MAE": 0.025708350882316554,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -399,8 +441,8 @@
       "variable": "temp_dry",
       "dimension": "lead_hours",
       "value": "24",
-      "n": 5,
-      "distinct_dates": 1,
+      "n": 10,
+      "distinct_dates": 2,
       "distinct_stations": 5,
       "stations": [
         "06009",
@@ -409,9 +451,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.7918164062500044,
-      "physics_MAE": 1.9735687368784411,
-      "paired_delta_MAE": 0.1817523306284367,
+      "raw_MAE": 1.2834259033203081,
+      "physics_MAE": 1.468252905589154,
+      "paired_delta_MAE": 0.18482700226884607,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -419,8 +461,8 @@
       "variable": "temp_dry",
       "dimension": "lead_hours",
       "value": "6",
-      "n": 5,
-      "distinct_dates": 1,
+      "n": 10,
+      "distinct_dates": 2,
       "distinct_stations": 5,
       "stations": [
         "06009",
@@ -429,9 +471,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 0.6944720458984515,
-      "physics_MAE": 0.8446254385907201,
-      "paired_delta_MAE": 0.1501533926922687,
+      "raw_MAE": 0.8274468994140763,
+      "physics_MAE": 0.9346751652934469,
+      "paired_delta_MAE": 0.10722826587937054,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -439,7 +481,173 @@
       "variable": "wind_speed",
       "dimension": "overall",
       "value": "None",
+      "n": 32,
+      "distinct_dates": 2,
+      "distinct_stations": 4,
+      "stations": [
+        "06009",
+        "06011",
+        "06014",
+        "EKVG"
+      ],
+      "raw_MAE": 1.3092241650734335,
+      "physics_MAE": 1.2695036599395544,
+      "paired_delta_MAE": -0.039720505133879244,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "station",
+      "value": "06009",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06009"
+      ],
+      "raw_MAE": 0.9307333465277107,
+      "physics_MAE": 0.9981876674971351,
+      "paired_delta_MAE": 0.0674543209694245,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "station",
+      "value": "06011",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06011"
+      ],
+      "raw_MAE": 1.4819780119538581,
+      "physics_MAE": 1.4740866315069059,
+      "paired_delta_MAE": -0.007891380446952367,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "station",
+      "value": "06014",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06014"
+      ],
+      "raw_MAE": 1.4466817439464699,
+      "physics_MAE": 1.364071619738997,
+      "paired_delta_MAE": -0.08261012420747288,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "station",
+      "value": "EKVG",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "EKVG"
+      ],
+      "raw_MAE": 1.3775035578656958,
+      "physics_MAE": 1.2416687210151793,
+      "paired_delta_MAE": -0.13583483685051623,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "site_class",
+      "value": "lowered_hollow_proxy",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "EKVG"
+      ],
+      "raw_MAE": 1.3775035578656958,
+      "physics_MAE": 1.2416687210151793,
+      "paired_delta_MAE": -0.13583483685051623,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "site_class",
+      "value": "neutral_tpi_proxy",
+      "n": 8,
+      "distinct_dates": 2,
+      "distinct_stations": 1,
+      "stations": [
+        "06011"
+      ],
+      "raw_MAE": 1.4819780119538581,
+      "physics_MAE": 1.4740866315069059,
+      "paired_delta_MAE": -0.007891380446952367,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "site_class",
+      "value": "raised_ridge_proxy",
       "n": 16,
+      "distinct_dates": 2,
+      "distinct_stations": 2,
+      "stations": [
+        "06009",
+        "06014"
+      ],
+      "raw_MAE": 1.1887075452370903,
+      "physics_MAE": 1.1811296436180663,
+      "paired_delta_MAE": -0.007577901619024191,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "coastal",
+      "value": "False",
+      "n": 16,
+      "distinct_dates": 2,
+      "distinct_stations": 2,
+      "stations": [
+        "06014",
+        "EKVG"
+      ],
+      "raw_MAE": 1.4120926509060827,
+      "physics_MAE": 1.3028701703770882,
+      "paired_delta_MAE": -0.10922248052899455,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "coastal",
+      "value": "True",
+      "n": 16,
+      "distinct_dates": 2,
+      "distinct_stations": 2,
+      "stations": [
+        "06009",
+        "06011"
+      ],
+      "raw_MAE": 1.2063556792407844,
+      "physics_MAE": 1.2361371495020204,
+      "paired_delta_MAE": 0.029781470261236065,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "wind_sector",
+      "value": "E",
+      "n": 8,
       "distinct_dates": 1,
       "distinct_stations": 4,
       "stations": [
@@ -448,156 +656,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.330149439772903,
-      "physics_MAE": 1.2990021092738546,
-      "paired_delta_MAE": -0.03114733049904861,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "station",
-      "value": "06009",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06009"
-      ],
-      "raw_MAE": 0.8193862162758849,
-      "physics_MAE": 0.954294858214734,
-      "paired_delta_MAE": 0.1349086419388491,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "station",
-      "value": "06011",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06011"
-      ],
-      "raw_MAE": 1.3674747020204816,
-      "physics_MAE": 1.3516919411265769,
-      "paired_delta_MAE": -0.015782760893904846,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "station",
-      "value": "06014",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06014"
-      ],
-      "raw_MAE": 1.6049622414586193,
-      "physics_MAE": 1.6049622414586195,
-      "paired_delta_MAE": 2.220446049250313e-16,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "station",
-      "value": "EKVG",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "EKVG"
-      ],
-      "raw_MAE": 1.5287745993366264,
-      "physics_MAE": 1.2850593962954875,
-      "paired_delta_MAE": -0.24371520304113892,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "site_class",
-      "value": "lowered_hollow_proxy",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "EKVG"
-      ],
-      "raw_MAE": 1.5287745993366264,
-      "physics_MAE": 1.2850593962954875,
-      "paired_delta_MAE": -0.24371520304113892,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "site_class",
-      "value": "neutral_tpi_proxy",
-      "n": 4,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
-      "stations": [
-        "06011"
-      ],
-      "raw_MAE": 1.3674747020204816,
-      "physics_MAE": 1.3516919411265769,
-      "paired_delta_MAE": -0.015782760893904846,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "site_class",
-      "value": "raised_ridge_proxy",
-      "n": 8,
-      "distinct_dates": 1,
-      "distinct_stations": 2,
-      "stations": [
-        "06009",
-        "06014"
-      ],
-      "raw_MAE": 1.2121742288672521,
-      "physics_MAE": 1.2796285498366768,
-      "paired_delta_MAE": 0.06745432096942466,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "coastal",
-      "value": "False",
-      "n": 8,
-      "distinct_dates": 1,
-      "distinct_stations": 2,
-      "stations": [
-        "06014",
-        "EKVG"
-      ],
-      "raw_MAE": 1.5668684203976229,
-      "physics_MAE": 1.4450108188770536,
-      "paired_delta_MAE": -0.12185760152056935,
-      "CI95_date_bootstrap": null,
-      "eligible_for_descriptive_inference": false
-    },
-    {
-      "variable": "wind_speed",
-      "dimension": "coastal",
-      "value": "True",
-      "n": 8,
-      "distinct_dates": 1,
-      "distinct_stations": 2,
-      "stations": [
-        "06009",
-        "06011"
-      ],
-      "raw_MAE": 1.0934304591481832,
-      "physics_MAE": 1.1529933996706554,
-      "paired_delta_MAE": 0.05956294052247213,
+      "raw_MAE": 1.0016033693895405,
+      "physics_MAE": 0.9243269350559755,
+      "paired_delta_MAE": -0.07727643433356524,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -624,15 +685,16 @@
       "variable": "wind_speed",
       "dimension": "wind_sector",
       "value": "NE",
-      "n": 1,
-      "distinct_dates": 1,
-      "distinct_stations": 1,
+      "n": 2,
+      "distinct_dates": 2,
+      "distinct_stations": 2,
       "stations": [
+        "06011",
         "EKVG"
       ],
-      "raw_MAE": 2.157123320186942,
-      "physics_MAE": 2.0299072116716594,
-      "paired_delta_MAE": -0.12721610851528276,
+      "raw_MAE": 1.2083811933669932,
+      "physics_MAE": 1.144773139109352,
+      "paired_delta_MAE": -0.06360805425764116,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -654,9 +716,9 @@
     },
     {
       "variable": "wind_speed",
-      "dimension": "forecast_strong_wind",
-      "value": "False",
-      "n": 16,
+      "dimension": "wind_sector",
+      "value": "SE",
+      "n": 7,
       "distinct_dates": 1,
       "distinct_stations": 4,
       "stations": [
@@ -665,9 +727,28 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.330149439772903,
-      "physics_MAE": 1.2990021092738546,
-      "paired_delta_MAE": -0.03114733049904861,
+      "raw_MAE": 1.7629023177600078,
+      "physics_MAE": 1.740832688955603,
+      "paired_delta_MAE": -0.022069628804405234,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "forecast_strong_wind",
+      "value": "False",
+      "n": 32,
+      "distinct_dates": 2,
+      "distinct_stations": 4,
+      "stations": [
+        "06009",
+        "06011",
+        "06014",
+        "EKVG"
+      ],
+      "raw_MAE": 1.3092241650734335,
+      "physics_MAE": 1.2695036599395544,
+      "paired_delta_MAE": -0.039720505133879244,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -675,8 +756,8 @@
       "variable": "wind_speed",
       "dimension": "observed_strong_wind",
       "value": "False",
-      "n": 16,
-      "distinct_dates": 1,
+      "n": 30,
+      "distinct_dates": 2,
       "distinct_stations": 4,
       "stations": [
         "06009",
@@ -684,9 +765,26 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.330149439772903,
-      "physics_MAE": 1.2990021092738546,
-      "paired_delta_MAE": -0.03114733049904861,
+      "raw_MAE": 1.2675360763280235,
+      "physics_MAE": 1.2165207049545494,
+      "paired_delta_MAE": -0.051015371373474123,
+      "CI95_date_bootstrap": null,
+      "eligible_for_descriptive_inference": false
+    },
+    {
+      "variable": "wind_speed",
+      "dimension": "observed_strong_wind",
+      "value": "True",
+      "n": 2,
+      "distinct_dates": 1,
+      "distinct_stations": 2,
+      "stations": [
+        "06009",
+        "06014"
+      ],
+      "raw_MAE": 1.9345454962545858,
+      "physics_MAE": 2.06424798471463,
+      "paired_delta_MAE": 0.12970248846004395,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -694,8 +792,8 @@
       "variable": "wind_speed",
       "dimension": "forecast_inversion",
       "value": "False",
-      "n": 9,
-      "distinct_dates": 1,
+      "n": 18,
+      "distinct_dates": 2,
       "distinct_stations": 4,
       "stations": [
         "06009",
@@ -703,9 +801,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.250626718612309,
-      "physics_MAE": 1.2192483527019387,
-      "paired_delta_MAE": -0.03137836591037053,
+      "raw_MAE": 1.2523911350806545,
+      "physics_MAE": 1.2165676631065954,
+      "paired_delta_MAE": -0.03582347197405898,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -713,17 +811,18 @@
       "variable": "wind_speed",
       "dimension": "forecast_inversion",
       "value": "True",
-      "n": 7,
-      "distinct_dates": 1,
-      "distinct_stations": 3,
+      "n": 14,
+      "distinct_dates": 2,
+      "distinct_stations": 4,
       "stations": [
         "06009",
         "06011",
+        "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.4323929384079526,
-      "physics_MAE": 1.401542653437746,
-      "paired_delta_MAE": -0.030850284970206143,
+      "raw_MAE": 1.3822952036355782,
+      "physics_MAE": 1.337564227296216,
+      "paired_delta_MAE": -0.04473097633936244,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -731,17 +830,17 @@
       "variable": "wind_speed",
       "dimension": "observation_source",
       "value": "DMI metObs",
-      "n": 12,
-      "distinct_dates": 1,
+      "n": 24,
+      "distinct_dates": 2,
       "distinct_stations": 3,
       "stations": [
         "06009",
         "06011",
         "06014"
       ],
-      "raw_MAE": 1.263941053251662,
-      "physics_MAE": 1.3036496802666433,
-      "paired_delta_MAE": 0.03970862701498149,
+      "raw_MAE": 1.286464367476013,
+      "physics_MAE": 1.278781972914346,
+      "paired_delta_MAE": -0.0076823945616669165,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -749,15 +848,15 @@
       "variable": "wind_speed",
       "dimension": "observation_source",
       "value": "IEM METAR",
-      "n": 4,
-      "distinct_dates": 1,
+      "n": 8,
+      "distinct_dates": 2,
       "distinct_stations": 1,
       "stations": [
         "EKVG"
       ],
-      "raw_MAE": 1.5287745993366264,
-      "physics_MAE": 1.2850593962954875,
-      "paired_delta_MAE": -0.24371520304113892,
+      "raw_MAE": 1.3775035578656958,
+      "physics_MAE": 1.2416687210151793,
+      "paired_delta_MAE": -0.13583483685051623,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -765,8 +864,8 @@
       "variable": "wind_speed",
       "dimension": "lead_hours",
       "value": "12",
-      "n": 4,
-      "distinct_dates": 1,
+      "n": 8,
+      "distinct_dates": 2,
       "distinct_stations": 4,
       "stations": [
         "06009",
@@ -774,9 +873,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 0.5582056707424417,
-      "physics_MAE": 0.6095516218799838,
-      "paired_delta_MAE": 0.051345951137542145,
+      "raw_MAE": 0.6469255400577325,
+      "physics_MAE": 0.6249986757948408,
+      "paired_delta_MAE": -0.021926864262891754,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -784,8 +883,8 @@
       "variable": "wind_speed",
       "dimension": "lead_hours",
       "value": "18",
-      "n": 4,
-      "distinct_dates": 1,
+      "n": 8,
+      "distinct_dates": 2,
       "distinct_stations": 4,
       "stations": [
         "06009",
@@ -793,9 +892,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 1.6024163924825578,
-      "physics_MAE": 1.4503026584853531,
-      "paired_delta_MAE": -0.15211373399720485,
+      "raw_MAE": 1.3830375245473145,
+      "physics_MAE": 1.2609529631657297,
+      "paired_delta_MAE": -0.12208456138158491,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -803,8 +902,8 @@
       "variable": "wind_speed",
       "dimension": "lead_hours",
       "value": "24",
-      "n": 4,
-      "distinct_dates": 1,
+      "n": 8,
+      "distinct_dates": 2,
       "distinct_stations": 4,
       "stations": [
         "06009",
@@ -812,9 +911,9 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 2.222432592293842,
-      "physics_MAE": 2.2434718509927665,
-      "paired_delta_MAE": 0.021039258698924534,
+      "raw_MAE": 2.0776042658527194,
+      "physics_MAE": 2.11484066438131,
+      "paired_delta_MAE": 0.037236398528590176,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     },
@@ -822,8 +921,8 @@
       "variable": "wind_speed",
       "dimension": "lead_hours",
       "value": "6",
-      "n": 4,
-      "distinct_dates": 1,
+      "n": 8,
+      "distinct_dates": 2,
       "distinct_stations": 4,
       "stations": [
         "06009",
@@ -831,23 +930,23 @@
         "06014",
         "EKVG"
       ],
-      "raw_MAE": 0.937543103572771,
-      "physics_MAE": 0.8926823057373148,
-      "paired_delta_MAE": -0.04486079783545627,
+      "raw_MAE": 1.1293293298359677,
+      "physics_MAE": 1.0772223364163374,
+      "paired_delta_MAE": -0.05210699341963049,
       "CI95_date_bootstrap": null,
       "eligible_for_descriptive_inference": false
     }
   ],
   "conditions": {
     "strong_observed": {
-      "n": 0,
-      "days": 0,
-      "stations": 0
+      "n": 2,
+      "days": 1,
+      "stations": 2
     },
     "forecast_inversions": {
-      "n": 7,
-      "days": 1,
-      "stations": 3
+      "n": 14,
+      "days": 2,
+      "stations": 4
     }
   },
   "readiness": {
@@ -865,6 +964,6 @@
     "Dataset cannot establish best-model status without external baselines and seasonal skill evidence"
   ],
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/44863421059",
-  "commit": "7ace439790ca836438b05cdfd873bbbeb82f1c25"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45732165820",
+  "commit": "d4ab58b2e2f4242853ca3431d48e344993a6564a"
 }
