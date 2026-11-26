@@ -1,11 +1,11 @@
 {
-  "status": "exploratory",
+  "status": "failed",
   "source": "google-weathernext3-forecast-15-day-0-1-degree-virtual",
   "license": "CC BY 4.0; Google WeatherNext 3 via dynamical.org",
   "mode": "retrospective",
   "bigquery_queries": 0,
   "missing_issues": [],
-  "valid_source_bundles": 10,
+  "valid_source_bundles": 12,
   "excluded_bundles": [],
   "eligible_issues": [
     "2026-11-14 00:00:00+00:00",
@@ -15,49 +15,12 @@
     "2026-11-22 00:00:00+00:00",
     "2026-11-23 00:00:00+00:00",
     "2026-11-23 12:00:00+00:00",
-    "2026-11-24 12:00:00+00:00"
+    "2026-11-24 12:00:00+00:00",
+    "2026-11-25 00:00:00+00:00",
+    "2026-11-25 12:00:00+00:00"
   ],
-  "refreshed_observation_rows": 6,
-  "coverage_by_lead": [
-    {
-      "lead_hours": 6,
-      "expected": 48,
-      "paired": 48
-    },
-    {
-      "lead_hours": 12,
-      "expected": 48,
-      "paired": 48
-    },
-    {
-      "lead_hours": 24,
-      "expected": 48,
-      "paired": 48
-    }
-  ],
-  "models": [
-    "ECMWF_IFS",
-    "HARMONIE_DINI",
-    "WeatherNext3"
-  ],
-  "common_cases": 144,
-  "independent_issue_days": 7,
-  "forecast_rows_by_model": {
-    "ECMWF_IFS": 144,
-    "HARMONIE_DINI": 144,
-    "WeatherNext3": 144
-  },
-  "interpretation": "Retrospective archive comparison; not evidence of prospective availability or superiority.",
-  "complete_weathernext_issues": 8,
-  "source_hashes": {
-    "base_forecasts.csv": "cd8d8dc772b813e54f59f66e08a9e5707724f224e811091cda62a38185955cab",
-    "weathernext_forecasts.csv": "7906207abb4e1aaff16c17866d77bf55f989b738b42fcf8f6182a3c3c19720ee",
-    "observations.csv": "cee3368212811e19ea9d385524e8a876997d84fe2d3784c0fe88030ee5054dab"
-  },
-  "newest_archived_issue": "2026-11-25 00:00:00+00:00",
-  "retrieved_utc": "2026-11-25T19:21:22.873411+00:00",
-  "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45684292987",
-  "commit": "3d98bc83555bc6409a9778a76814504aff44e1bb",
-  "updated_utc": "2026-11-25T19:23:11.952057+00:00"
+  "job_status": "failure",
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45880836270",
+  "commit": "01a49e492c047e78a5d70b573dc2ee08135f8300",
+  "updated_utc": "2026-11-26T19:09:03.172563+00:00"
 }
