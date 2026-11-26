@@ -2,12 +2,12 @@
   "native": {
     "status": "regional_decoded",
     "bigquery_queries": 0,
-    "issue": "2026-11-24T12:00:00Z",
-    "valid": "2026-11-24T18:00:00Z",
-    "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-24T120000Z_2026-11-24T180000Z.grib",
+    "issue": "2026-11-25T00:00:00Z",
+    "valid": "2026-11-25T06:00:00Z",
+    "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-25T000000Z_2026-11-25T060000Z.grib",
     "source": {
-      "bytes": 621078296,
-      "sha256": "75c4903abab93001343a5be7c1935ebe2082d7c2a7110b983b8aa3af8f32c1ed"
+      "bytes": 622763444,
+      "sha256": "b1e8168eccb403b18c2d0a42625dcd27cc11be1f12ba79049262f48e132cbda2"
     },
     "checks": {
       "wind_flags": {
@@ -17,8 +17,8 @@
         "v100": 1
       },
       "rotation": "lambert convergence sign -1; checked against native true direction",
-      "direction_error_p95_deg": 0.01703148739462108,
-      "speed_error_p95_ms": 0.13106340962723417
+      "direction_error_p95_deg": 0.016987840034556712,
+      "speed_error_p95_ms": 0.1425311134443515
     },
     "native_cells": 9179,
     "observation_matches": 7
@@ -30,7 +30,7 @@
     "paired": 9,
     "metar": {
       "status": "past_only",
-      "selected_time": "2026-11-24T17:50:00Z",
+      "selected_time": "2026-11-25T05:50:00Z",
       "offset_minutes": 10,
       "archive_reports": 95
     },
@@ -42,9 +42,9 @@
         "n": 5,
         "all_observed": 5,
         "days": 1,
-        "raw_MAE": 0.6026483154296829,
-        "physics_MAE": 0.33290679866192774,
-        "delta_MAE": -0.26974151676775515,
+        "raw_MAE": 0.5266711425781206,
+        "physics_MAE": 0.22177065988732547,
+        "delta_MAE": -0.30490048269079517,
         "eligible": false
       },
       {
@@ -54,9 +54,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.4266021728515845,
-        "physics_MAE": 0.3026324395187867,
-        "delta_MAE": -0.12396973333279782,
+        "raw_MAE": 0.7756286621093977,
+        "physics_MAE": 0.03953727832234666,
+        "delta_MAE": -0.7360913837870511,
         "eligible": false
       },
       {
@@ -66,9 +66,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.2603912353515856,
-        "physics_MAE": 0.04358695566377868,
-        "delta_MAE": -0.2168042796878069,
+        "raw_MAE": 0.13344116210939738,
+        "physics_MAE": 0.11068432201922551,
+        "delta_MAE": -0.02275684009017187,
         "eligible": false
       },
       {
@@ -78,9 +78,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.4483978271484146,
-        "physics_MAE": 0.042692356505422246,
-        "delta_MAE": -0.40570547064299234,
+        "raw_MAE": 0.2610900878906026,
+        "physics_MAE": 0.16177708065187346,
+        "delta_MAE": -0.09931300723872916,
         "eligible": false
       },
       {
@@ -90,9 +90,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.8183197021484148,
-        "physics_MAE": 0.557577613885738,
-        "delta_MAE": -0.26074208826267675,
+        "raw_MAE": 0.5151916503906024,
+        "physics_MAE": 0.2273525630725839,
+        "delta_MAE": -0.28783908731801855,
         "eligible": false
       },
       {
@@ -102,9 +102,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 1.0595306396484148,
-        "physics_MAE": 0.7180446277359129,
-        "delta_MAE": -0.34148601191250183,
+        "raw_MAE": 0.9480041503906032,
+        "physics_MAE": 0.5695020553705978,
+        "delta_MAE": -0.3785020950200053,
         "eligible": false
       },
       {
@@ -114,9 +114,9 @@
         "n": 5,
         "all_observed": 5,
         "days": 1,
-        "raw_MAE": 0.6026483154296829,
-        "physics_MAE": 0.33290679866192774,
-        "delta_MAE": -0.26974151676775515,
+        "raw_MAE": 0.5266711425781206,
+        "physics_MAE": 0.22177065988732547,
+        "delta_MAE": -0.30490048269079517,
         "eligible": false
       },
       {
@@ -126,9 +126,9 @@
         "n": 5,
         "all_observed": 5,
         "days": 1,
-        "raw_MAE": 0.6026483154296829,
-        "physics_MAE": 0.33290679866192774,
-        "delta_MAE": -0.26974151676775515,
+        "raw_MAE": 0.5266711425781206,
+        "physics_MAE": 0.22177065988732547,
+        "delta_MAE": -0.30490048269079517,
         "eligible": false
       },
       {
@@ -138,9 +138,9 @@
         "n": 5,
         "all_observed": 5,
         "days": 1,
-        "raw_MAE": 0.6026483154296829,
-        "physics_MAE": 0.33290679866192774,
-        "delta_MAE": -0.26974151676775515,
+        "raw_MAE": 0.5266711425781206,
+        "physics_MAE": 0.22177065988732547,
+        "delta_MAE": -0.30490048269079517,
         "eligible": false
       },
       {
@@ -150,9 +150,9 @@
         "n": 4,
         "all_observed": 4,
         "days": 1,
-        "raw_MAE": 3.1884206194686677,
-        "physics_MAE": 3.2803140836699165,
-        "delta_MAE": 0.09189346420124878,
+        "raw_MAE": 3.35466305252377,
+        "physics_MAE": 3.4597777840126356,
+        "delta_MAE": 0.10511473148886541,
         "eligible": false
       },
       {
@@ -162,8 +162,8 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 1.2053257249721838,
-        "physics_MAE": 1.2053257249721838,
+        "raw_MAE": 1.2274928492733927,
+        "physics_MAE": 1.2274928492733927,
         "delta_MAE": 0.0,
         "eligible": false
       },
@@ -174,9 +174,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 6.853433079344085,
-        "physics_MAE": 6.853433079344085,
-        "delta_MAE": 0.0,
+        "raw_MAE": 6.750958652401376,
+        "physics_MAE": 6.750958652401378,
+        "delta_MAE": 1.7763568394002505e-15,
         "eligible": false
       },
       {
@@ -186,9 +186,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 4.070263604612824,
-        "physics_MAE": 4.517632335076897,
-        "delta_MAE": 0.44736873046407233,
+        "raw_MAE": 5.379139369406673,
+        "physics_MAE": 5.83936815009373,
+        "delta_MAE": 0.4602287806870571,
         "eligible": false
       },
       {
@@ -198,9 +198,9 @@
         "n": 1,
         "all_observed": 1,
         "days": 1,
-        "raw_MAE": 0.6246600689455768,
-        "physics_MAE": 0.5448651952864996,
-        "delta_MAE": -0.07979487365907723,
+        "raw_MAE": 0.06106133901363897,
+        "physics_MAE": 0.02129148428204175,
+        "delta_MAE": -0.03976985473159722,
         "eligible": false
       },
       {
@@ -210,9 +210,9 @@
         "n": 4,
         "all_observed": 4,
         "days": 1,
-        "raw_MAE": 3.1884206194686677,
-        "physics_MAE": 3.2803140836699165,
-        "delta_MAE": 0.09189346420124878,
+        "raw_MAE": 3.35466305252377,
+        "physics_MAE": 3.4597777840126356,
+        "delta_MAE": 0.10511473148886541,
         "eligible": false
       },
       {
@@ -222,9 +222,9 @@
         "n": 4,
         "all_observed": 4,
         "days": 1,
-        "raw_MAE": 3.1884206194686677,
-        "physics_MAE": 3.2803140836699165,
-        "delta_MAE": 0.09189346420124878,
+        "raw_MAE": 3.35466305252377,
+        "physics_MAE": 3.4597777840126356,
+        "delta_MAE": 0.10511473148886541,
         "eligible": false
       },
       {
@@ -234,15 +234,15 @@
         "n": 4,
         "all_observed": 4,
         "days": 1,
-        "raw_MAE": 3.1884206194686677,
-        "physics_MAE": 3.2803140836699165,
-        "delta_MAE": 0.09189346420124878,
+        "raw_MAE": 3.35466305252377,
+        "physics_MAE": 3.4597777840126356,
+        "delta_MAE": 0.10511473148886541,
         "eligible": false
       }
     ],
     "limitation": "Exploratory new-site geographic proxies; forecast-defined inversion and wind regimes; METAR temperature integer precision and preceding-report timing differ from hourly DMI observations."
   },
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45522277551",
-  "commit": "ae0346f7241fef7161e23fdcd7424b7ddfa92a5a"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45729859941",
+  "commit": "b36e72ab3da57c468ff1dbc39b94bbf3dd1f4191"
 }
