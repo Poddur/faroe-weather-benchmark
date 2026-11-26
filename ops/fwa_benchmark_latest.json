@@ -1,12 +1,12 @@
 {
   "status": "regional_decoded",
   "bigquery_queries": 0,
-  "issue": "2026-11-24T12:00:00Z",
-  "valid": "2026-11-24T18:00:00Z",
-  "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-24T120000Z_2026-11-24T180000Z.grib",
+  "issue": "2026-11-25T12:00:00Z",
+  "valid": "2026-11-25T18:00:00Z",
+  "url": "https://dmi-opendata.s3.eu-north-1.amazonaws.com/forecastdata/HARMONIE_DINI_SF/HARMONIE_DINI_SF_2026-11-25T120000Z_2026-11-25T180000Z.grib",
   "source": {
-    "bytes": 621078296,
-    "sha256": "75c4903abab93001343a5be7c1935ebe2082d7c2a7110b983b8aa3af8f32c1ed"
+    "bytes": 622702604,
+    "sha256": "7de851c7b6894c945227e55298cda9b9945816defa777b14b2144072c2afe848"
   },
   "checks": {
     "wind_flags": {
@@ -16,8 +16,8 @@
       "v100": 1
     },
     "rotation": "lambert convergence sign -1; checked against native true direction",
-    "direction_error_p95_deg": 0.01703148739462108,
-    "speed_error_p95_ms": 0.13106340962723417
+    "direction_error_p95_deg": 0.018470414984832928,
+    "speed_error_p95_ms": 0.10856842794713487
   },
   "native_cells": 9179,
   "observation_matches": 7,
@@ -30,24 +30,24 @@
         "parameter": "temp_dry",
         "matched": 3,
         "all_observed": 4,
-        "raw_MAE": 0.5017710367838616,
-        "physics_MAE": 0.30126566968943447,
-        "improvement_pct": 39.959533810397076
+        "raw_MAE": 0.3878031412760186,
+        "physics_MAE": 0.45325455891502947,
+        "improvement_pct": -16.877485165192585
       },
       {
         "parameter": "wind_speed",
         "matched": 3,
         "all_observed": 3,
-        "raw_MAE": 4.043007469643031,
-        "physics_MAE": 4.192130379797722,
-        "improvement_pct": -3.6884154005250247
+        "raw_MAE": 2.8016688263151592,
+        "physics_MAE": 2.8055746183878996,
+        "improvement_pct": -0.13940948466337755
       }
     ],
-    "forecast_run": "2026-11-24T12:00:00Z",
-    "forecast_valid": "2026-11-24T18:00:00Z",
+    "forecast_run": "2026-11-25T12:00:00Z",
+    "forecast_valid": "2026-11-25T18:00:00Z",
     "restrictions": "One forecast snapshot. Pre-registered fixed algorithm, no fit. Only same-station paired observations; do not infer scientific gain from a single day."
   },
   "job_status": "success",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45520001705",
-  "commit": "a522fdd443e7318df3e2cdd437336a1b227bc392"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45727829533",
+  "commit": "8e0b37f128cdd977c0aaf12175457ed33d384100"
 }
