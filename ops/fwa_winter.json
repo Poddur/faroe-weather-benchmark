@@ -1,38 +1,6 @@
 {
-  "status": "collecting",
-  "lock_sha256": "374bf294dd33741ba0dd635ad68308439108c93b903fbe4e8179533417c44085",
-  "planned_dates": 84,
-  "eligible_dates": 1,
-  "dates_attempted": 1,
-  "complete_dates": "0",
-  "failures": [],
-  "bigquery_queries": 0,
-  "historical_archive_only": true,
-  "protocol": {
-    "first_issue": "2026-11-21",
-    "last_issue": "2027-02-12",
-    "finalize_after": "2027-02-24",
-    "archive_lag_days": 5,
-    "minimum_dates": 60,
-    "minimum_weeks": 10,
-    "minimum_cases_per_station_lead": 63,
-    "minimum_strong_cases": 30,
-    "minimum_strong_dates": 12,
-    "minimum_strong_weeks": 8,
-    "min_direction_fraction": 0.8,
-    "gate_threshold": 12,
-    "strong_threshold": 15,
-    "max_wind_mae_increase": 0.05,
-    "max_station_temperature_mae_increase": 0.1,
-    "bootstrap_draws": 10000,
-    "seed": 20261120
-  },
-  "paired_dates": 1,
-  "pairs_by_variable": {
-    "temperature_2m": 9,
-    "wind_speed_10m": 9
-  },
+  "status": "failed_before_evaluation",
   "job_status": "failure",
-  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/45882304579",
-  "commit": "fbfe106c8764c158734fafee6485f5db0470403f"
+  "run_url": "https://github.com/Poddur/faroe-weather-benchmark/actions/runs/46054701089",
+  "commit": "7664f1d07e454bf1739a30455b75b5e3ff128155"
 }
